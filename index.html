@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chromospace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: gallery wall. One dark room, the works carry the colour; each category owns one hue of the spectrum. */
+:root{
+  --ink:#0c0e13;
+  --panel:#151821;
+  --line:#272b38;
+  --text:#ecebf1;
+  --muted:#8f94a6;
+  --c-nft:#8b6cff;
+  --c-street:#ff4d6d;
+  --c-stampe:#2ec4f1;
+  --c-quadri:#ffb020;
+  --c-figurine:#3ddc97;
+  --spectrum:linear-gradient(90deg,var(--c-street),var(--c-quadri),var(--c-figurine),var(--c-stampe),var(--c-nft));
+  --f-display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --gutter:clamp(16px,4vw,48px);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--ink);color:var(--text);font-family:var(--f-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--c-stampe);outline-offset:3px;border-radius:4px}
+.spectrum-rule{height:3px;background:var(--spectrum)}
+.wrap{max-width:1280px;margin:0 auto;padding:0 var(--gutter)}
+.mono{font-family:var(--f-mono);font-size:12.5px;letter-spacing:.02em;font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+
+/* Header */
+header.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:20px 0}
+.brand{font-family:var(--f-display);font-weight:700;font-size:26px;letter-spacing:-.03em;text-decoration:none;display:flex;align-items:baseline;gap:2px}
+.brand span{color:var(--muted);font-weight:400}
+nav.main{display:flex;gap:22px;flex-wrap:wrap}
+nav.main a{text-decoration:none;color:var(--muted);font-weight:500;font-size:15px}
+nav.main a:hover{color:var(--text)}
+.status{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:13px;color:var(--muted);max-width:100%}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--c-quadri);flex:none}
+.status.ok i{background:var(--c-figurine)}
+.status.loading i{animation:pulse 1.2s infinite}
+@keyframes pulse{50%{opacity:.3}}
+
+/* Hero: piece of the day */
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,5vw,72px);align-items:center;padding:28px 0 56px}
+.frame{position:relative;background:var(--panel);border-radius:6px;padding:clamp(14px,2.4vw,28px);box-shadow:0 30px 80px -30px rgba(0,0,0,.8)}
+.frame img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px;background:#1b1f2a}
+.frame .bar{position:absolute;left:0;right:0;bottom:0;height:5px;border-radius:0 0 6px 6px;background:var(--cat,var(--spectrum))}
+.badge-new{position:absolute;top:26px;left:26px;background:var(--text);color:var(--ink);font-weight:600;font-size:12px;padding:5px 10px;border-radius:999px;letter-spacing:.04em;text-transform:uppercase}
+.eyebrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:14px;margin-bottom:14px}
+.eyebrow b{color:var(--text);font-weight:600}
+h1.title{font-family:var(--f-display);font-weight:650;font-size:clamp(36px,5.4vw,76px);line-height:.98;letter-spacing:-.035em;margin:0 0 14px;text-wrap:balance;overflow-wrap:anywhere}
+.card .t,.strip .t,.sheet h3{overflow-wrap:anywhere}
+.byline{font-size:19px;margin:0 0 22px}
+.byline .muted{margin-left:6px}
+.chip{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:13px;font-weight:500;white-space:nowrap}
+.chip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--cat,var(--muted))}
+dl.facts{display:grid;grid-template-columns:auto 1fr;gap:8px 22px;margin:22px 0;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+dl.facts dt{color:var(--muted);font-size:14px}
+dl.facts dd{margin:0;font-size:15px;overflow-wrap:anywhere}
+.note{max-width:60ch;color:#c9cad4;margin:0 0 24px}
+.day-nav{display:flex;gap:10px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:9px 16px;font-size:14px;font-weight:500;cursor:pointer;transition:border-color .15s,background .15s}
+.btn:hover{border-color:var(--muted)}
+.btn.primary{background:var(--text);color:var(--ink);border-color:var(--text)}
+.btn[hidden]{display:none}
+
+/* Section heads */
+section{padding:48px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+h2{font-family:var(--f-display);font-weight:600;font-size:clamp(26px,3.2vw,40px);letter-spacing:-.03em;margin:0;line-height:1.05}
+
+/* Recent strip */
+.strip{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(150px,1fr);gap:16px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin}
+.strip button{all:unset;cursor:pointer;display:grid;gap:8px}
+.strip img{aspect-ratio:1;object-fit:cover;border-radius:4px;width:100%;background:var(--panel)}
+.strip .t{font-weight:600;font-size:14px;line-height:1.3}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.stat{all:unset;cursor:pointer;background:var(--ink);padding:18px 18px 16px;display:grid;gap:4px;position:relative}
+.stat:hover{background:var(--panel)}
+.stat::after{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--cat,var(--spectrum))}
+.stat .n{font-family:var(--f-display);font-size:34px;font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1.1}
+.stat .l{color:var(--muted);font-size:14px}
+
+/* Collection toolbar */
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:24px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;flex:1 1 auto}
+.filters button{border:1px solid var(--line);background:transparent;border-radius:999px;padding:7px 14px;font-size:14px;cursor:pointer;display:inline-flex;gap:8px;align-items:center}
+.filters button .c{color:var(--muted);font-family:var(--f-mono);font-size:12px}
+.filters button[aria-pressed="true"]{background:var(--text);color:var(--ink);border-color:var(--text)}
+.filters button[aria-pressed="true"] .c{color:var(--ink);opacity:.6}
+.filters button::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--cat,var(--spectrum))}
+.field{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:0 14px;background:var(--panel)}
+.field input,.field select{background:transparent;border:0;padding:8px 0;outline:none;min-width:0}
+.field select option{background:var(--panel)}
+#q{width:180px}
+
+/* Grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:28px 22px}
+.card{all:unset;cursor:pointer;display:grid;gap:10px;align-content:start}
+.card .img{position:relative;border-radius:4px;overflow:hidden;background:var(--panel)}
+.card img{width:100%;aspect-ratio:4/5;object-fit:cover;transition:transform .4s ease}
+.card:hover img{transform:scale(1.03)}
+.card .img::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--cat)}
+.card .t{font-weight:600;font-size:15.5px;line-height:1.3}
+.card .a{color:var(--muted);font-size:14px}
+.card .meta{display:flex;justify-content:space-between;gap:8px;color:var(--muted)}
+.tag-ex{position:absolute;top:8px;right:8px;background:rgba(12,14,19,.75);backdrop-filter:blur(4px);font-size:11px;padding:3px 8px;border-radius:999px;color:var(--muted)}
+.empty{color:var(--muted);padding:40px 0}
+
+/* Modal */
+.modal{position:fixed;inset:0;background:rgba(6,7,10,.82);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:var(--gutter);z-index:20}
+.modal.open{display:flex}
+.sheet{background:var(--panel);border:1px solid var(--line);border-radius:10px;max-width:1040px;width:100%;max-height:100%;overflow:auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);position:relative}
+.sheet .art{padding:24px;background:#10131a}
+.sheet .art img{width:100%;aspect-ratio:4/5;object-fit:contain}
+.sheet .info{padding:28px 28px 32px}
+.sheet h3{font-family:var(--f-display);font-size:34px;letter-spacing:-.03em;line-height:1.05;margin:10px 0 8px;font-weight:650;text-wrap:balance}
+.close{position:absolute;top:12px;right:12px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--ink);cursor:pointer;font-size:20px;line-height:1}
+.links{display:flex;gap:10px;flex-wrap:wrap}
+.links a{text-decoration:none}
+
+footer{border-top:1px solid var(--line);margin-top:40px;padding:28px 0 48px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+
+.notice{border:1px dashed var(--line);border-radius:8px;padding:12px 16px;color:var(--muted);font-size:14px;margin-top:8px}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .sheet{grid-template-columns:1fr}
+}
+@media (max-width:440px){
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .toolbar .field{flex:1 1 100%}
+  #q{width:100%}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 14px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="spectrum-rule"></div>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#today-piece">chromospace<span>.art</span></a>
+    <nav class="main" aria-label="Sections">
+      <a href="#today-piece">Piece of the day</a>
+      <a href="#acquisitions">Acquisitions</a>
+      <a href="#collection">Collection</a>
+    </nav>
+    <div class="status loading" id="status"><i></i><span id="statusText">Connecting wallet…</span></div>
+  </header>
+
+  <main>
+    <article class="hero" id="today-piece" aria-live="polite">
+      <div class="frame" id="heroFrame">
+        <img id="heroImg" alt="">
+        <span class="badge-new" id="heroNew" hidden>Acquired today</span>
+        <div class="bar"></div>
+      </div>
+      <div>
+        <div class="eyebrow"><b>Piece of the day</b><span id="heroDate"></span></div>
+        <h1 class="title" id="heroTitle"></h1>
+        <p class="byline"><span id="heroArtist"></span><span class="muted" id="heroYear"></span></p>
+        <span class="chip" id="heroCat"></span>
+        <dl class="facts" id="heroFacts"></dl>
+        <p class="note" id="heroNote"></p>
+        <div class="day-nav">
+          <button class="btn" id="prevDay" type="button">← Previous day</button>
+          <button class="btn" id="nextDay" type="button">Next day →</button>
+          <button class="btn" id="today" type="button" hidden>Back to today</button>
+          <button class="btn primary" id="heroOpen" type="button">Open details</button>
+        </div>
+      </div>
+    </article>
+
+    <section id="acquisitions">
+      <div class="sec-head">
+        <h2>Latest acquisitions</h2>
+        <span class="muted" id="recentHint"></span>
+      </div>
+      <div class="strip" id="recent"></div>
+    </section>
+
+    <section id="collection">
+      <div class="sec-head">
+        <h2>The collection</h2>
+        <span class="mono muted" id="countLine"></span>
+      </div>
+      <div class="stats" id="stats"></div>
+      <div style="height:28px"></div>
+      <div class="toolbar">
+        <div class="filters" id="filters" role="group" aria-label="Filter by category"></div>
+        <label class="field" for="q"><span class="muted" aria-hidden="true">⌕</span><input id="q" type="search" placeholder="Search title or artist"></label>
+        <label class="field" for="sort"><span class="muted">Sort</span>
+          <select id="sort">
+            <option value="recent">Recently acquired</option>
+            <option value="year">Year</option>
+            <option value="artist">Artist A–Z</option>
+            <option value="title">Title A–Z</option>
+          </select>
+        </label>
+      </div>
+      <div class="grid" id="grid"></div>
+      <p class="notice" id="exampleNotice">Physical works marked “example” are placeholders with generated images, to be replaced with your own records and photos. NFTs come from your wallet: this preview shows a snapshot from OpenSea with placeholder images, the live site loads the real ones.</p>
+    </section>
+  </main>
+
+  <footer>
+    <span>Chromospace · the piece of the day changes at midnight, Rome time</span>
+    <span class="mono"><a id="walletLink" href="#">wallet</a></span>
+  </footer>
+</div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="sheet">
+    <button class="close" id="mClose" type="button" aria-label="Close">×</button>
+    <div class="art"><img id="mImg" alt=""></div>
+    <div class="info">
+      <span class="chip" id="mCat"></span>
+      <h3 id="mTitle"></h3>
+      <p class="byline"><span id="mArtist"></span><span class="muted" id="mYear"></span></p>
+      <dl class="facts" id="mFacts"></dl>
+      <p class="note" id="mNote"></p>
+      <div class="links" id="mLinks"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---------- Settings ---------- */
+const WALLET = '0xb884ad7ab6af74693fec7f364eb8bfb31fc7ecea';
+const API = 'https://eth.blockscout.com/api/v2/addresses/' + WALLET;
+const TZ = 'Europe/Rome';
+const LOCALE = 'en-GB';
+
+const CATS = {
+  nft:      { label: 'NFT',        color: 'var(--c-nft)' },
+  street:   { label: 'Street art', color: 'var(--c-street)' },
+  stampe:   { label: 'Prints',        color: 'var(--c-stampe)' },
+  quadri:   { label: 'Paintings',     color: 'var(--c-quadri)' },
+  figurine: { label: 'Trading cards', color: 'var(--c-figurine)' }
+};
+
+/* ---------- Physical works (EXAMPLES: replace with the real collection) ---------- */
+const PHYSICAL = [
+  { id:'CS-0001', category:'quadri', title:'Red Field on Ochre', artist:'Lia Marchetti', year:2009, technique:'Oil on canvas', dimensions:'80 × 100 cm', acquired:'2014-05-17', provenance:'Private gallery, Bologna', note:'The first painting to join the collection. Two fields of colour that barely touch.' },
+  { id:'CS-0002', category:'stampe', title:'Halftone Nocturne', artist:'Ottavio Rensi', year:1998, technique:'Two-colour screenprint', dimensions:'50 × 70 cm', edition:'12/50', acquired:'2015-02-03', provenance:'Print fair, Milan', note:'Signed and numbered in pencil.' },
+  { id:'CS-0003', category:'street', title:'Iron and Rain', artist:'Collettivo Ferro', year:2016, technique:'Spray paint and acrylic on sheet metal', dimensions:'60 × 90 cm', acquired:'2017-09-22', provenance:'Bought from the artists, Naples', note:'Salvaged from a disused building site.' },
+  { id:'CS-0004', category:'figurine', title:'Animals of the World no. 112', artist:'Edizioni Aurora', year:1979, technique:'Offset print on paper', dimensions:'5 × 7 cm', acquired:'2012-11-08', provenance:'Flea market, Turin', note:'Only no. 113 is still missing from the series.' },
+  { id:'CS-0005', category:'quadri', title:'Blue Threshold', artist:'Nadia Kerr', year:2019, technique:'Acrylic on panel', dimensions:'40 × 50 cm', acquired:'2020-06-30', provenance:"Artist's studio", note:'' },
+  { id:'CS-0006', category:'stampe', title:'Map of a Neighbourhood', artist:'R. Osti', year:2004, technique:'Linocut', dimensions:'35 × 50 cm', edition:'7/30', acquired:'2018-03-11', provenance:'Online auction', note:'' },
+  { id:'CS-0007', category:'street', title:'Wall no. 4', artist:'Kappa Nove', year:2021, technique:'Spray paint on panel', dimensions:'100 × 120 cm', acquired:'2022-04-02', provenance:'Street art festival, Rome', note:'Painted live during the festival.' },
+  { id:'CS-0008', category:'figurine', title:'Holographic Stars no. 7', artist:'Stella Editrice', year:1991, technique:'Hologram', dimensions:'5 × 7 cm', acquired:'2016-12-20', provenance:'Collector swap', note:'One of three holographic cards in the series.' },
+  { id:'CS-0009', category:'quadri', title:'Three Windows', artist:'Ugo Bellandi', year:1987, technique:'Tempera on paper', dimensions:'30 × 40 cm', acquired:'2023-01-14', provenance:'Family inheritance', note:'' },
+  { id:'CS-0010', category:'stampe', title:'Cyanotype Rose', artist:'Studio Vela', year:2022, technique:'Risograph', dimensions:'30 × 42 cm', edition:'44/100', acquired:'2024-07-19', provenance:'Independent bookshop, Florence', note:'' },
+  { id:'CS-0011', category:'street', title:'Vertical Drips', artist:'Mira Sud', year:2023, technique:'Stencil on wood', dimensions:'50 × 70 cm', acquired:'2025-10-05', provenance:'Group show, Bari', note:'' },
+  { id:'CS-0012', category:'figurine', title:'Cosmo Kids no. 44', artist:'Edizioni Lampo', year:1984, technique:'Offset print on paper', dimensions:'5 × 7 cm', acquired:'2026-03-28', provenance:'Complete album bought as a lot', note:'' },
+  { id:'CS-0013', category:'quadri', title:'Noon', artist:'Lia Marchetti', year:2025, technique:'Oil on linen', dimensions:'60 × 60 cm', acquired:'2026-09-12', provenance:'Private gallery, Bologna', note:'The second work by this artist in the collection.' },
+  { id:'CS-0014', category:'stampe', title:'Yellow Halftone', artist:'Ottavio Rensi', year:2001, technique:'Screenprint', dimensions:'50 × 70 cm', edition:'3/25', acquired:'2026-10-21', provenance:'Print fair, Milan', note:'' }
+];
+
+/* ---------- NFT snapshot from the OpenSea profile (14 Nov 2026, first page only).
+   Used only when the live wallet can't be reached, as in the preview. ---------- */
+const NFT_SNAPSHOT = [
+  ['LAYERS #747','Vhils','Layers by Vhils','0xa9248a0935eb476cfe2f286df813a48d06ffd2e2','747'],
+  ['LAYERS #726','Vhils','Layers by Vhils','0xa9248a0935eb476cfe2f286df813a48d06ffd2e2','726'],
+  ['LAYERS #687','Vhils','Layers by Vhils','0xa9248a0935eb476cfe2f286df813a48d06ffd2e2','687'],
+  ['cow #55',"cow's","cow's",'0x4edc15b9a7b74da4c504ce195c6a07650f86b5e0','55'],
+  ['cow #176',"cow's","cow's",'0x4edc15b9a7b74da4c504ce195c6a07650f86b5e0','176'],
+  ['Cyber Bandit #4069','Michael Reeder','Cyber Bandits by Michael Reeder','0x8f17a839b6cd38e9888be3cc901a6726e84d6462','4069'],
+  ['Cyber Bandit #1340','Michael Reeder','Cyber Bandits by Michael Reeder','0x8f17a839b6cd38e9888be3cc901a6726e84d6462','1340'],
+  ['Sheep #92','The Sad Times','The Sad Times NFT','0xa3f7250306dbb856d8d312f93029be73343939af','92'],
+  ['Sheep #1557','The Sad Times','The Sad Times NFT','0xa3f7250306dbb856d8d312f93029be73343939af','1557'],
+  ['Mini Melty #378','Buff Monster','Official Mini Melties by Buff Monster','',''],
+  ['Mini Melty #408','Buff Monster','Official Mini Melties by Buff Monster','',''],
+  ['GLiF #177','Efdot','GLiFS by Efdot','',''],
+  ['DEGENERATE/REGENERATE #1633','','DEGENERATE/REGENERATE','',''],
+  ['Flow #78','Capi','FLOW','',''],
+  ['Study of a Bull','Capi','Capi 1/1','',''],
+  ['Lost In Town','Capi','Capi 1/1','',''],
+  ['Unthreaded Morning','','','0xe773e663269b9dc17082021715cf09984104f958','32'],
+  ['Pepimboldo','','','0xa61e73573e29f2f11e4e3686de46c3606d2d011e','32'],
+  ['Rome','','','0xa6f576daa218222d829f109aa655c55e9c1fc3e0','4'],
+  ['Cities #330','','','0x7c78f67700e700b4005c8a3d920a1a99e6004800','330'],
+  ['Final Forms #37','','','0x6da0cfcbe4f867eeaef429140fb9c99deeea0a36','37'],
+  ['TLO #397','','','0x8c62285c60b48a7c095b75104fbdc3354e3eedb1','397'],
+  ['Q+K #5307','','','0xbb869f884186c3cba0ffa89ab84980cb86f8744d','5307']
+].map(([title, artist, collection, contract, tokenId], i) => ({
+  id: 'CS-N' + String(i+1).padStart(3,'0'), category: 'nft', snapshot: true,
+  title, artist: artist || collection || 'Artist not listed', collection, contract, tokenId,
+  technique: 'NFT · Ethereum', acquired: null, note: ''
+}));
+
+/* ---------- Helpers ---------- */
+function hashStr(s){ let h = 2166136261; for (let i=0;i<s.length;i++){ h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+function rng(seed){ let a = seed >>> 0; return function(){ a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const store = {
+  get(k){ try { return JSON.parse(localStorage.getItem(k)); } catch(e){ return null; } },
+  set(k,v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
+};
+function todayKey(){ return new Intl.DateTimeFormat('en-CA',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()); }
+function dayNumber(key){ const [y,m,d] = key.split('-').map(Number); return Math.round(Date.UTC(y,m-1,d)/86400000); }
+function keyFromDay(n){ return new Date(n*86400000).toISOString().slice(0,10); }
+function fmtDay(key, opts){ const [y,m,d] = key.split('-').map(Number); return new Intl.DateTimeFormat(LOCALE, Object.assign({timeZone:'UTC'}, opts || {weekday:'long',day:'numeric',month:'long',year:'numeric'})).format(new Date(Date.UTC(y,m-1,d))); }
+function shortAddr(a){ return a ? a.slice(0,6) + '…' + a.slice(-4) : ''; }
+
+/* ---------- Generated placeholder images ---------- */
+const artCache = new Map();
+const DRAW = {
+  quadri(c, r, w, h){
+    const hue = r()*360;
+    c.fillStyle = `hsl(${hue},35%,16%)`; c.fillRect(0,0,w,h);
+    const n = 2 + Math.floor(r()*2), m = w*.09; let y = h*.08;
+    for (let i=0;i<n;i++){
+      const hh = (h*.84 - (n-1)*h*.035)/n;
+      c.save();
+      if ('filter' in c) c.filter = 'blur(5px)';
+      c.fillStyle = `hsl(${(hue + 25 + r()*140)%360},${55+r()*30}%,${38+r()*22}%)`;
+      c.fillRect(m, y, w-2*m, hh);
+      c.restore();
+      y += hh + h*.035;
+    }
+    for (let i=0;i<900;i++){
+      c.strokeStyle = `rgba(${r()<.5?255:0},${r()<.5?255:0},${r()<.5?255:0},.035)`;
+      c.lineWidth = 1 + r()*3;
+      const x = r()*w, yy = r()*h; c.beginPath(); c.moveTo(x,yy); c.lineTo(x + 20 + r()*50, yy + (r()-.5)*6); c.stroke();
+    }
+  },
+  stampe(c, r, w, h, item){
+    c.fillStyle = '#eee8dc'; c.fillRect(0,0,w,h);
+    const m = w*.1, inks = [`hsl(${r()*360},80%,45%)`, `hsl(${r()*360},70%,30%)`];
+    const cx = m + r()*(w-2*m), cy = m + r()*(h-2*m*1.6), step = 11;
+    c.globalCompositeOperation = 'multiply';
+    inks.forEach((ink, k) => {
+      c.fillStyle = ink; const off = k*4, f = .006 + r()*.01, ph = r()*6;
+      for (let y=m; y<h-m*1.6; y+=step) for (let x=m; x<w-m; x+=step){
+        const d = Math.hypot(x-cx, y-cy)/(w*.7);
+        const v = k===0 ? Math.max(0, 1-d) : (Math.sin(x*f + ph) * Math.cos(y*f) + 1)/2;
+        const rad = v * step * .55; if (rad < .6) continue;
+        c.beginPath(); c.arc(x+off, y+off, rad, 0, Math.PI*2); c.fill();
+      }
+    });
+    c.globalCompositeOperation = 'source-over';
+    c.fillStyle = '#6b6559'; c.font = '15px "JetBrains Mono", monospace';
+    c.fillText(item.edition || '1/1', m, h - m*.7);
+    c.textAlign = 'right'; c.fillText(item.artist.split(' ').pop().toLowerCase(), w-m, h - m*.7); c.textAlign = 'left';
+  },
+  street(c, r, w, h){
+    c.fillStyle = `hsl(${30+r()*20},6%,${45+r()*10}%)`; c.fillRect(0,0,w,h);
+    for (let i=0;i<5000;i++){ const g = r()*60|0; c.fillStyle = `rgba(${g},${g},${g},.08)`; c.fillRect(r()*w, r()*h, 2, 2); }
+    c.strokeStyle = 'rgba(0,0,0,.12)'; c.lineWidth = 2;
+    for (let y=0;y<h;y+=46){ c.beginPath(); c.moveTo(0,y); c.lineTo(w,y); c.stroke(); for (let x=((y/46)%2)*50; x<w; x+=100){ c.beginPath(); c.moveTo(x,y); c.lineTo(x,y+46); c.stroke(); } }
+    const cols = ['#ff4d6d','#ffd23f','#3ddc97','#2ec4f1','#8b6cff','#111'];
+    c.lineCap = 'round'; c.lineJoin = 'round';
+    for (let s=0; s<3; s++){
+      const pts = []; let x = w*(.15 + r()*.2), y = h*(.25 + r()*.5);
+      for (let i=0;i<5;i++){ pts.push([x,y]); x += w*(.08 + r()*.14); y += (r()-.5)*h*.35; }
+      const col = cols[Math.floor(r()*cols.length)];
+      [['#0d0d0d', 46], [col, 34]].forEach(([st, lw]) => { c.strokeStyle = st; c.lineWidth = lw; c.beginPath(); pts.forEach((p,i) => i ? c.lineTo(p[0],p[1]) : c.moveTo(p[0],p[1])); c.stroke(); });
+      c.fillStyle = col;
+      for (let d=0; d<4; d++){ const p = pts[Math.floor(r()*pts.length)], len = 40 + r()*180, dx = p[0] + (r()-.5)*24, wd = 3 + r()*4; c.fillRect(dx, p[1], wd, len); c.beginPath(); c.arc(dx + wd/2, p[1]+len, wd*.9, 0, Math.PI*2); c.fill(); }
+    }
+  },
+  nft(c, r, w, h){
+    const hue = r()*360;
+    c.fillStyle = `hsl(${hue},45%,14%)`; c.fillRect(0,0,w,h);
+    const pal = [0,1,2,3].map(i => `hsl(${(hue + 60 + i*70 + r()*30)%360},${70+r()*25}%,${45+r()*25}%)`);
+    const N = 12, cell = Math.floor(w*.72/N), ox = (w - cell*N)/2, oy = (h - cell*N)/2;
+    for (let y=0;y<N;y++) for (let x=0;x<N/2;x++){
+      const edge = Math.hypot(x - N/2 + .5, y - N/2 + .5)/(N/2);
+      if (r() < .25 + edge*.55) continue;
+      c.fillStyle = pal[Math.floor(r()*pal.length)];
+      c.fillRect(ox + x*cell, oy + y*cell, cell, cell);
+      c.fillRect(ox + (N-1-x)*cell, oy + y*cell, cell, cell);
+    }
+    c.fillStyle = 'rgba(255,255,255,.04)'; for (let y=0;y<h;y+=4) c.fillRect(0,y,w,1);
+  },
+  figurine(c, r, w, h, item){
+    c.fillStyle = '#1d1a17'; c.fillRect(0,0,w,h);
+    for (let i=0;i<3000;i++){ c.fillStyle = `rgba(255,220,180,${r()*.03})`; c.fillRect(r()*w, r()*h, 3, 1); }
+    c.save(); c.translate(w/2, h/2); c.rotate((r()-.5)*.12);
+    const cw = w*.64, ch = cw*1.4, x0 = -cw/2, y0 = -ch/2, hue = r()*360;
+    c.shadowColor = 'rgba(0,0,0,.6)'; c.shadowBlur = 30; c.shadowOffsetY = 12;
+    c.fillStyle = '#f4efe4'; c.beginPath(); c.roundRect ? c.roundRect(x0, y0, cw, ch, 14) : c.rect(x0, y0, cw, ch); c.fill();
+    c.shadowColor = 'transparent';
+    const g = c.createLinearGradient(0, y0, 0, y0 + ch);
+    g.addColorStop(0, `hsl(${hue},70%,62%)`); g.addColorStop(1, `hsl(${(hue+50)%360},70%,40%)`);
+    c.fillStyle = g; c.fillRect(x0 + 14, y0 + 14, cw - 28, ch*.72);
+    c.fillStyle = `hsl(${(hue+180)%360},40%,22%)`;
+    c.beginPath(); c.arc(0, y0 + ch*.3, cw*.14, 0, Math.PI*2); c.fill();
+    c.beginPath(); c.ellipse(0, y0 + ch*.62, cw*.3, ch*.18, 0, Math.PI, 0); c.fill();
+    if (item.technique === 'Olografia'){ const hg = c.createLinearGradient(x0, y0, x0+cw, y0+ch); ['#ff4d6d','#ffd23f','#3ddc97','#2ec4f1','#8b6cff'].forEach((s,i) => hg.addColorStop(i/4, s)); c.globalAlpha = .28; c.fillStyle = hg; c.fillRect(x0+14, y0+14, cw-28, ch*.72); c.globalAlpha = 1; }
+    c.fillStyle = '#2a2620'; c.font = `600 ${Math.round(cw*.075)}px "Instrument Sans", sans-serif`; c.textAlign = 'center';
+    c.fillText(item.title.replace(/ no\. \d+$/, ''), 0, y0 + ch*.84);
+    const num = (item.title.match(/no\. (\d+)/) || [,'1'])[1];
+    c.fillStyle = '#2a2620'; c.beginPath(); c.arc(x0 + 34, y0 + 34, 22, 0, Math.PI*2); c.fill();
+    c.fillStyle = '#f4efe4'; c.font = `600 18px "JetBrains Mono", monospace`; c.fillText(num, x0 + 34, y0 + 40);
+    c.restore();
+  }
+};
+function generatedArt(item){
+  if (artCache.has(item.id)) return artCache.get(item.id);
+  const cv = document.createElement('canvas'); cv.width = 480; cv.height = 600;
+  const c = cv.getContext('2d');
+  (DRAW[item.category] || DRAW.quadri)(c, rng(hashStr(item.id + item.title)), cv.width, cv.height, item);
+  const url = cv.toDataURL('image/jpeg', .86);
+  artCache.set(item.id, url); return url;
+}
+function setImg(img, item){
+  img.alt = item.title + (item.artist ? ', ' + item.artist : '');
+  img.onerror = () => { img.onerror = null; img.src = generatedArt(item); };
+  img.src = item.image || generatedArt(item);
+}
+
+/* ---------- NFT dal wallet (Blockscout, pubblico) ---------- */
+function gateway(u){
+  if (!u || typeof u !== 'string') return null;
+  if (u.startsWith('ipfs://')) return 'https://ipfs.io/ipfs/' + u.slice(7).replace(/^ipfs\//,'');
+  if (u.startsWith('ar://')) return 'https://arweave.net/' + u.slice(5);
+  return u;
+}
+async function getAll(path, maxPages){
+  let out = [], params = new URLSearchParams({ type: 'ERC-721,ERC-1155' });
+  for (let p=0; p<maxPages; p++){
+    const res = await fetch(API + path + '?' + params.toString());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const j = await res.json();
+    out = out.concat(j.items || []);
+    if (!j.next_page_params) break;
+    params = new URLSearchParams(Object.assign({ type: 'ERC-721,ERC-1155' }, j.next_page_params));
+  }
+  return out;
+}
+async function loadWallet(){
+  const cached = store.get('cs-wallet-v1');
+  if (cached && Date.now() - cached.t < 6*3600e3) return cached.items;
+  const nfts = await getAll('/nft', 20);
+  const when = {};
+  try {
+    const transfers = await getAll('/token-transfers', 20);
+    transfers.forEach(t => {
+      const to = (t.to && (t.to.hash || t.to)) || '';
+      if (String(to).toLowerCase() !== WALLET) return;
+      const k = String((t.token && (t.token.address_hash || t.token.address)) || '').toLowerCase() + ':' + ((t.total && t.total.token_id) || '');
+      if (!when[k] || t.timestamp > when[k]) when[k] = t.timestamp;
+    });
+  } catch(e){}
+  const items = nfts.map(n => {
+    const t = n.token || {}, md = n.metadata || {};
+    const addr = String(t.address_hash || t.address || '').toLowerCase();
+    const ts = when[addr + ':' + n.id];
+    return {
+      uid: addr + ':' + n.id, category: 'nft',
+      title: md.name || ((t.name || 'Token') + ' #' + n.id),
+      artist: md.created_by || md.artist || md.creator || t.name || 'Artist not listed',
+      year: ts ? Number(ts.slice(0,4)) : null,
+      technique: n.token_type || t.type || 'NFT',
+      collection: t.name || '', contract: addr, tokenId: n.id,
+      edition: Number(n.value) > 1 ? n.value + ' editions' : '',
+      image: gateway(n.image_url || md.image || md.image_url),
+      note: String(md.description || '').slice(0, 420),
+      acquired: ts ? ts.slice(0,10) : null
+    };
+  });
+  items.sort((a,b) => (a.acquired || '0').localeCompare(b.acquired || '0'));
+  items.forEach((it, i) => it.id = 'CS-N' + String(i+1).padStart(3,'0'));
+  store.set('cs-wallet-v1', { t: Date.now(), items });
+  return items;
+}
+
+/* ---------- Stato e rendering ---------- */
+let ITEMS = [], walletLive = false, dayOffset = 0, filter = 'all', query = '', sortBy = 'recent', heroItem = null;
+const $ = id => document.getElementById(id);
+
+function pickForDay(key){
+  const fresh = ITEMS.filter(i => i.acquired === key);
+  if (fresh.length) return { item: fresh[fresh.length-1], isNew: true };
+  const order = ITEMS.slice().sort((a,b) => a.id.localeCompare(b.id));
+  const r = rng(20261113);
+  for (let i=order.length-1; i>0; i--){ const j = Math.floor(r()*(i+1)); [order[i], order[j]] = [order[j], order[i]]; }
+  return { item: order[((dayNumber(key) % order.length) + order.length) % order.length], isNew: false };
+}
+
+function factsHTML(it){
+  const rows = [
+    ['Inventory', `<span class="mono">${esc(it.id)}</span>`],
+    it.collection ? ['Collection', esc(it.collection)] : null,
+    it.technique ? ['Medium', esc(it.technique)] : null,
+    it.dimensions ? ['Size', esc(it.dimensions)] : null,
+    it.edition ? ['Edition', `<span class="mono">${esc(it.edition)}</span>`] : null,
+    ['Acquired', it.acquired ? esc(fmtDay(it.acquired, {day:'numeric',month:'long',year:'numeric'})) : 'Date not recorded'],
+    it.provenance ? ['Provenance', esc(it.provenance)] : null,
+    it.contract ? ['Contract', `<span class="mono">${esc(shortAddr(it.contract))} · #${esc(String(it.tokenId).slice(0,12))}</span>`] : null
+  ].filter(Boolean);
+  return rows.map(([k,v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('');
+}
+
+function renderHero(){
+  const today = todayKey(), key = keyFromDay(dayNumber(today) + dayOffset);
+  const { item, isNew } = pickForDay(key);
+  heroItem = item;
+  const cat = CATS[item.category];
+  $('heroFrame').style.setProperty('--cat', cat.color);
+  setImg($('heroImg'), item);
+  $('heroNew').hidden = !isNew;
+  $('heroDate').textContent = (dayOffset === 0 ? 'today, ' : '') + fmtDay(key);
+  $('heroTitle').textContent = item.title;
+  $('heroArtist').textContent = item.artist;
+  $('heroYear').textContent = item.year ? item.year : '';
+  $('heroCat').textContent = cat.label; $('heroCat').style.setProperty('--cat', cat.color);
+  $('heroFacts').innerHTML = factsHTML(item);
+  $('heroNote').textContent = item.note || '';
+  $('today').hidden = dayOffset === 0;
+  $('nextDay').disabled = dayOffset >= 0; $('nextDay').style.opacity = dayOffset >= 0 ? .4 : 1;
+}
+
+function renderRecent(){
+  const rec = ITEMS.filter(i => i.acquired).sort((a,b) => b.acquired.localeCompare(a.acquired)).slice(0, 8);
+  $('recent').innerHTML = '';
+  rec.forEach(it => {
+    const b = document.createElement('button'); b.type = 'button';
+    b.innerHTML = `<img alt=""><span class="t">${esc(it.title)}</span><span class="mono muted">${esc(fmtDay(it.acquired,{day:'numeric',month:'short',year:'numeric'}))} · ${CATS[it.category].label}</span>`;
+    setImg(b.querySelector('img'), it);
+    b.onclick = () => openModal(it);
+    $('recent').appendChild(b);
+  });
+  $('recentHint').textContent = rec.length ? 'The ' + rec.length + ' most recent' : '';
+}
+
+function counts(){ const c = { all: ITEMS.length }; Object.keys(CATS).forEach(k => c[k] = ITEMS.filter(i => i.category === k).length); return c; }
+
+function renderStats(){
+  const c = counts();
+  const tiles = [['all','Works in total','var(--spectrum)'], ...Object.keys(CATS).map(k => [k, CATS[k].label, CATS[k].color])];
+  $('stats').innerHTML = tiles.map(([k,l,col]) => `<button class="stat" type="button" data-k="${k}" style="--cat:${col}"><span class="n">${c[k]}</span><span class="l">${l}</span></button>`).join('');
+  $('stats').querySelectorAll('.stat').forEach(b => b.onclick = () => { filter = b.dataset.k; renderFilters(); renderGrid(); $('filters').scrollIntoView({behavior:'smooth', block:'center'}); });
+  const yrs = ITEMS.map(i => i.acquired).filter(Boolean).sort();
+  $('countLine').textContent = yrs.length ? `${ITEMS.length} works · collected ${yrs[0].slice(0,4)}–${yrs[yrs.length-1].slice(0,4)}` : `${ITEMS.length} works`;
+}
+
+function renderFilters(){
+  const c = counts();
+  const opts = [['all','All','var(--spectrum)'], ...Object.keys(CATS).map(k => [k, CATS[k].label, CATS[k].color])];
+  $('filters').innerHTML = opts.map(([k,l,col]) => `<button type="button" data-k="${k}" aria-pressed="${filter===k}" style="--cat:${col}">${l}<span class="c">${c[k]}</span></button>`).join('');
+  $('filters').querySelectorAll('button').forEach(b => b.onclick = () => { filter = b.dataset.k; renderFilters(); renderGrid(); });
+}
+
+function renderGrid(){
+  let list = ITEMS.filter(i => filter === 'all' || i.category === filter);
+  if (query){ const q = query.toLowerCase(); list = list.filter(i => (i.title + ' ' + i.artist + ' ' + (i.collection||'')).toLowerCase().includes(q)); }
+  const cmp = {
+    recent: (a,b) => (b.acquired||'').localeCompare(a.acquired||''),
+    year: (a,b) => (b.year||0) - (a.year||0),
+    artist: (a,b) => a.artist.localeCompare(b.artist, 'en'),
+    title: (a,b) => a.title.localeCompare(b.title, 'en')
+  }[sortBy];
+  list.sort(cmp);
+  const g = $('grid'); g.innerHTML = '';
+  if (!list.length){ g.innerHTML = '<p class="empty">No works match your search.</p>'; return; }
+  list.forEach(it => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'card';
+    b.style.setProperty('--cat', CATS[it.category].color);
+    b.innerHTML = `<div class="img"><img alt="">${it.example ? '<span class="tag-ex">example</span>' : it.snapshot ? '<span class="tag-ex">placeholder image</span>' : ''}</div>
+      <div><div class="t">${esc(it.title)}</div><div class="a">${esc(it.artist)}${it.year ? ' · ' + it.year : ''}</div></div>
+      <div class="meta mono"><span>${esc(it.id)}</span><span>${CATS[it.category].label}</span></div>`;
+    setImg(b.querySelector('img'), it);
+    b.onclick = () => openModal(it);
+    g.appendChild(b);
+  });
+}
+
+let lastFocus = null;
+function openModal(it){
+  lastFocus = document.activeElement;
+  const cat = CATS[it.category];
+  setImg($('mImg'), it);
+  $('mCat').textContent = cat.label; $('mCat').style.setProperty('--cat', cat.color);
+  $('mTitle').textContent = it.title;
+  $('mArtist').textContent = it.artist;
+  $('mYear').textContent = it.year ? it.year : '';
+  $('mFacts').innerHTML = factsHTML(it);
+  $('mNote').textContent = it.note || '';
+  $('mLinks').innerHTML = it.contract
+    ? `<a class="btn" href="https://opensea.io/assets/ethereum/${esc(it.contract)}/${esc(it.tokenId)}" target="_blank" rel="noopener">View on OpenSea</a><a class="btn" href="https://etherscan.io/nft/${esc(it.contract)}/${esc(it.tokenId)}" target="_blank" rel="noopener">View on Etherscan</a>`
+    : '';
+  $('modal').classList.add('open');
+  $('mClose').focus();
+}
+function closeModal(){ $('modal').classList.remove('open'); if (lastFocus) lastFocus.focus(); }
+
+function setStatus(kind, text){ $('status').className = 'status ' + kind; $('statusText').textContent = text; }
+
+function renderAll(){ renderHero(); renderRecent(); renderStats(); renderFilters(); renderGrid(); $('exampleNotice').hidden = !ITEMS.some(i => i.example || i.snapshot); }
+
+/* ---------- Avvio ---------- */
+$('prevDay').onclick = () => { dayOffset--; renderHero(); };
+$('nextDay').onclick = () => { if (dayOffset < 0){ dayOffset++; renderHero(); } };
+$('today').onclick = () => { dayOffset = 0; renderHero(); };
+$('heroOpen').onclick = () => heroItem && openModal(heroItem);
+$('mClose').onclick = closeModal;
+$('modal').addEventListener('click', e => { if (e.target === $('modal')) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('modal').classList.contains('open')) closeModal(); });
+$('q').addEventListener('input', e => { query = e.target.value.trim(); renderGrid(); });
+$('sort').addEventListener('change', e => { sortBy = e.target.value; renderGrid(); });
+$('walletLink').textContent = 'wallet ' + shortAddr(WALLET);
+$('walletLink').href = 'https://etherscan.io/address/' + WALLET;
+
+ITEMS = PHYSICAL.map(i => Object.assign({ example: true }, i)).concat(NFT_SNAPSHOT);
+renderAll();
+
+loadWallet().then(nfts => {
+  if (!nfts.length){ setStatus('', 'No NFTs found in wallet ' + shortAddr(WALLET)); return; }
+  walletLive = true;
+  ITEMS = PHYSICAL.map(i => Object.assign({ example: true }, i)).concat(nfts);
+  renderAll();
+  setStatus('ok', nfts.length + ' NFTs live from wallet ' + shortAddr(WALLET));
+}).catch(() => {
+  setStatus('', 'Preview: NFT snapshot from OpenSea. The live wallet loads on chromospace.art');
+});
+</script>
+</body>
+</html>
