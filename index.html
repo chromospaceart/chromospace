@@ -371,8 +371,9 @@ function normalise(physical, nfts, artists, exclude){
   const byToken = {}; Object.entries((artists && artists.tokens) || {}).forEach(([k,v]) => byToken[lc(k)] = v);
   const exC = new Set(((exclude && exclude.contracts) || []).map(lc)), exN = new Set(((exclude && exclude.collections) || []).map(lc));
   const keep = new Set(((exclude && exclude.keep) || []).map(lc));
+  const exT = new Set(((exclude && exclude.tokens) || []).map(lc));
   const phys = (physical.items || []).map(p => Object.assign({}, p, { category: CATS[p.category] ? p.category : 'paintings' }));
-  const nft = (nfts.items || []).filter(n => keep.has(lc(n.key)) || (!exC.has(lc(n.contract)) && !exN.has(lc(n.collection)))).map(n => Object.assign({}, n, {
+  const nft = (nfts.items || []).filter(n => !exT.has(lc(n.key))).filter(n => keep.has(lc(n.key)) || (!exC.has(lc(n.contract)) && !exN.has(lc(n.collection)))).map(n => Object.assign({}, n, {
     category: 'nft',
     artist: byToken[lc(n.key)] || byContract[lc(n.contract)] || n.artist || n.collection || 'Unattributed',
     medium: [n.standard || 'NFT', 'Ethereum'].join(' · '),

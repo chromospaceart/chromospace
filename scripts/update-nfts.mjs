@@ -248,6 +248,7 @@ async function main() {
   const exContracts = new Set((exclude.contracts || []).map(lower));
   const exCollections = new Set((exclude.collections || []).map(lower));
   const keepKeys = new Set((exclude.keep || []).map(lower));
+  const exTokens = new Set((exclude.tokens || []).map(lower));
   const archive = await readJSON(path.join(DATA, 'archive.json'), { items: {} });
   archive.release = RELEASE;
   archive.base = `https://github.com/${REPO}/releases/download/${RELEASE}/`;
@@ -308,6 +309,7 @@ async function main() {
     const collection = t.name || '';
     const tokenId = String(n.id);
     const key = `${contract}:${tokenId}`;
+    if (exTokens.has(key)) { skipped++; continue; }
     if (!keepKeys.has(key) && (exContracts.has(contract) || exCollections.has(lower(collection)))) { skipped++; continue; }
     const prev = prevByKey.get(key);
     const osn = osNft[key] || {};
