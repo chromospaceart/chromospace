@@ -340,103 +340,16 @@ const shortAddr = a => a ? a.slice(0,6) + '…' + a.slice(-4) : '';
 const plural = (n, w) => n + ' ' + w + (n === 1 ? '' : 's');
 async function loadJSON(path){ const r = await fetch(path, { cache: 'no-cache' }); if (!r.ok) throw new Error(path + ' ' + r.status); return r.json(); }
 
-/* ---------- Placeholder images (used until a real image exists) ---------- */
-const artCache = new Map();
-const DRAW = {
-  paintings(c, r, w, h){
-    const hue = r()*360;
-    c.fillStyle = `hsl(${hue},35%,16%)`; c.fillRect(0,0,w,h);
-    const n = 2 + Math.floor(r()*2), m = w*.09; let y = h*.08;
-    for (let i=0;i<n;i++){
-      const hh = (h*.84 - (n-1)*h*.035)/n;
-      c.save(); if ('filter' in c) c.filter = 'blur(5px)';
-      c.fillStyle = `hsl(${(hue + 25 + r()*140)%360},${55+r()*30}%,${38+r()*22}%)`;
-      c.fillRect(m, y, w-2*m, hh); c.restore(); y += hh + h*.035;
-    }
-    for (let i=0;i<700;i++){ c.strokeStyle = `rgba(${r()<.5?255:0},${r()<.5?255:0},${r()<.5?255:0},.035)`; c.lineWidth = 1 + r()*3; const x = r()*w, yy = r()*h; c.beginPath(); c.moveTo(x,yy); c.lineTo(x + 20 + r()*50, yy + (r()-.5)*6); c.stroke(); }
-  },
-  prints(c, r, w, h, item){
-    c.fillStyle = '#eee8dc'; c.fillRect(0,0,w,h);
-    const m = w*.1, inks = [`hsl(${r()*360},80%,45%)`, `hsl(${r()*360},70%,30%)`];
-    const cx = m + r()*(w-2*m), cy = m + r()*(h-2*m*1.6), step = 11;
-    c.globalCompositeOperation = 'multiply';
-    inks.forEach((ink, k) => {
-      c.fillStyle = ink; const off = k*4, f = .006 + r()*.01, ph = r()*6;
-      for (let y=m; y<h-m*1.6; y+=step) for (let x=m; x<w-m; x+=step){
-        const d = Math.hypot(x-cx, y-cy)/(w*.7);
-        const v = k===0 ? Math.max(0, 1-d) : (Math.sin(x*f + ph) * Math.cos(y*f) + 1)/2;
-        const rad = v * step * .55; if (rad < .6) continue;
-        c.beginPath(); c.arc(x+off, y+off, rad, 0, Math.PI*2); c.fill();
-      }
-    });
-    c.globalCompositeOperation = 'source-over';
-    c.fillStyle = '#6b6559'; c.font = '15px "JetBrains Mono", monospace';
-    c.fillText(item.edition || '1/1', m, h - m*.7);
-  },
-  street(c, r, w, h){
-    c.fillStyle = `hsl(${30+r()*20},6%,${45+r()*10}%)`; c.fillRect(0,0,w,h);
-    for (let i=0;i<4000;i++){ const g = r()*60|0; c.fillStyle = `rgba(${g},${g},${g},.08)`; c.fillRect(r()*w, r()*h, 2, 2); }
-    c.strokeStyle = 'rgba(0,0,0,.12)'; c.lineWidth = 2;
-    for (let y=0;y<h;y+=46){ c.beginPath(); c.moveTo(0,y); c.lineTo(w,y); c.stroke(); for (let x=((y/46)%2)*50; x<w; x+=100){ c.beginPath(); c.moveTo(x,y); c.lineTo(x,y+46); c.stroke(); } }
-    const cols = ['#ff4d6d','#ffd23f','#3ddc97','#2ec4f1','#8b6cff','#111'];
-    c.lineCap = 'round'; c.lineJoin = 'round';
-    for (let s=0; s<3; s++){
-      const pts = []; let x = w*(.15 + r()*.2), y = h*(.25 + r()*.5);
-      for (let i=0;i<5;i++){ pts.push([x,y]); x += w*(.08 + r()*.14); y += (r()-.5)*h*.35; }
-      const col = cols[Math.floor(r()*cols.length)];
-      [['#0d0d0d', 46], [col, 34]].forEach(([st, lw]) => { c.strokeStyle = st; c.lineWidth = lw; c.beginPath(); pts.forEach((p,i) => i ? c.lineTo(p[0],p[1]) : c.moveTo(p[0],p[1])); c.stroke(); });
-      c.fillStyle = col;
-      for (let d=0; d<4; d++){ const p = pts[Math.floor(r()*pts.length)], len = 40 + r()*180, dx = p[0] + (r()-.5)*24, wd = 3 + r()*4; c.fillRect(dx, p[1], wd, len); c.beginPath(); c.arc(dx + wd/2, p[1]+len, wd*.9, 0, Math.PI*2); c.fill(); }
-    }
-  },
-  nft(c, r, w, h){
-    const hue = r()*360;
-    c.fillStyle = `hsl(${hue},45%,14%)`; c.fillRect(0,0,w,h);
-    const pal = [0,1,2,3].map(i => `hsl(${(hue + 60 + i*70 + r()*30)%360},${70+r()*25}%,${45+r()*25}%)`);
-    const N = 12, cell = Math.floor(w*.72/N), ox = (w - cell*N)/2, oy = (h - cell*N)/2;
-    for (let y=0;y<N;y++) for (let x=0;x<N/2;x++){
-      const edge = Math.hypot(x - N/2 + .5, y - N/2 + .5)/(N/2);
-      if (r() < .25 + edge*.55) continue;
-      c.fillStyle = pal[Math.floor(r()*pal.length)];
-      c.fillRect(ox + x*cell, oy + y*cell, cell, cell); c.fillRect(ox + (N-1-x)*cell, oy + y*cell, cell, cell);
-    }
-    c.fillStyle = 'rgba(255,255,255,.04)'; for (let y=0;y<h;y+=4) c.fillRect(0,y,w,1);
-  },
-  cards(c, r, w, h, item){
-    c.fillStyle = '#1d1a17'; c.fillRect(0,0,w,h);
-    c.save(); c.translate(w/2, h/2); c.rotate((r()-.5)*.12);
-    const cw = w*.64, ch = cw*1.4, x0 = -cw/2, y0 = -ch/2, hue = r()*360;
-    c.shadowColor = 'rgba(0,0,0,.6)'; c.shadowBlur = 30; c.shadowOffsetY = 12;
-    c.fillStyle = '#f4efe4'; c.beginPath(); c.roundRect ? c.roundRect(x0, y0, cw, ch, 14) : c.rect(x0, y0, cw, ch); c.fill();
-    c.shadowColor = 'transparent';
-    const g = c.createLinearGradient(0, y0, 0, y0 + ch);
-    g.addColorStop(0, `hsl(${hue},70%,62%)`); g.addColorStop(1, `hsl(${(hue+50)%360},70%,40%)`);
-    c.fillStyle = g; c.fillRect(x0 + 14, y0 + 14, cw - 28, ch*.72);
-    c.fillStyle = `hsl(${(hue+180)%360},40%,22%)`;
-    c.beginPath(); c.arc(0, y0 + ch*.3, cw*.14, 0, Math.PI*2); c.fill();
-    c.beginPath(); c.ellipse(0, y0 + ch*.62, cw*.3, ch*.18, 0, Math.PI, 0); c.fill();
-    if (item.medium === 'Hologram'){ const hg = c.createLinearGradient(x0, y0, x0+cw, y0+ch); ['#ff4d6d','#ffd23f','#3ddc97','#2ec4f1','#8b6cff'].forEach((s,i) => hg.addColorStop(i/4, s)); c.globalAlpha = .28; c.fillStyle = hg; c.fillRect(x0+14, y0+14, cw-28, ch*.72); c.globalAlpha = 1; }
-    c.fillStyle = '#2a2620'; c.font = `600 ${Math.round(cw*.075)}px "Instrument Sans", sans-serif`; c.textAlign = 'center';
-    c.fillText(item.title.replace(/ no\. \d+$/, ''), 0, y0 + ch*.84);
-    const num = (item.title.match(/no\. (\d+)/) || [,'1'])[1];
-    c.beginPath(); c.arc(x0 + 34, y0 + 34, 22, 0, Math.PI*2); c.fill();
-    c.fillStyle = '#f4efe4'; c.font = '600 18px "JetBrains Mono", monospace'; c.fillText(num, x0 + 34, y0 + 40);
-    c.restore();
-  }
-};
-function generatedArt(item){
-  if (artCache.has(item.id)) return artCache.get(item.id);
-  const cv = document.createElement('canvas'); cv.width = 400; cv.height = 500;
-  (DRAW[item.category] || DRAW.paintings)(cv.getContext('2d'), rng(hashStr(item.id + item.title)), cv.width, cv.height, item);
-  const url = cv.toDataURL('image/jpeg', .85);
-  artCache.set(item.id, url); return url;
-}
-const genObserver = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting){ genObserver.unobserve(e.target); e.target.src = generatedArt(e.target._item); } });
-}, { rootMargin: '300px' }) : null;
-function placeholder(img, item, now){
-  if (now || !genObserver){ img.src = generatedArt(item); return; }
-  img._item = item; genObserver.observe(img);
+/* ---------- Placeholder tile (only while a real image is missing) ---------- */
+const tileCache = new Map();
+function placeholderTile(item){
+  const k = item.category + '|' + (item.collection || item.artist);
+  if (tileCache.has(k)) return tileCache.get(k);
+  const label = String(item.collection || item.artist || '').slice(0, 34).replace(/[&<>]/g, '');
+  const color = { nft:'#8b6cff', street:'#ff4d6d', prints:'#2ec4f1', paintings:'#ffb020', cards:'#3ddc97' }[item.category] || '#8f94a6';
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"><rect width="400" height="500" fill="#151821"/><rect x="0" y="494" width="400" height="6" fill="${color}" opacity=".5"/><text x="200" y="240" fill="#8f94a6" font-family="Helvetica,Arial,sans-serif" font-size="18" text-anchor="middle">${label}</text><text x="200" y="272" fill="#5c6172" font-family="Helvetica,Arial,sans-serif" font-size="14" text-anchor="middle">image coming soon</text></svg>`;
+  const url = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+  tileCache.set(k, url); return url;
 }
 const hasRealImage = it => !!(it.thumb || it.image);
 function setImg(img, item, opts){
@@ -446,17 +359,20 @@ function setImg(img, item, opts){
   if (!opts.eager) img.loading = 'lazy';
   const sources = (opts.large ? [item.image, item.thumb] : [item.thumb, item.image]).filter(Boolean);
   let k = 0;
-  img.onerror = () => { k++; if (k < sources.length) img.src = sources[k]; else { img.onerror = null; placeholder(img, item, true); } };
-  if (sources.length) img.src = sources[0]; else placeholder(img, item, opts.eager);
+  img.onerror = () => { k++; if (k < sources.length) img.src = sources[k]; else { img.onerror = null; img.src = placeholderTile(item); } };
+  img.src = sources.length ? sources[0] : placeholderTile(item);
 }
 
 /* ---------- Data ---------- */
 let ITEMS = [], ARTISTS = [], FEATURED = [], NFT_META = {};
-function normalise(physical, nfts){
+function normalise(physical, nfts, artists, exclude){
+  const lc = s => String(s || '').toLowerCase();
+  const byContract = {}; Object.entries((artists && artists.contracts) || {}).forEach(([k,v]) => byContract[lc(k)] = v);
+  const exC = new Set(((exclude && exclude.contracts) || []).map(lc)), exN = new Set(((exclude && exclude.collections) || []).map(lc));
   const phys = (physical.items || []).map(p => Object.assign({}, p, { category: CATS[p.category] ? p.category : 'paintings' }));
-  const nft = (nfts.items || []).map(n => Object.assign({}, n, {
+  const nft = (nfts.items || []).filter(n => !exC.has(lc(n.contract)) && !exN.has(lc(n.collection))).map(n => Object.assign({}, n, {
     category: 'nft',
-    artist: n.artist || n.collection || 'Unattributed',
+    artist: byContract[lc(n.contract)] || n.artist || n.collection || 'Unattributed',
     medium: [n.standard || 'NFT', 'Ethereum'].join(' · '),
     edition: n.copies ? n.copies + ' editions' : ''
   }));
@@ -476,15 +392,18 @@ function buildArtists(){
 }
 function pickFeatured(list){
   const nfts = ITEMS.filter(i => i.category === 'nft');
-  const wanted = (list || []).map(s => String(s).toLowerCase().trim()).filter(Boolean);
-  if (wanted.length){
-    const out = [];
-    wanted.forEach(w => { const hit = nfts.find(n => n.title.toLowerCase() === w || (n.key && n.key.toLowerCase() === w)); if (hit && !out.includes(hit)) out.push(hit); });
-    if (out.length) return out.slice(0, 12);
-  }
-  const seen = new Set(), out = [];
-  nfts.slice().sort((a,b) => (hasRealImage(b) - hasRealImage(a)) || (b.acquired || '').localeCompare(a.acquired || '')).forEach(n => { if (!seen.has(n.artistSlug) && out.length < 12){ seen.add(n.artistSlug); out.push(n); } });
-  return out;
+  const out = [];
+  (list || []).map(s => String(s).toLowerCase().trim()).filter(Boolean).forEach(w => {
+    const hit = nfts.find(n => n.title.toLowerCase() === w || (n.key && n.key.toLowerCase() === w));
+    if (hit && !out.includes(hit)) out.push(hit);
+  });
+  // Works with a real image go first; then top up with the newest work of other artists.
+  const ordered = out.filter(hasRealImage).concat(out.filter(i => !hasRealImage(i)));
+  const seen = new Set(ordered.map(n => n.artistSlug));
+  nfts.slice().sort((a,b) => (!!b.thumb - !!a.thumb) || (b.acquired || '').localeCompare(a.acquired || '')).forEach(n => {
+    if (ordered.length < 8 && n.thumb && !seen.has(n.artistSlug)){ seen.add(n.artistSlug); ordered.push(n); }
+  });
+  return ordered.slice(0, 12);
 }
 
 /* ---------- Shared pieces ---------- */
@@ -503,7 +422,6 @@ function factsHTML(it){
 }
 function tagFor(it){
   if (it.example) return '<span class="tag">example</span>';
-  if (!hasRealImage(it)) return '<span class="tag">placeholder image</span>';
   return '';
 }
 function workCard(it){
@@ -532,7 +450,8 @@ let dayOffset = 0, heroItem = null;
 function pickForDay(key){
   const fresh = ITEMS.filter(i => i.acquired === key);
   if (fresh.length) return { item: fresh[fresh.length-1], isNew: true };
-  const order = ITEMS.slice().sort((a,b) => a.id.localeCompare(b.id));
+  const withImg = ITEMS.filter(i => i.thumb || (i.image && i.category !== 'nft'));
+  const order = (withImg.length >= 7 ? withImg : ITEMS).slice().sort((a,b) => a.id.localeCompare(b.id));
   const r = rng(20261113);
   for (let i=order.length-1; i>0; i--){ const j = Math.floor(r()*(i+1)); [order[i], order[j]] = [order[j], order[i]]; }
   return { item: order[((dayNumber(key) % order.length) + order.length) % order.length], isNew: false };
@@ -601,14 +520,16 @@ let filter = 'all', query = '', sortBy = 'artist', shown = PAGE_SIZE;
 function counts(){ const c = { all: ITEMS.length }; Object.keys(CATS).forEach(k => c[k] = ITEMS.filter(i => i.category === k).length); return c; }
 function renderStats(){
   const c = counts();
-  const tiles = [['all','Works in total','var(--spectrum)'], ...Object.keys(CATS).map(k => [k, CATS[k].label, CATS[k].color])];
+  const tiles = [['all','Works in total','var(--spectrum)'], ...Object.keys(CATS).filter(k => c[k]).map(k => [k, CATS[k].label, CATS[k].color])];
+  $('stats').style.gridTemplateColumns = `repeat(${Math.min(tiles.length, 6)}, minmax(0,1fr))`;
   $('stats').innerHTML = tiles.map(([k,l,col]) => `<button class="stat" type="button" data-k="${k}" style="--cat:${col}"><span class="n">${c[k]}</span><span class="l">${l}</span></button>`).join('');
   $('stats').querySelectorAll('.stat').forEach(b => b.onclick = () => { setFilter(b.dataset.k); });
   $('countLine').textContent = `${plural(ITEMS.length, 'work')} · ${plural(ARTISTS.length, 'artist')}`;
 }
 function renderFilters(){
   const c = counts();
-  const opts = [['all','All','var(--spectrum)'], ...Object.keys(CATS).map(k => [k, CATS[k].label, CATS[k].color])];
+  const opts = [['all','All','var(--spectrum)'], ...Object.keys(CATS).filter(k => c[k]).map(k => [k, CATS[k].label, CATS[k].color])];
+  $('filters').hidden = opts.length <= 2;
   $('filters').innerHTML = opts.map(([k,l,col]) => `<button type="button" data-k="${k}" aria-pressed="${filter===k}" style="--cat:${col}">${l}<span class="c">${c[k]}</span></button>`).join('');
   $('filters').querySelectorAll('button').forEach(b => b.onclick = () => setFilter(b.dataset.k));
 }
@@ -702,22 +623,23 @@ $('walletLink').textContent = 'wallet ' + shortAddr(WALLET);
 $('walletLink').href = 'https://etherscan.io/address/' + WALLET;
 window.addEventListener('hashchange', route);
 
-Promise.all([loadJSON('data/physical.json'), loadJSON('data/nfts.json'), loadJSON('data/featured.json').catch(() => ({items: []}))])
-  .then(([physical, nfts, featured]) => {
+const optional = p => loadJSON(p).catch(() => ({}));
+Promise.all([optional('data/physical.json'), loadJSON('data/nfts.json'), optional('data/featured.json'), optional('data/artists.json'), optional('data/exclude.json')])
+  .then(([physical, nfts, featured, artists, exclude]) => {
     NFT_META = nfts;
-    ITEMS = normalise(physical, nfts);
+    ITEMS = normalise(physical, nfts, artists, exclude);
     buildArtists();
     FEATURED = pickFeatured(featured.items);
     const live = nfts.source && !/snapshot/i.test(nfts.source);
+    const nftTotal = ITEMS.filter(i => i.category === 'nft').length;
     if (live){
       $('status').className = 'status ok';
-      $('statusText').textContent = `${plural(ITEMS.filter(i => i.category === 'nft').length, 'NFT')} · updated ${fmtDay(nfts.updated, {day:'numeric', month:'short'})}`;
+      $('statusText').textContent = `${plural(nftTotal, 'NFT')} · updated ${fmtDay(nfts.updated, {day:'numeric', month:'short'})}`;
     } else {
       $('statusText').textContent = 'NFT list from an OpenSea snapshot · daily update not run yet';
     }
     const notes = [];
-    if (ITEMS.some(i => i.example)) notes.push('Works tagged “example” are placeholders, to be replaced with the real physical collection.');
-    if (ITEMS.some(i => !i.example && !hasRealImage(i))) notes.push('Works tagged “placeholder image” get their real picture after the daily update.');
+    if (ITEMS.some(i => i.example)) notes.push('Works tagged “example” are placeholders.');
     $('exampleNotice').textContent = notes.join(' ');
     $('exampleNotice').hidden = !notes.length;
     route();

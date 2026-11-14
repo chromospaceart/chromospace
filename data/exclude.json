@@ -1,0 +1,14 @@
+{
+  "_readme": "NFTs that never appear on the site. Add a contract address (lowercase) or an exact collection name.",
+  "contracts": [
+    "0x45d9ae3755f759450917f8fe3462f947278e7cc5",
+    "0xa3f7250306dbb856d8d312f93029be73343939af",
+    "0xae1df5ae9787c67f239ec2d3735cc54d5770a4e8"
+  ],
+  "collections": [
+    "Ruyui",
+    "TheSadTimesBirthCertificate",
+    "The Sad Times NFT",
+    "DROP mintshiba . com"
+  ]
+}

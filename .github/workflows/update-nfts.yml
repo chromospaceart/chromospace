@@ -22,10 +22,12 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Install image tools
-        run: npm install --no-save --no-package-lock sharp@0.33.5
+        run: |
+          npm install --no-save --no-package-lock sharp@0.33.5
+          which ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
 
       - name: Read the wallet and make thumbnails
         run: node scripts/update-nfts.mjs

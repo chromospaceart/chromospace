@@ -1,14 +1,42 @@
 {
-  "_readme": "Collection name -> artist name. Used when an NFT's own metadata does not name the artist. Add a line for any collection that shows the wrong artist.",
+  "_readme": "Who made what. 'contracts' wins over everything: contract address (lowercase) -> artist. 'collections' is used when the NFT's own metadata names no artist. Works by the same artist are grouped together on the site.",
+  "contracts": {
+    "0xa9248a0935eb476cfe2f286df813a48d06ffd2e2": "Vhils",
+    "0x3077674dd77c532b2e2d9945808c900940de50ae": "Vhils",
+    "0xe5e484f50b10faf07286de5457ea791eaf383ca6": "Vhils",
+    "0xcaf01157df10c2fa24de95e52bcb4c8a9f204c1b": "Vhils",
+    "0x134a9644ea46a979daf0f1e318c4fc754fa9ddce": "Buff Monster",
+    "0x8f17a839b6cd38e9888be3cc901a6726e84d6462": "Michael Reeder",
+    "0xa264aa947fabb5370d3031f57d8edf8b932be1ef": "Michael Reeder",
+    "0x7828c811636ccf051993c1ec3157b0b732e55b23": "Shepard Fairey",
+    "0x3ab6009948cbfbe145f5363fd864351cabed50d5": "Shepard Fairey",
+    "0x87063c6ec04e232a404062de852f42d05c662556": "Kenny Scharf",
+    "0xd87f06ccf68662de923d1cf21c2e9083a5c8493a": "Kenny Scharf",
+    "0x8c62285c60b48a7c095b75104fbdc3354e3eedb1": "Greg Mike",
+    "0x20c9a5adf56f530ea60f2609851d8848886993a2": "Greg Mike",
+    "0xd1dcd1662b00456a5c343dffd735eae6eb11d41e": "Greg Mike",
+    "0xba77a87fc759a497d3b78627c227df91a416a57c": "Anthony Lister",
+    "0xfb5ca3332cfe25c100486d983ad3bb997ba4b674": "Anthony Lister",
+    "0xac7bfab9a70fddc58ec17c4d762f156f0772224b": "Anthony Lister",
+    "0x4edc15b9a7b74da4c504ce195c6a07650f86b5e0": "akc",
+    "0xb1f276973d553c41e21ea41281997985f8981daf": "akc",
+    "0x41d354b946aab90bdda971829b85bab92da277be": "akc",
+    "0xfba00d8b3d241be4240bff084f9e82ae398887c9": "akc",
+    "0x804fa4f383f508600074719d19263645fa450b68": "Peng1",
+    "0x2ac1b562a65ddb82e66be235f171165772b80592": "Tormius",
+    "0xbb869f884186c3cba0ffa89ab84980cb86f8744d": "Hackatao",
+    "0xb66c43eb647c31758678dd858bbce82b071c1eb9": "1dontknows",
+    "0xc969f024e39d31b50ad4aa246af9f65e5d6fb1d1": "1dontknows",
+    "0x8bde0185c7585805f79b2980aec375686a1d0b09": "Gavin Meeler",
+    "0x17cb4b5c8a9afe4e33e03712596c4bc941b673ca": "Gavin Meeler"
+  },
   "collections": {
     "Layers by Vhils": "Vhils",
-    "Cyber Bandits by Michael Reeder": "Michael Reeder",
-    "Cyber Bandits Gen 2": "Michael Reeder",
-    "The Sad Times NFT": "The Sad Times",
     "Official Mini Melties by Buff Monster": "Buff Monster",
+    "Cyber Bandits by Michael Reeder": "Michael Reeder",
     "GLiFS by Efdot": "Efdot",
     "FLOW": "Capi",
     "Capi 1/1": "Capi",
-    "OBEY ARCHIVES": "Shepard Fairey (OBEY)"
+    "OBEY ARCHIVES": "Shepard Fairey"
   }
 }
