@@ -1,0 +1,13 @@
+{
+  "_readme": "NFTs shown on the home page, in this order. Write the title exactly as on the site (or contract:tokenId). Leave the list empty for an automatic pick: the newest work of each artist, up to 12.",
+  "items": [
+    "LAYERS #747",
+    "cow #55",
+    "Cyber Bandit #4069",
+    "Mini Melty #378",
+    "Study of a Bull",
+    "GLiF #177",
+    "Sheep #92",
+    "Flow #78"
+  ]
+}

@@ -1,0 +1,47 @@
+name: Daily NFT update
+
+on:
+  schedule:
+    - cron: '17 3 * * *'   # every day at 03:17 UTC (04:17 in Rome in winter)
+  workflow_dispatch:        # "Run workflow" button for a manual update
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: nft-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install image tools
+        run: npm install --no-save --no-package-lock sharp@0.33.5
+
+      - name: Read the wallet and make thumbnails
+        run: node scripts/update-nfts.mjs
+
+      - name: Save changes
+        run: |
+          git config user.name "chromospace-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/nfts.json thumbs
+          if git diff --cached --quiet; then
+            echo "Nothing new today."
+          else
+            git commit -m "Daily NFT update $(date -u +%Y-%m-%d)"
+            git push
+            # Ask GitHub Pages to rebuild with the new data.
+            gh api -X POST "repos/${{ github.repository }}/pages/builds" || true
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}
