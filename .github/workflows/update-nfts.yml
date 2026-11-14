@@ -31,6 +31,8 @@ jobs:
 
       - name: Read the wallet and make thumbnails
         run: node scripts/update-nfts.mjs
+        env:
+          OPENSEA_API_KEY: ${{ secrets.OPENSEA_API_KEY }}
 
       - name: Save changes
         run: |

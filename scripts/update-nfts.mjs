@@ -165,6 +165,29 @@ async function main() {
   const exCollections = new Set((exclude.collections || []).map(lower));
   const prevByKey = new Map(previous.items.filter(i => i.key).map(i => [i.key, i]));
 
+  // Optional: OpenSea keeps a cached copy of most images, including ones whose original host is gone.
+  const openseaImg = {};
+  if (process.env.OPENSEA_API_KEY) {
+    try {
+      let next = '';
+      for (let p = 0; p < 40; p++) {
+        const url = `https://api.opensea.io/api/v2/chain/ethereum/account/${WALLET}/nfts?limit=200${next ? '&next=' + encodeURIComponent(next) : ''}`;
+        const res = await fetch(url, { headers: { accept: 'application/json', 'x-api-key': process.env.OPENSEA_API_KEY }, signal: AbortSignal.timeout(30000) });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const j = await res.json();
+        for (const n of j.nfts || []) {
+          const img = n.display_image_url || n.image_url;
+          if (img) openseaImg[`${lower(n.contract)}:${n.identifier}`] = img;
+        }
+        if (!j.next) break;
+        next = j.next; await sleep(300);
+      }
+      console.log(`  ${Object.keys(openseaImg).length} images listed by OpenSea`);
+    } catch (e) { console.warn('  OpenSea not available:', e.message); }
+  } else {
+    console.log('  No OPENSEA_API_KEY secret: skipping OpenSea images');
+  }
+
   console.log('Reading NFTs held by', WALLET);
   const held = await getAll('/nft');
   console.log(`  ${held.length} tokens`);
@@ -202,6 +225,7 @@ async function main() {
     const prev = prevByKey.get(key);
     const ts = arrived[key];
     const imageSources = [...new Set([
+      openseaImg[key],
       n.thumbnails && (n.thumbnails['500x500'] || n.thumbnails['250x250'] || n.thumbnails['original']),
       n.image_url, md.image, md.image_url,
       md.image_data && `data:image/svg+xml;utf8,${encodeURIComponent(md.image_data)}`,
@@ -221,7 +245,7 @@ async function main() {
       copies: Number(n.value) > 1 ? Number(n.value) : undefined,
       acquired: ts ? ts.slice(0, 10) : (prev && prev.acquired) || null,
       thumb: '',
-      image: publicUrl(n.image_url || md.image || md.image_url || ''),
+      image: publicUrl(n.image_url || md.image || md.image_url || '') || openseaImg[key] || '',
       animation: publicUrl(n.animation_url || md.animation_url || ''),
       note: String(md.description || '').slice(0, 600)
     };
