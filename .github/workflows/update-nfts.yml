@@ -16,7 +16,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
 
@@ -33,12 +33,13 @@ jobs:
         run: node scripts/update-nfts.mjs
         env:
           OPENSEA_API_KEY: ${{ secrets.OPENSEA_API_KEY }}
+          GH_TOKEN: ${{ github.token }}
 
       - name: Save changes
         run: |
           git config user.name "chromospace-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/nfts.json thumbs
+          git add data/nfts.json data/archive.json data/artists-report.json thumbs 2>/dev/null || git add data thumbs
           if git diff --cached --quiet; then
             echo "Nothing new today."
           else

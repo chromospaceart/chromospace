@@ -1,14 +1,18 @@
 {
-  "_readme": "NFTs that never appear on the site. Add a contract address (lowercase) or an exact collection name.",
+  "_readme": "NFTs that never appear on the site: a contract address (lowercase) or an exact collection name. 'keep' lists single NFTs (contract:tokenId) to show anyway.",
   "contracts": [
     "0x45d9ae3755f759450917f8fe3462f947278e7cc5",
     "0xa3f7250306dbb856d8d312f93029be73343939af",
-    "0xae1df5ae9787c67f239ec2d3735cc54d5770a4e8"
+    "0xae1df5ae9787c67f239ec2d3735cc54d5770a4e8",
+    "0x3b3ee1931dc30c1957379fac9aba94d1c48a5405"
   ],
   "collections": [
     "Ruyui",
     "TheSadTimesBirthCertificate",
     "The Sad Times NFT",
     "DROP mintshiba . com"
+  ],
+  "keep": [
+    "0x3b3ee1931dc30c1957379fac9aba94d1c48a5405:2368"
   ]
 }
