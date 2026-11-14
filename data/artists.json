@@ -1,0 +1,14 @@
+{
+  "_readme": "Collection name -> artist name. Used when an NFT's own metadata does not name the artist. Add a line for any collection that shows the wrong artist.",
+  "collections": {
+    "Layers by Vhils": "Vhils",
+    "Cyber Bandits by Michael Reeder": "Michael Reeder",
+    "Cyber Bandits Gen 2": "Michael Reeder",
+    "The Sad Times NFT": "The Sad Times",
+    "Official Mini Melties by Buff Monster": "Buff Monster",
+    "GLiFS by Efdot": "Efdot",
+    "FLOW": "Capi",
+    "Capi 1/1": "Capi",
+    "OBEY ARCHIVES": "Shepard Fairey (OBEY)"
+  }
+}
