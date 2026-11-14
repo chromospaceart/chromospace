@@ -109,7 +109,7 @@ h2{font-family:var(--f-display);font-weight:600;font-size:clamp(26px,3.2vw,40px)
 .artists{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:28px 22px}
 .artist{display:grid;gap:12px;text-decoration:none;align-content:start}
 .mosaic{display:grid;grid-template-columns:1fr 1fr;gap:3px;border-radius:6px;overflow:hidden;aspect-ratio:1;background:var(--panel)}
-.mosaic img{width:100%;height:100%;object-fit:cover;background:var(--panel);transition:opacity .45s ease}
+.mosaic img{width:100%;height:100%;object-fit:cover;background:var(--panel)}
 .mosaic.n1 img{grid-column:1/-1;grid-row:1/3}
 .mosaic.n2 img{grid-row:1/3}
 .mosaic.n3 img:first-child{grid-row:1/3}
@@ -437,48 +437,17 @@ function workCard(it){
   b.onclick = () => openModal(it);
   return b;
 }
-/* Artist mosaics: 4 random works, one tile swapped every few seconds while on screen */
-function shuffle(arr){ for (let i = arr.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
-const visibleMosaics = new Set();
-const mosaicObserver = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
-  entries.forEach(e => e.isIntersecting ? visibleMosaics.add(e.target) : visibleMosaics.delete(e.target));
-}) : null;
-function resetMosaics(){ if (mosaicObserver) mosaicObserver.disconnect(); visibleMosaics.clear(); }
-function swapTile(m){
-  const imgs = m.querySelectorAll('img');
-  const others = m._pool.filter(w => !m._shown.includes(w));
-  if (!imgs.length || !others.length) return;
-  const k = Math.floor(Math.random() * imgs.length);
-  const next = others[Math.floor(Math.random() * others.length)];
-  const src = next.thumb || next.image;
-  if (!src) return;
-  const pre = new Image();
-  pre.onload = () => {
-    const img = imgs[k];
-    img.style.opacity = 0;
-    setTimeout(() => { img.src = src; m._shown[k] = next; img.style.opacity = 1; }, 450);
-  };
-  pre.src = src;
-}
-if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-  setInterval(() => {
-    if (document.hidden) return;
-    const list = [...visibleMosaics].filter(m => m.isConnected);
-    shuffle(list).slice(0, 2).forEach(swapTile);
-  }, 2600);
-}
+/* Artist mosaics: 4 works picked at random, a new pick every day (midnight, Rome time) */
+function shuffle(arr, rand){ for (let i = arr.length - 1; i > 0; i--){ const j = Math.floor(rand() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
 function artistCard(a){
   const el = document.createElement('a'); el.className = 'artist'; el.href = '#artist-' + a.slug;
   const withImg = a.works.filter(hasRealImage);
   const pool = withImg.length ? withImg : a.works;
-  const pics = shuffle(pool.slice()).slice(0, 4);
+  const pics = shuffle(pool.slice().sort((x,y) => x.id.localeCompare(y.id)), rng(hashStr(a.slug + todayKey()))).slice(0, 4);
   el.innerHTML = `<div class="mosaic n${pics.length}">${pics.map(() => '<img alt="">').join('')}</div>
     <div><div class="n">${esc(a.name)}</div>
     <div class="c"><span>${plural(a.works.length, 'work')}</span><span class="dots">${a.cats.map(c => `<i style="background:${CATS[c].color}" title="${CATS[c].label}"></i>`).join('')}</span></div></div>`;
   el.querySelectorAll('img').forEach((img, i) => { setImg(img, pics[i]); img.alt = ''; });
-  const m = el.querySelector('.mosaic');
-  m._pool = pool; m._shown = pics.slice();
-  if (pool.length > pics.length && mosaicObserver) mosaicObserver.observe(m);
   return el;
 }
 const artistHref = it => '#artist-' + it.artistSlug;
@@ -638,7 +607,6 @@ function route(){
   document.querySelectorAll('nav.main a[aria-current]').forEach(a => a.setAttribute('aria-current', 'page'));
   document.title = 'Chromospace';
   if (!ITEMS.length) return;
-  resetMosaics();
   if (view === 'home') renderHome();
   if (view === 'artists') renderArtists();
   if (view === 'artist') renderArtist(h.slice(7));
