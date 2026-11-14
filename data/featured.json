@@ -1,13 +1,17 @@
 {
-  "_readme": "NFTs shown on the home page, in this order. Write the title exactly as on the site (or contract:tokenId). Leave the list empty for an automatic pick: the newest work of each artist, up to 12.",
+  "_readme": "NFTs shown on the home page, in this order (max 12). Write the title exactly as on the site, or contract:tokenId. Works whose image is still missing are shown last. If fewer than 8 are found, the site adds the newest work of other artists.",
   "items": [
     "LAYERS #747",
-    "cow #55",
-    "Cyber Bandit #4069",
+    "Eye Opening #69/186",
+    "UnderAqua #179/207",
+    "Cyber Bandit Gen II #45",
     "Mini Melty #378",
+    "POOCH IN THE RING",
+    "DEGENERATE/REGENERATE #5500",
+    "Fading Forward #241/547",
     "Study of a Bull",
+    "Cities #330",
     "GLiF #177",
-    "Sheep #92",
-    "Flow #78"
+    "cow #55"
   ]
 }

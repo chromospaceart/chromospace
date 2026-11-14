@@ -1,30 +1,39 @@
 // Daily update of data/nfts.json from the public Blockscout API.
-// Runs in GitHub Actions (see .github/workflows/update-nfts.yml). Node 20+, needs `sharp`.
-// - Reads every ERC-721 / ERC-1155 token held by the wallet.
+// Runs in GitHub Actions (see .github/workflows/update-nfts.yml). Node 20+, needs `sharp` and `ffmpeg`.
+// - Reads every ERC-721 / ERC-1155 token held by the wallet, minus data/exclude.json.
+// - Names the artist from data/artists.json, then the token metadata, then the collection name.
 // - Finds the date each token arrived in the wallet.
-// - Makes a small .webp thumbnail for each new token in thumbs/, so the site loads fast.
+// - Makes a small .webp thumbnail for each token in thumbs/ (first frame for videos), so the site loads fast.
 // If Blockscout cannot be reached, the script exits without touching existing data.
 
 import fs from 'node:fs/promises';
+import os from 'node:os';
 import path from 'node:path';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 import sharp from 'sharp';
 
+const run = promisify(execFile);
 const WALLET = '0xb884ad7ab6af74693fec7f364eb8bfb31fc7ecea';
 const API = `https://eth.blockscout.com/api/v2/addresses/${WALLET}`;
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const DATA = path.join(ROOT, 'data');
 const THUMBS = path.join(ROOT, 'thumbs');
 const MAX_PAGES = 60;            // 50 items per page
-const MAX_NEW_THUMBS = 200;      // per run, keeps the job short; the rest follow the next day
+const MAX_NEW_THUMBS = 400;      // per run
+const PARALLEL = 6;
 const THUMB_WIDTH = 640;
-const GATEWAYS = ['https://ipfs.io/ipfs/', 'https://dweb.link/ipfs/', 'https://nftstorage.link/ipfs/'];
+const UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36 chromospace-bot';
+const GATEWAYS = ['https://ipfs.io/ipfs/', 'https://w3s.link/ipfs/', 'https://dweb.link/ipfs/', 'https://gateway.pinata.cloud/ipfs/', 'https://4everland.io/ipfs/'];
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
+const lower = s => String(s || '').toLowerCase();
+const tokenAddr = t => lower(t && (t.address_hash || t.address || t.hash));
 
 async function getJSON(url, tries = 3) {
   for (let i = 0; i < tries; i++) {
     try {
-      const res = await fetch(url, { headers: { accept: 'application/json' }, signal: AbortSignal.timeout(30000) });
+      const res = await fetch(url, { headers: { accept: 'application/json', 'user-agent': UA }, signal: AbortSignal.timeout(30000) });
       if (res.status === 429) { await sleep(3000 * (i + 1)); continue; }
       if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
       return await res.json();
@@ -50,77 +59,110 @@ async function getAll(endpoint, extra = {}) {
   return out;
 }
 
-const lower = s => String(s || '').toLowerCase();
-const tokenAddr = t => lower(t && (t.address_hash || t.address || t.hash));
-
+/* ---------- URLs ---------- */
 function ipfsPath(u) {
   if (u.startsWith('ipfs://')) return u.slice(7).replace(/^ipfs\//, '');
-  const m = u.match(/\/ipfs\/(.+)$/);
-  return m ? m[1] : null;
+  const m = u.match(/^https?:\/\/[^/]+\/ipfs\/(.+)$/);
+  if (m) return m[1];
+  const sub = u.match(/^https?:\/\/(b[a-z2-7]{50,})\.ipfs\.[^/]+\/?(.*)$/); // subdomain gateways
+  return sub ? sub[1] + (sub[2] ? '/' + sub[2] : '') : null;
 }
 function candidates(u) {
   if (!u || typeof u !== 'string') return [];
   if (u.startsWith('data:')) return [u];
   if (u.startsWith('ar://')) return ['https://arweave.net/' + u.slice(5)];
   const p = ipfsPath(u);
-  if (p) return GATEWAYS.map(g => g + p);
+  if (p) return [...new Set([u.startsWith('http') ? u : null, ...GATEWAYS.map(g => g + p)].filter(Boolean))];
   return [u];
 }
 function publicUrl(u) {
-  const url = candidates(u)[0] || '';
-  return url.startsWith('data:') && url.length > 4000 ? '' : url; // keep the JSON small
+  const p = u && ipfsPath(u);
+  const url = p ? GATEWAYS[0] + p : (candidates(u)[0] || '');
+  return url.startsWith('data:') && url.length > 4000 ? '' : url;
 }
 
-function artistFor(md, collection, map) {
-  const fromMd = md.artist || md.created_by || md.creator || md.artist_name ||
-    (Array.isArray(md.attributes) && (md.attributes.find(a => /^(artist|creator|created by)$/i.test(a.trait_type || ''))?.value));
-  if (fromMd && typeof fromMd === 'string' && !/^0x[0-9a-f]{40}$/i.test(fromMd)) return fromMd.trim();
-  if (map[collection]) return map[collection];
+/* ---------- Artists ---------- */
+function artistFor(md, collection, contract, map) {
+  if (map.contracts[contract]) return map.contracts[contract];
+  const attr = Array.isArray(md.attributes) && md.attributes.find(a => /^(artist|creator|created by|artist name)$/i.test(String(a.trait_type || '')));
+  const fromMd = md.artist || md.created_by || md.creator || md.artist_name || (attr && attr.value);
+  if (fromMd && typeof fromMd === 'string' && !/^0x[0-9a-f]{40}$/i.test(fromMd.trim())) return fromMd.trim();
+  if (map.collections[collection]) return map.collections[collection];
   const by = collection.match(/\bby\s+(.+)$/i);
   if (by) return by[1].trim();
   return collection || 'Unattributed';
 }
 
-async function readBytes(url) {
+/* ---------- Thumbnails ---------- */
+const failures = [];
+async function download(url) {
   if (url.startsWith('data:')) {
     const comma = url.indexOf(',');
-    const meta = url.slice(5, comma);
-    const body = url.slice(comma + 1);
-    return meta.includes(';base64') ? Buffer.from(body, 'base64') : Buffer.from(decodeURIComponent(body));
+    const meta = url.slice(5, comma), body = url.slice(comma + 1);
+    return { buf: meta.includes(';base64') ? Buffer.from(body, 'base64') : Buffer.from(decodeURIComponent(body)), type: meta.split(';')[0] };
   }
-  const res = await fetch(url, { signal: AbortSignal.timeout(25000) });
+  const res = await fetch(url, { headers: { 'user-agent': UA, accept: 'image/*,video/*,*/*;q=0.8' }, redirect: 'follow', signal: AbortSignal.timeout(45000) });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  const type = res.headers.get('content-type') || '';
-  if (/video|html|json/.test(type)) throw new Error(`not an image: ${type}`);
+  const type = (res.headers.get('content-type') || '').toLowerCase();
+  if (/text\/html|json/.test(type)) throw new Error(`not an image (${type})`);
   const buf = Buffer.from(await res.arrayBuffer());
-  if (buf.length > 40 * 1024 * 1024) throw new Error('image too large');
-  return buf;
+  if (buf.length > 120 * 1024 * 1024) throw new Error('file too large');
+  return { buf, type };
 }
-
-async function makeThumb(sources, file) {
+async function toWebp(input, file) {
+  await sharp(input, { animated: false, limitInputPixels: 4e8 })
+    .rotate()
+    .resize({ width: THUMB_WIDTH, height: Math.round(THUMB_WIDTH * 1.25), fit: 'inside', withoutEnlargement: true })
+    .webp({ quality: 78 })
+    .toFile(file);
+}
+async function videoFrame(buf) {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'cs-'));
+  const src = path.join(dir, 'in'), out = path.join(dir, 'frame.png');
+  try {
+    await fs.writeFile(src, buf);
+    try { await run('ffmpeg', ['-v', 'error', '-y', '-ss', '1', '-i', src, '-frames:v', '1', out], { timeout: 60000 }); }
+    catch { await run('ffmpeg', ['-v', 'error', '-y', '-i', src, '-frames:v', '1', out], { timeout: 60000 }); }
+    return await fs.readFile(out);
+  } finally { await fs.rm(dir, { recursive: true, force: true }); }
+}
+async function makeThumb(sources, file, label) {
+  const reasons = [];
   for (const src of sources) {
     for (const url of candidates(src)) {
       try {
-        const buf = await readBytes(url);
-        await sharp(buf, { animated: false, limitInputPixels: 2e8 })
-          .rotate()
-          .resize({ width: THUMB_WIDTH, height: THUMB_WIDTH * 1.25, fit: 'inside', withoutEnlargement: true })
-          .webp({ quality: 78 })
-          .toFile(file);
+        const { buf, type } = await download(url);
+        try { await toWebp(buf, file); }
+        catch (e) {
+          if (/video|octet-stream|mp4|quicktime|webm/.test(type) || !type) await toWebp(await videoFrame(buf), file);
+          else throw e;
+        }
         return true;
-      } catch (e) { /* try the next source */ }
+      } catch (e) {
+        reasons.push(`${url.slice(0, 70)} → ${e.message}`);
+      }
     }
   }
+  failures.push(`${label}: ${reasons.slice(0, 3).join(' | ') || 'no image url'}`);
   return false;
+}
+async function pool(tasks, n) {
+  let i = 0;
+  await Promise.all(Array.from({ length: n }, async () => { while (i < tasks.length) { const t = tasks[i++]; await t(); } }));
 }
 
 async function readJSON(file, fallback) {
   try { return JSON.parse(await fs.readFile(file, 'utf8')); } catch { return fallback; }
 }
 
+/* ---------- Main ---------- */
 async function main() {
   const previous = await readJSON(path.join(DATA, 'nfts.json'), { items: [] });
-  const artistsMap = (await readJSON(path.join(DATA, 'artists.json'), {})).collections || {};
+  const artistsFile = await readJSON(path.join(DATA, 'artists.json'), {});
+  const map = { contracts: Object.fromEntries(Object.entries(artistsFile.contracts || {}).map(([k, v]) => [lower(k), v])), collections: artistsFile.collections || {} };
+  const exclude = await readJSON(path.join(DATA, 'exclude.json'), {});
+  const exContracts = new Set((exclude.contracts || []).map(lower));
+  const exCollections = new Set((exclude.collections || []).map(lower));
   const prevByKey = new Map(previous.items.filter(i => i.key).map(i => [i.key, i]));
 
   console.log('Reading NFTs held by', WALLET);
@@ -144,73 +186,77 @@ async function main() {
   }
 
   await fs.mkdir(THUMBS, { recursive: true });
-  let usedIds = new Set(previous.items.map(i => i.id));
+  const usedIds = new Set(previous.items.map(i => i.id));
   let next = Math.max(0, ...[...usedIds].map(id => Number(String(id).replace(/\D/g, '')) || 0)) + 1;
-  let newThumbs = 0;
-  const items = [];
+  const items = [], thumbJobs = [];
+  let skipped = 0;
 
   for (const n of held) {
     const t = n.token || {};
     const md = n.metadata || {};
     const contract = tokenAddr(t);
+    const collection = t.name || '';
+    if (exContracts.has(contract) || exCollections.has(lower(collection))) { skipped++; continue; }
     const tokenId = String(n.id);
     const key = `${contract}:${tokenId}`;
     const prev = prevByKey.get(key);
-    const collection = t.name || '';
     const ts = arrived[key];
-    const imageSources = [
-      n.thumbnails && (n.thumbnails['500x500'] || n.thumbnails['original']),
-      n.image_url, md.image, md.image_url, md.image_data && `data:image/svg+xml;utf8,${encodeURIComponent(md.image_data)}`
-    ].filter(Boolean);
-
-    const thumbName = `${contract.slice(2, 10)}-${tokenId.slice(0, 40).replace(/[^0-9a-z]/gi, '')}.webp`;
-    const thumbFile = path.join(THUMBS, thumbName);
-    let thumb = '';
-    try { await fs.access(thumbFile); thumb = `thumbs/${thumbName}`; } catch {}
-    if (!thumb && newThumbs < MAX_NEW_THUMBS && imageSources.length) {
-      newThumbs++;
-      if (await makeThumb(imageSources, thumbFile)) thumb = `thumbs/${thumbName}`;
-    }
+    const imageSources = [...new Set([
+      n.thumbnails && (n.thumbnails['500x500'] || n.thumbnails['250x250'] || n.thumbnails['original']),
+      n.image_url, md.image, md.image_url,
+      md.image_data && `data:image/svg+xml;utf8,${encodeURIComponent(md.image_data)}`,
+      n.animation_url, md.animation_url
+    ].filter(x => typeof x === 'string' && x))];
 
     let id = prev && prev.id;
     if (!id) { while (usedIds.has(`CS-N${String(next).padStart(3, '0')}`)) next++; id = `CS-N${String(next).padStart(3, '0')}`; usedIds.add(id); next++; }
 
-    items.push({
+    const thumbName = `${contract.slice(2, 10)}-${tokenId.slice(0, 40).replace(/[^0-9a-z]/gi, '')}.webp`;
+    const item = {
       id, key, category: 'nft',
       title: md.name || `${collection || 'Token'} #${tokenId}`,
-      artist: artistFor(md, collection, artistsMap),
+      artist: artistFor(md, collection, contract, map),
       collection, contract, tokenId,
       standard: n.token_type || t.type || '',
       copies: Number(n.value) > 1 ? Number(n.value) : undefined,
       acquired: ts ? ts.slice(0, 10) : (prev && prev.acquired) || null,
-      thumb,
-      image: publicUrl(imageSources[0] || ''),
+      thumb: '',
+      image: publicUrl(n.image_url || md.image || md.image_url || ''),
       animation: publicUrl(n.animation_url || md.animation_url || ''),
       note: String(md.description || '').slice(0, 600)
-    });
+    };
+    items.push(item);
+    const thumbFile = path.join(THUMBS, thumbName);
+    try { await fs.access(thumbFile); item.thumb = `thumbs/${thumbName}`; }
+    catch { if (imageSources.length) thumbJobs.push(async () => { if (await makeThumb(imageSources, thumbFile, item.title)) item.thumb = `thumbs/${thumbName}`; }); }
   }
+  console.log(`  ${skipped} excluded, ${items.length} kept, ${thumbJobs.length} thumbnails to make`);
 
-  if (!items.length && previous.items.length) {
-    throw new Error('Blockscout returned no tokens; refusing to wipe existing data');
-  }
+  if (!items.length && previous.items.length) throw new Error('Blockscout returned no tokens; refusing to wipe existing data');
+
+  await pool(thumbJobs.slice(0, MAX_NEW_THUMBS), PARALLEL);
 
   items.sort((a, b) => (b.acquired || '').localeCompare(a.acquired || '') || a.id.localeCompare(b.id));
 
-  // Remove thumbnails of tokens that left the wallet.
   const keep = new Set(items.map(i => i.thumb).filter(Boolean).map(t => path.basename(t)));
   for (const f of await fs.readdir(THUMBS)) {
     if (f.endsWith('.webp') && !keep.has(f)) await fs.unlink(path.join(THUMBS, f));
   }
 
-  const out = {
-    _readme: previous._readme || 'Generated every day by scripts/update-nfts.mjs. Do not edit by hand.',
+  await fs.writeFile(path.join(DATA, 'nfts.json'), JSON.stringify({
+    _readme: 'Generated every day by scripts/update-nfts.mjs. Do not edit by hand: change data/artists.json or data/exclude.json instead.',
     source: 'Blockscout (eth.blockscout.com)',
     updated: new Date().toISOString(),
     wallet: WALLET,
     items
-  };
-  await fs.writeFile(path.join(DATA, 'nfts.json'), JSON.stringify(out, null, 1) + '\n');
-  console.log(`Saved ${items.length} NFTs, ${newThumbs} new thumbnails attempted.`);
+  }, null, 1) + '\n');
+
+  const withThumb = items.filter(i => i.thumb).length;
+  console.log(`Saved ${items.length} NFTs, ${withThumb} with a thumbnail.`);
+  if (failures.length) {
+    console.log(`\n${failures.length} images could not be made into thumbnails:`);
+    failures.slice(0, 60).forEach(f => console.log('  - ' + f));
+  }
 }
 
 main().catch(e => { console.error('Update failed:', e.message); process.exit(1); });
