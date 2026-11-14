@@ -1,0 +1,1141 @@
+{
+ "0x0765c6ab27f078548eb11404efc5e88fb804b8ee": {
+  "collection": "Meat? Me Art",
+  "opensea_collection": "Meat? Me Art",
+  "slug": "meat-me-art",
+  "owner": "0xb737890f2b5dca4ea3f0194264179c0d814353e3",
+  "owner_username": "lineofakc",
+  "artist_on_site": "Meat? Me Art",
+  "works": 4,
+  "examples": [
+   "56",
+   "51",
+   "48"
+  ]
+ },
+ "0x4edc15b9a7b74da4c504ce195c6a07650f86b5e0": {
+  "collection": "cows",
+  "opensea_collection": "cow's",
+  "slug": "cowsbyakc",
+  "owner": "0xb737890f2b5dca4ea3f0194264179c0d814353e3",
+  "owner_username": "lineofakc",
+  "artist_on_site": "akc",
+  "works": 4,
+  "examples": [
+   "cow #55",
+   "cow #176",
+   "cow #184"
+  ]
+ },
+ "0xd22f71d6e44bb7f3acf8c07a709703989aa09b46": {
+  "collection": "rare critical memes",
+  "opensea_collection": "rare critical memes",
+  "slug": "rare-critical-memes",
+  "owner": "0xb737890f2b5dca4ea3f0194264179c0d814353e3",
+  "owner_username": "lineofakc",
+  "artist_on_site": "rare critical memes",
+  "works": 2,
+  "examples": [
+   "rare critical memes 001",
+   "rare critical memes 012"
+  ]
+ },
+ "0xb1a3b92e35e8a8c34b9f5e4e918c49421331d269": {
+  "collection": "P⊙RTR∆ITS",
+  "opensea_collection": "P⊙RTR∆ITS",
+  "slug": "portraitsbycem",
+  "owner": "0xe2edcbda3612edaba41341d037d334c7445a58f6",
+  "owner_username": "cemSR",
+  "artist_on_site": "P⊙RTR∆ITS",
+  "works": 1,
+  "examples": [
+   "388ecstatic42k202040"
+  ]
+ },
+ "0x01ea7a0838dce0a405efc787758cbdfa1f4b8889": {
+  "collection": "Left Behind",
+  "opensea_collection": "Left Behind",
+  "slug": "left-behind1",
+  "owner": "0xe19f5f6f3019ca6cdcf56d439221ce05447016de",
+  "owner_username": "",
+  "artist_on_site": "Left Behind",
+  "works": 2,
+  "examples": [
+   "Left Behind #273",
+   "Left Behind #272"
+  ]
+ },
+ "0xf30ce5330ec4216034432fe79fa39061c38ee1c6": {
+  "collection": "GLiFS by Efdot",
+  "opensea_collection": "GLiFS by Efdot",
+  "slug": "glifs",
+  "owner": "0xcdd99ee657a33b1da6802f4117d7e5cb2ffa5d79",
+  "owner_username": "Efdot",
+  "artist_on_site": "Efdot",
+  "works": 2,
+  "examples": [
+   "GLiF #178",
+   "GLiF #177"
+  ]
+ },
+ "0x52caee4275765dde6f47f874e7cf8181f5b5e5da": {
+  "collection": "Still Alive",
+  "opensea_collection": "Still Alive",
+  "slug": "still-alive",
+  "owner": "0xe19f5f6f3019ca6cdcf56d439221ce05447016de",
+  "owner_username": "",
+  "artist_on_site": "Capi",
+  "works": 2,
+  "examples": [
+   "Survivor #159",
+   "Survivor #258"
+  ]
+ },
+ "0x7c78f67700e700b4005c8a3d920a1a99e6004800": {
+  "collection": "Art Blocks Studio | 72",
+  "opensea_collection": "Cities by Efdot x Diid",
+  "slug": "cities-by-efdot-x-diid",
+  "owner": "0xe8f2069f4886b9e304bc74354787bfc930507899",
+  "owner_username": "CitiesDeployer",
+  "artist_on_site": "Efdot x Diid",
+  "works": 1,
+  "examples": [
+   "Cities #330"
+  ],
+  "creators": {
+   "Cities #330": ""
+  }
+ },
+ "0xba3c1de1960f3e89b71690e9852a20eb93f5e31d": {
+  "collection": "Capi 1/1",
+  "opensea_collection": "Capi 1/1",
+  "slug": "capi-1-1",
+  "owner": "0xe19f5f6f3019ca6cdcf56d439221ce05447016de",
+  "owner_username": "",
+  "artist_on_site": "Capi",
+  "works": 8,
+  "examples": [
+   "What Remains",
+   "Les Demoiselles d'Avignon",
+   "Lost In Town"
+  ]
+ },
+ "0x29c3d29acf9b3030061bfc56f6383a20c6442b5b": {
+  "collection": "Curb Appeal",
+  "opensea_collection": "Curb Appeal",
+  "slug": "curb-appeal-554170071",
+  "owner": "0x071642731357694b43567e961c6b99647962a8c7",
+  "owner_username": "0009ine",
+  "artist_on_site": "0009",
+  "works": 2,
+  "examples": [
+   "public works",
+   "private utility"
+  ]
+ },
+ "0xfba00d8b3d241be4240bff084f9e82ae398887c9": {
+  "collection": "flowers",
+  "opensea_collection": "flowers",
+  "slug": "flowers-1200",
+  "owner": "0xb737890f2b5dca4ea3f0194264179c0d814353e3",
+  "owner_username": "lineofakc",
+  "artist_on_site": "akc",
+  "works": 1,
+  "examples": [
+   "flowers"
+  ]
+ },
+ "0xb66c43eb647c31758678dd858bbce82b071c1eb9": {
+  "collection": "",
+  "opensea_collection": "1dontknows editions",
+  "slug": "1dontknows-editions",
+  "owner": "0x47c553e889f7bfa75cf3775473180a04e9effcfa",
+  "owner_username": "1dontknows_",
+  "artist_on_site": "1dontknows",
+  "works": 4,
+  "examples": [
+   "Fever Dream",
+   "my body feeds the garden",
+   "Losing myself"
+  ]
+ },
+ "0x8894e04dbf1437c33e291f6e88d053030c20c26e": {
+  "collection": "Wrong side of the fence by 0009",
+  "opensea_collection": "Wrong side of the fence by 0009",
+  "slug": "wrong-side-of-the-fence-by-0009",
+  "owner": "0x071642731357694b43567e961c6b99647962a8c7",
+  "owner_username": "0009ine",
+  "artist_on_site": "0009",
+  "works": 1,
+  "examples": [
+   "Wrong Side of the Fence - Private Sale #1"
+  ]
+ },
+ "0x72edaee96ea82ee88ca941472399c5e31a0a721e": {
+  "collection": "Pephistory of Art Vol. II - From Ukiyo-e to Manga: A Pepe Monogatari",
+  "opensea_collection": "Pephistory of Art Vol. II - From Ukiyo-e to Manga: A Pepe Monogatari",
+  "slug": "pephistory-of-art-vol-ii-from-ukiyo-e-to-manga-a-pepe-monogatari",
+  "owner": "0xa90d7b4b51aaac2f2a92cb70966ddb7c03fc1fac",
+  "owner_username": "Carlothecurator",
+  "artist_on_site": "Pephistory of Art Vol. II - From Ukiyo-e to Manga: A Pepe Monogatari",
+  "works": 1,
+  "examples": [
+   "Pepen Shiro"
+  ]
+ },
+ "0xa6f576daa218222d829f109aa655c55e9c1fc3e0": {
+  "collection": "The World, Rewritten",
+  "opensea_collection": "The World, Rewritten",
+  "slug": "the-world-rewritten",
+  "owner": "0xe19f5f6f3019ca6cdcf56d439221ce05447016de",
+  "owner_username": "",
+  "artist_on_site": "Capi",
+  "works": 1,
+  "examples": [
+   "Rome"
+  ]
+ },
+ "0xa264aa947fabb5370d3031f57d8edf8b932be1ef": {
+  "collection": "Cyber Bandits Gen 2",
+  "opensea_collection": "Cyber Bandits Gen 2",
+  "slug": "cyber-bandits-gen-2",
+  "owner": "0xff8679a9507cffbfa1d7dc8afb849033106b304a",
+  "owner_username": "Michael-Reeder",
+  "artist_on_site": "Michael Reeder",
+  "works": 2,
+  "examples": [
+   "Cyber Bandit Gen II #342",
+   "Cyber Bandit Gen II #45"
+  ]
+ },
+ "0x8bde0185c7585805f79b2980aec375686a1d0b09": {
+  "collection": "",
+  "opensea_collection": "Meeler's Editions",
+  "slug": "unidentified-contract-ovd64qwdaz",
+  "owner": "0x9b4b51c7e560ff625997c7cae4f9fe4ff94b5f12",
+  "owner_username": "Meeler",
+  "artist_on_site": "Gavin Meeler",
+  "works": 2,
+  "examples": [
+   "Going under the knife",
+   "Homework"
+  ]
+ },
+ "0xf97d29de8386f7dcf62f631aa8f02c023cedc5b5": {
+  "collection": "Formes Libres",
+  "opensea_collection": "Formes Libres",
+  "slug": "formes-libres",
+  "owner": "0xe19f5f6f3019ca6cdcf56d439221ce05447016de",
+  "owner_username": "",
+  "artist_on_site": "Capi",
+  "works": 3,
+  "examples": [
+   "Those Who Control ",
+   "Self portrait, at night ",
+   "Self portrait, in Silence"
+  ]
+ },
+ "0x68e738e26e65b10b58994358f274afa96dfb347d": {
+  "collection": "Pephistory of Art Editions",
+  "opensea_collection": "Pephistory of Art Editions",
+  "slug": "pephistory-of-art-editions",
+  "owner": "0xa90d7b4b51aaac2f2a92cb70966ddb7c03fc1fac",
+  "owner_username": "Carlothecurator",
+  "artist_on_site": "Pephistory of Art Editions",
+  "works": 1,
+  "examples": [
+   "Pephistory of Art Volume I"
+  ]
+ },
+ "0xa61e73573e29f2f11e4e3686de46c3606d2d011e": {
+  "collection": "Pephistory of Art",
+  "opensea_collection": "Pephistory of Art",
+  "slug": "pephistory-of-art",
+  "owner": "0xa90d7b4b51aaac2f2a92cb70966ddb7c03fc1fac",
+  "owner_username": "Carlothecurator",
+  "artist_on_site": "Pephistory of Art",
+  "works": 1,
+  "examples": [
+   "Pepimboldo"
+  ]
+ },
+ "0xde19f9e2e7acd7f1185e9fa40a03ba446f615fe1": {
+  "collection": "Worn Currents by 0009",
+  "opensea_collection": "Worn Currents by 0009",
+  "slug": "worn-currents-by-0009",
+  "owner": "0x071642731357694b43567e961c6b99647962a8c7",
+  "owner_username": "0009ine",
+  "artist_on_site": "0009",
+  "works": 1,
+  "examples": [
+   "Swirled Into Dusk Folds"
+  ]
+ },
+ "0x170cdbcb471c21303f3f901a0656bdfbff47d2db": {
+  "collection": "𝐒𝐎𝐔𝐋𝐒",
+  "opensea_collection": "𝐒𝐎𝐔𝐋𝐒",
+  "slug": "f0-9d-90-92-f0-9d-90-8e-f0-9d-90-94-f0-9d-90-8b-f0-9d-90-92",
+  "owner": "0xad8cb7dd25b6f814bc067149c43cde2ab8eded58",
+  "owner_username": "",
+  "artist_on_site": "Skilux",
+  "works": 1,
+  "examples": [
+   "𝐀 𝐒𝐓𝐎𝐈𝐂 𝐒𝐎𝐔𝐋"
+  ]
+ },
+ "0xdee849fca34874ac7b37767a15b1f84a25125f42": {
+  "collection": "blank.jpg editions",
+  "opensea_collection": "blank.jpg editions",
+  "slug": "blank-jpg-editions",
+  "owner": "0x05202112e4fdcc5439e5f1a61b3c5d13938d40af",
+  "owner_username": "Blankjpg",
+  "artist_on_site": "blank.jpg",
+  "works": 1,
+  "examples": [
+   "The Eye"
+  ]
+ },
+ "0x2c8b9265aa21e3c6ca420274ce15ca82bf13ab76": {
+  "collection": "[ŚŪ] by Ni Petrov",
+  "opensea_collection": "",
+  "slug": "",
+  "owner": "",
+  "owner_username": "",
+  "artist_on_site": "Ni Petrov",
+  "works": 2,
+  "examples": [
+   "[ŚŪ] - Presale #2",
+   "[ŚŪ] - Presale #1"
+  ]
+ },
+ "0x0eb85297bd712647622839cb93e075458aaa72e5": {
+  "collection": "Resonance",
+  "opensea_collection": "Resonance",
+  "slug": "resonance-730366622",
+  "owner": "0xe19f5f6f3019ca6cdcf56d439221ce05447016de",
+  "owner_username": "",
+  "artist_on_site": "Capi",
+  "works": 1,
+  "examples": [
+   "Those Who Carry the Invisible"
+  ]
+ },
+ "0xbdff0e1ac890f7fa136abfbd48439ced523ec409": {
+  "collection": "HAUS OF REJECTS",
+  "opensea_collection": "",
+  "slug": "",
+  "owner": "",
+  "owner_username": "",
+  "artist_on_site": "pixeljunkie",
+  "works": 1,
+  "examples": [
+   "The Ringmaster"
+  ]
+ },
+ "0xa9248a0935eb476cfe2f286df813a48d06ffd2e2": {
+  "collection": "Layers",
+  "opensea_collection": "Layers by Vhils",
+  "slug": "drp-vhils",
+  "owner": "0x58f58f15a0d080932218d65beb8bbd83978677d7",
+  "owner_username": "DRP-Vhils-Deployer",
+  "artist_on_site": "Vhils",
+  "works": 76,
+  "examples": [
+   "LAYERS #747",
+   "LAYERS #726",
+   "LAYERS #687"
+  ]
+ },
+ "0x3077674dd77c532b2e2d9945808c900940de50ae": {
+  "collection": "",
+  "opensea_collection": "Tears - Layers by Vhils",
+  "slug": "drp-vhils-layers-tears",
+  "owner": "0x58f58f15a0d080932218d65beb8bbd83978677d7",
+  "owner_username": "DRP-Vhils-Deployer",
+  "artist_on_site": "Vhils",
+  "works": 1,
+  "examples": [
+   "Beta Tear"
+  ]
+ },
+ "0x804fa4f383f508600074719d19263645fa450b68": {
+  "collection": "Statix",
+  "opensea_collection": "Statix",
+  "slug": "statixbypeng1",
+  "owner": "0x006818384f5a494d7b40119efc94ee819416d90a",
+  "owner_username": "peng1eth",
+  "artist_on_site": "Peng1",
+  "works": 1,
+  "examples": [
+   "Statix #1065"
+  ]
+ },
+ "0xbf5f0809c7d04d0d6a49940ca815f6897d7b3fef": {
+  "collection": "Sea Portrait: Sophia de Mello Breyner Andresen",
+  "opensea_collection": "Sea Portrait: Sophia de Mello Breyner Andresen",
+  "slug": "sea-portrait-sophia-de-mello-breyner-andresen",
+  "owner": "0xead774ea11cbf097776b471a1dab1bf1c06d3969",
+  "owner_username": "Vhils",
+  "artist_on_site": "Vhils",
+  "works": 1,
+  "examples": [
+   "Sea Portrait: Sophia de Mello Breyner Andresen #10/10"
+  ]
+ },
+ "0x1c59a3eefb27898cec22b51fa3ef78a77be4ae0e": {
+  "collection": "HAUS OF CLOWNS",
+  "opensea_collection": "HAUS OF CLOWNS",
+  "slug": "haus-of-clowns",
+  "owner": "0x5e0c9043942734f432de41fae563b9691bfccb40",
+  "owner_username": "pixel_junkie",
+  "artist_on_site": "pixeljunkie",
+  "works": 1,
+  "examples": [
+   "CLOWN XXVII"
+  ]
+ },
+ "0xc6634919514c6326d774d3de1ddcbf3463615765": {
+  "collection": "RoundedPepesOE",
+  "opensea_collection": "Capi Editions",
+  "slug": "capi-editions",
+  "owner": "0xe19f5f6f3019ca6cdcf56d439221ce05447016de",
+  "owner_username": "",
+  "artist_on_site": "Capi",
+  "works": 3,
+  "examples": [
+   "Flow Koi",
+   "Requiem",
+   "Naufrage"
+  ]
+ },
+ "0x17cb4b5c8a9afe4e33e03712596c4bc941b673ca": {
+  "collection": "Lunatics",
+  "opensea_collection": "",
+  "slug": "",
+  "owner": "",
+  "owner_username": "",
+  "artist_on_site": "Gavin Meeler",
+  "works": 1,
+  "examples": [
+   "Lunatic #19"
+  ]
+ },
+ "0xabb3738f04dc2ec20f4ae4462c3d069d02ae045b": {
+  "collection": "KnownOriginDigitalAsset",
+  "opensea_collection": "KnownOrigin",
+  "slug": "known-origin",
+  "owner": "0x3f8c962eb167ad2f80c72b5f933511ccdf0719d4",
+  "owner_username": "KnownOrigin",
+  "artist_on_site": "KnownOriginDigitalAsset",
+  "works": 1,
+  "examples": [
+   "Lunatics In My Head"
+  ],
+  "creators": {
+   "Lunatics In My Head": ""
+  }
+ },
+ "0xa07bf7d9824c2c6b79b840cd3b1138e47ea54503": {
+  "collection": "Tormius | Bidders Editions",
+  "opensea_collection": "Tormius | Bidders Editions",
+  "slug": "tormius-bidders-editions",
+  "owner": "0xff559fc20d9b6d78e6e570d234b69c18142bb65e",
+  "owner_username": "tormius",
+  "artist_on_site": "tormius",
+  "works": 1,
+  "examples": [
+   "Olympics at NINFA"
+  ]
+ },
+ "0xd308d38a221f38ff18d18e290c0cdd63b6b809fd": {
+  "collection": "Dxl Editions",
+  "opensea_collection": "Dxl Editions",
+  "slug": "dxl-editions",
+  "owner": "0x43022fb8cd87f7fe5b9cf7d646a5680afdd108bb",
+  "owner_username": "TDxl",
+  "artist_on_site": "Dxl",
+  "works": 1,
+  "examples": [
+   "MENTAL, LONELY, DXL"
+  ]
+ },
+ "0x10289fdccb2f32bc8460c330a9f240a17ada693a": {
+  "collection": "FLOW",
+  "opensea_collection": "FLOW",
+  "slug": "flow-capi",
+  "owner": "0xe19f5f6f3019ca6cdcf56d439221ce05447016de",
+  "owner_username": "",
+  "artist_on_site": "Capi",
+  "works": 5,
+  "examples": [
+   "Flow #87",
+   "Flow #84",
+   "Flow #83"
+  ]
+ },
+ "0x635f55669bef463920c0b24dae69119f1bdd7728": {
+  "collection": "Symphony for n Metronomes by Andreas Rau",
+  "opensea_collection": "Symphony for n Metronomes by Andreas Rau",
+  "slug": "symphony-for-n-metronomes-by-andreas-rau-1",
+  "owner": "0x3e4ddbee19677891c922d803b4a360b477ad8324",
+  "owner_username": "andreasrau",
+  "artist_on_site": "Andreas Rau",
+  "works": 2,
+  "examples": [
+   "Symphony for n Metronomes #365",
+   "Symphony for n Metronomes #364"
+  ]
+ },
+ "0xf711bd0c35f3074cd3b1be6685f79c98c6a421b0": {
+  "collection": "LAST CITY EDITIONS",
+  "opensea_collection": "LAST CITY EDITIONS",
+  "slug": "last-city-editions",
+  "owner": "0xb99172161b5edfb4e01f7ee5feb4264d684541f1",
+  "owner_username": "BrutalEth",
+  "artist_on_site": "BrutalEth",
+  "works": 1,
+  "examples": [
+   "SUMMER"
+  ]
+ },
+ "0x1a6e0fb3ad5f42a6ee3765a4f24ca16643d8b5cb": {
+  "collection": "ENTROPY LOGS",
+  "opensea_collection": "ENTROPY LOGS",
+  "slug": "entropy-logs-editions",
+  "owner": "0x4c5287834576f7f1f3732fc2dddef2d2db3fea53",
+  "owner_username": "rustnfteth",
+  "artist_on_site": "ENTROPY LOGS",
+  "works": 1,
+  "examples": [
+   "Validation Loop"
+  ]
+ },
+ "0x9002f8efd99df333bbbddde49a1bd8c19077e9dd": {
+  "collection": "Samanta Bidders Editions",
+  "opensea_collection": "Samanta Bidders Editions",
+  "slug": "samanta-bidders-editions",
+  "owner": "0x425867138da6b6b1c6437acb8c3dfcddb3b175e3",
+  "owner_username": "Samantablue",
+  "artist_on_site": "Samanta",
+  "works": 1,
+  "examples": [
+   "Lake Manasarovar "
+  ]
+ },
+ "0x2ac1b562a65ddb82e66be235f171165772b80592": {
+  "collection": "The Art of Play",
+  "opensea_collection": "The Art of Play",
+  "slug": "the-art-of-play-1",
+  "owner": "0xff559fc20d9b6d78e6e570d234b69c18142bb65e",
+  "owner_username": "tormius",
+  "artist_on_site": "Tormius",
+  "works": 1,
+  "examples": [
+   "Bowling"
+  ]
+ },
+ "0xc969f024e39d31b50ad4aa246af9f65e5d6fb1d1": {
+  "collection": "Echoes of Self",
+  "opensea_collection": "Echoes of Self by 1dontknows",
+  "slug": "echoes-of-self",
+  "owner": "0x47c553e889f7bfa75cf3775473180a04e9effcfa",
+  "owner_username": "1dontknows_",
+  "artist_on_site": "1dontknows",
+  "works": 1,
+  "examples": [
+   "Absorb"
+  ]
+ },
+ "0xe773e663269b9dc17082021715cf09984104f958": {
+  "collection": "Synthetic Bloom by 0009",
+  "opensea_collection": "Synthetic Bloom by 0009",
+  "slug": "synthetic-bloom-by-0009",
+  "owner": "0x071642731357694b43567e961c6b99647962a8c7",
+  "owner_username": "0009ine",
+  "artist_on_site": "0009",
+  "works": 1,
+  "examples": [
+   "Unthreaded Morning"
+  ]
+ },
+ "0xeee51b4c84e6fb8bb9575ec21abdc904e7a7ef2e": {
+  "collection": "BATMAN vs. VANITY",
+  "opensea_collection": "BATMAN vs. VANITY",
+  "slug": "batman-vs-vanity",
+  "owner": "0x3957740d23a699e64676bcb7cea23ca585039553",
+  "owner_username": "Anthony_Lister",
+  "artist_on_site": "BATMAN vs. VANITY",
+  "works": 1,
+  "examples": [
+   "BATMAN vs. VANITY"
+  ]
+ },
+ "0x54100d4672360e3337b4845053a44ec824ef7962": {
+  "collection": "NOISE",
+  "opensea_collection": "NOISE",
+  "slug": "noise-6",
+  "owner": "0x91cc7e95ce55a28cfc6d5c0bf93e637ea714f85a",
+  "owner_username": "busraecem_eth",
+  "artist_on_site": "NOISE",
+  "works": 1,
+  "examples": [
+   "𝐢 𝐡𝐚𝐯𝐞 𝐦𝐨𝐫𝐞 𝐬𝐜*𝐫𝐬"
+  ]
+ },
+ "0xee1a66a1109d78c5b424060b86140349677b76a1": {
+  "collection": "Frenzied-Anomaly",
+  "opensea_collection": "Frenzied-Anomaly",
+  "slug": "frenzied-anomaly",
+  "owner": "0x97119dc1f2586e7c1637e5ffabf6458c94da7d93",
+  "owner_username": "ARIANR_",
+  "artist_on_site": "Frenzied-Anomaly",
+  "works": 1,
+  "examples": [
+   "Omenkiller"
+  ]
+ },
+ "0xfb5ca3332cfe25c100486d983ad3bb997ba4b674": {
+  "collection": "SPIDER WOMAN",
+  "opensea_collection": "",
+  "slug": "",
+  "owner": "",
+  "owner_username": "",
+  "artist_on_site": "Anthony Lister",
+  "works": 1,
+  "examples": [
+   "SPIDER WOMAN"
+  ]
+ },
+ "0xb1f276973d553c41e21ea41281997985f8981daf": {
+  "collection": "𝚣𝚒𝚙𝚙𝚘𝚏𝚕𝚢",
+  "opensea_collection": "",
+  "slug": "",
+  "owner": "",
+  "owner_username": "",
+  "artist_on_site": "akc",
+  "works": 1,
+  "examples": [
+   "𝚣𝚒𝚙𝚙𝚘𝚏𝚕𝚢"
+  ]
+ },
+ "0xd21486d3d5e51b12d93308d895b375242643920d": {
+  "collection": "Steps Through the Mist",
+  "opensea_collection": "Steps Through the Mist",
+  "slug": "steps-through-the-mist",
+  "owner": "0xad91a7c4052eda333e981f701d6b56158e57b961",
+  "owner_username": "NeginSaeid",
+  "artist_on_site": "Negin Saeid",
+  "works": 1,
+  "examples": [
+   "Steps Through the Mist"
+  ]
+ },
+ "0x8f17a839b6cd38e9888be3cc901a6726e84d6462": {
+  "collection": "Cyber Bandits",
+  "opensea_collection": "Cyber Bandits by Michael Reeder",
+  "slug": "cyberbandits",
+  "owner": "0xff8679a9507cffbfa1d7dc8afb849033106b304a",
+  "owner_username": "Michael-Reeder",
+  "artist_on_site": "Michael Reeder",
+  "works": 6,
+  "examples": [
+   "Cyber Bandit #4069",
+   "Cyber Bandit #1340",
+   "Cyber Bandit #3991"
+  ]
+ },
+ "0x9334016231c5452e0270d99eb41a08da856be341": {
+  "collection": "Legends of Ethera",
+  "opensea_collection": "Legends of Ethera",
+  "slug": "legends-of-ethera",
+  "owner": "0x6bb32af5c18d4505c29bb390828c072b7cf47f10",
+  "owner_username": "FareehArts",
+  "artist_on_site": "Legends of Ethera",
+  "works": 1,
+  "examples": [
+   "Zeera, the Tamer of Lions"
+  ]
+ },
+ "0xb01acfd5913b9e91f72ed1712f99224bbc4ddf6c": {
+  "collection": "INTERPRETATION",
+  "opensea_collection": "INTERPRETATION",
+  "slug": "interpretation-8",
+  "owner": "0xdf8882068e1ab4d2a752e3708b1fa094e110e566",
+  "owner_username": "SWRKS",
+  "artist_on_site": "INTERPRETATION",
+  "works": 1,
+  "examples": [
+   "𝗙𝗟𝗬 & 𝗦𝗧𝗔𝗡𝗗"
+  ]
+ },
+ "0x495f947276749ce646f68ac8c248420045cb7b5e": {
+  "collection": "OpenSea Shared Storefront",
+  "opensea_collection": "Offer or Die",
+  "slug": "ood",
+  "owner": "",
+  "owner_username": "",
+  "artist_on_site": "OpenSea Shared Storefront",
+  "works": 1,
+  "examples": [
+   "Destroy "
+  ],
+  "creators": {
+   "Destroy ": ""
+  }
+ },
+ "0xe5e484f50b10faf07286de5457ea791eaf383ca6": {
+  "collection": "",
+  "opensea_collection": "VHILS - Staking Artwork",
+  "slug": "vhils-staking",
+  "owner": "0x930523de187dbac6dc58d0de602276a605f5ba78",
+  "owner_username": "drp-engine",
+  "artist_on_site": "Vhils",
+  "works": 5,
+  "examples": [
+   "S",
+   "L",
+   "I"
+  ]
+ },
+ "0xc5fb77d3b096cb968784b6a35e3f56c40dad42b8": {
+  "collection": "enigmatriz",
+  "opensea_collection": "enigmatriz",
+  "slug": "enigmatriz-1",
+  "owner": "0x06de3f138f896a617b84c32c500b9e6417d11a02",
+  "owner_username": "enigmatriz",
+  "artist_on_site": "enigmatriz",
+  "works": 1,
+  "examples": [
+   "chad (looksmaxing #3)."
+  ]
+ },
+ "0xcaf01157df10c2fa24de95e52bcb4c8a9f204c1b": {
+  "collection": "Layers x Vhils - Platinum Token",
+  "opensea_collection": "Layers x Vhils - Platinum Token",
+  "slug": "layers-x-vhils-platinum-token",
+  "owner": "0xead774ea11cbf097776b471a1dab1bf1c06d3969",
+  "owner_username": "Vhils",
+  "artist_on_site": "Vhils",
+  "works": 2,
+  "examples": [
+   "Layers x Vhils - Platinum Token - Geneva",
+   "Layers x Vhils - Platinum Token - Porto"
+  ]
+ },
+ "0x068487eb7689f1746d1adcb295e561ec00df8ac4": {
+  "collection": "Rococo's Memes",
+  "opensea_collection": "Rococo's Memes",
+  "slug": "rococo-s-memes",
+  "owner": "0xab0f23bdb8007fd9407cddfdc199de97cda34745",
+  "owner_username": "",
+  "artist_on_site": "Rococo's Memes",
+  "works": 1,
+  "examples": [
+   "Madam Pepe"
+  ]
+ },
+ "0x134a9644ea46a979daf0f1e318c4fc754fa9ddce": {
+  "collection": "Mini Melties",
+  "opensea_collection": "Official Mini Melties by Buff Monster",
+  "slug": "official-mini-melties",
+  "owner": "0x86f99f1adfd73a3ec7612279edd1b82c339f0368",
+  "owner_username": "mini-melties-project",
+  "artist_on_site": "Buff Monster",
+  "works": 15,
+  "examples": [
+   "Mini Melty #519",
+   "Mini Melty #518",
+   "Mini Melty #487"
+  ]
+ },
+ "0x223154028c749fc856b3329ef8c2e1d9cb98ae48": {
+  "collection": "UnderAqua Genesis by Kenny Scharf",
+  "opensea_collection": "UnderAqua Genesis by Kenny Scharf",
+  "slug": "underaqua-genesis-by-kenny-scharf-1",
+  "owner": "0xb64c73057440561bfb3eef852184308ede7b08d6",
+  "owner_username": "UnderAquaXCommonValley",
+  "artist_on_site": "Kenny Scharf",
+  "works": 2,
+  "examples": [
+   "UnderAqua #179/207",
+   "UnderAqua #151/207"
+  ]
+ },
+ "0x3b3ee1931dc30c1957379fac9aba94d1c48a5405": {
+  "collection": "Foundation",
+  "opensea_collection": "Foundation (FND)",
+  "slug": "fnd",
+  "owner": "0x70ee35baf86b99264fec84df04e6000e30a8d2a6",
+  "owner_username": "",
+  "artist_on_site": "TimCet",
+  "works": 1,
+  "examples": [
+   "Der Kuss Or \"Tornado\""
+  ],
+  "creators": {
+   "Der Kuss Or \"Tornado\"": ""
+  }
+ },
+ "0x64636a0764ed58840836e933ecc73af73c10dbc1": {
+  "collection": "Leave Something Behind",
+  "opensea_collection": "Leave Something Behind",
+  "slug": "leave-something-behind",
+  "owner": "0xff13f9b23a16a82c3ccdd29ece6af667eeb15834",
+  "owner_username": "OdysseyoftheHeart",
+  "artist_on_site": "OdysseyoftheHeart",
+  "works": 1,
+  "examples": [
+   "The Lucky Ones"
+  ]
+ },
+ "0x6dccf607001a5d29684109a6ac1037b43aa4c7d8": {
+  "collection": "Decipher by Vhils",
+  "opensea_collection": "Decipher by Vhils",
+  "slug": "decipher-by-vhils",
+  "owner": "0xead774ea11cbf097776b471a1dab1bf1c06d3969",
+  "owner_username": "Vhils",
+  "artist_on_site": "Vhils",
+  "works": 2,
+  "examples": [
+   "Eye Opening #2 #122/233",
+   "Chaos #65/108"
+  ]
+ },
+ "0x7828c811636ccf051993c1ec3157b0b732e55b23": {
+  "collection": "DEGENERATE/REGENERATE",
+  "opensea_collection": "DEGENERATE/REGENERATE",
+  "slug": "degenerate-regenerate",
+  "owner": "0x9a09d6ea1d2db80f120082b884d96698d4903467",
+  "owner_username": "ObeyGiantDR",
+  "artist_on_site": "Shepard Fairey",
+  "works": 3,
+  "examples": [
+   "DEGENERATE/REGENERATE #5500",
+   "DEGENERATE/REGENERATE #1633",
+   "DEGENERATE/REGENERATE #492"
+  ]
+ },
+ "0x87063c6ec04e232a404062de852f42d05c662556": {
+  "collection": "Emoshow Neighbors",
+  "opensea_collection": "Emoshow Neighbors | Kenny Scharf X etnah",
+  "slug": "emoshow-neighbors",
+  "owner": "0x1bba58dbbb6933dd8424fdef3bc254ed5502a2fd",
+  "owner_username": "",
+  "artist_on_site": "Kenny Scharf",
+  "works": 4,
+  "examples": [
+   "Chromospace.eth",
+   "NOOOOOOO",
+   "That's impossible!"
+  ]
+ },
+ "0xac7bfab9a70fddc58ec17c4d762f156f0772224b": {
+  "collection": "LISTER EDITIONS",
+  "opensea_collection": "Anthony Lister - /MEDIA/",
+  "slug": "lister-editions",
+  "owner": "0x3957740d23a699e64676bcb7cea23ca585039553",
+  "owner_username": "Anthony_Lister",
+  "artist_on_site": "Anthony Lister",
+  "works": 6,
+  "examples": [
+   "POOCH IN THE RING",
+   "POOCH IN THE RING",
+   "BUS SHELTER #003"
+  ]
+ },
+ "0xbf12c1757e77ab85fb61afdc86ff45a3e0c0b718": {
+  "collection": "KOAN ART - STUDIES",
+  "opensea_collection": "KOAN ART - STUDIES",
+  "slug": "koan-art-studies",
+  "owner": "0x5df9eaf48d9ac8f603c9209af8cca08e2702b1be",
+  "owner_username": "koan",
+  "artist_on_site": "KOAN",
+  "works": 1,
+  "examples": [
+   "Wave Study - Bound by artful knots. #7/11"
+  ]
+ },
+ "0xcbd97863893b078232afc165934d521e4cfae70a": {
+  "collection": "UnderAqua Mint Pass by Kenny Scharf",
+  "opensea_collection": "UnderAqua Mint Pass by Kenny Scharf",
+  "slug": "underaqua-mint-pass-by-kenny-scharf",
+  "owner": "0xb64c73057440561bfb3eef852184308ede7b08d6",
+  "owner_username": "UnderAquaXCommonValley",
+  "artist_on_site": "Kenny Scharf",
+  "works": 1,
+  "examples": [
+   "UnderAqua Mint Pass #5/207"
+  ]
+ },
+ "0xd87f06ccf68662de923d1cf21c2e9083a5c8493a": {
+  "collection": "Emoshow",
+  "opensea_collection": "Emoshow by Kenny Scharf",
+  "slug": "emoshow",
+  "owner": "0x1bba58dbbb6933dd8424fdef3bc254ed5502a2fd",
+  "owner_username": "",
+  "artist_on_site": "Kenny Scharf",
+  "works": 1,
+  "examples": [
+   "OMGG"
+  ]
+ },
+ "0x3ab6009948cbfbe145f5363fd864351cabed50d5": {
+  "collection": "OBEY ARCHIVES",
+  "opensea_collection": "OBEY ARCHIVES",
+  "slug": "obey-archives",
+  "owner": "0xca31e53aa808fe22bf0a0100d6b2fe5e12250cac",
+  "owner_username": "obeygiantart",
+  "artist_on_site": "Shepard Fairey",
+  "works": 3,
+  "examples": [
+   "Obey AK-47 Diptych",
+   "Ming",
+   "Obey AK-47 (right)"
+  ]
+ },
+ "0x65d252ec59ccbdae0512a43c9cf3e44b3f4344ca": {
+  "collection": "OBEY Special Editions",
+  "opensea_collection": "OBEY Special Editions",
+  "slug": "obey-special-editions",
+  "owner": "0xca31e53aa808fe22bf0a0100d6b2fe5e12250cac",
+  "owner_username": "obeygiantart",
+  "artist_on_site": "Shepard Fairey & Vhils / Shepard Fairey",
+  "works": 2,
+  "examples": [
+   "Universal Personhood Mural (Lisbon) ",
+   "OBEY 2023 Holiday"
+  ]
+ },
+ "0x41d354b946aab90bdda971829b85bab92da277be": {
+  "collection": "somethings",
+  "opensea_collection": "somethings",
+  "slug": "somethings-8",
+  "owner": "0xb737890f2b5dca4ea3f0194264179c0d814353e3",
+  "owner_username": "lineofakc",
+  "artist_on_site": "akc",
+  "works": 1,
+  "examples": [
+   "willful weakness"
+  ]
+ },
+ "0x60ab83271732a854cd2047d70216e81b2f8f5760": {
+  "collection": "Eye Opening by Vhils",
+  "opensea_collection": "Eye Opening by Vhils",
+  "slug": "eye-opening-by-vhils",
+  "owner": "0x0000000000000000000000000000000000000020",
+  "owner_username": "",
+  "artist_on_site": "Vhils",
+  "works": 1,
+  "examples": [
+   "Eye Opening #69/186"
+  ]
+ },
+ "0x62f8048d4476e22d2335b0a26b63d488c397b7d5": {
+  "collection": "Cycle of Destruction Open Edition by Vhils",
+  "opensea_collection": "Vhils",
+  "slug": "vhils-artworks",
+  "owner": "0xead774ea11cbf097776b471a1dab1bf1c06d3969",
+  "owner_username": "Vhils",
+  "artist_on_site": "Vhils",
+  "works": 1,
+  "examples": [
+   "Glare #47/79"
+  ]
+ },
+ "0xa8c9b3a98dcd3d1e78a7c213382c8d450bfecb26": {
+  "collection": "Dystopia vs Utopia by Vhils",
+  "opensea_collection": "Dystopia vs Utopia by Vhils",
+  "slug": "dystopia-vs-utopia-by-vhils-1",
+  "owner": "0x0000000000000000000000000000000000000020",
+  "owner_username": "",
+  "artist_on_site": "Vhils",
+  "works": 1,
+  "examples": [
+   "Dystopia #12/126"
+  ]
+ },
+ "0xd941bf153f1ac374ed00ebe8fd5aad0c81cf7a91": {
+  "collection": "Emerge II by Vhils",
+  "opensea_collection": "Emerge II by Vhils",
+  "slug": "emerge-ii-by-vhils",
+  "owner": "0xead774ea11cbf097776b471a1dab1bf1c06d3969",
+  "owner_username": "Vhils",
+  "artist_on_site": "Vhils",
+  "works": 1,
+  "examples": [
+   "Emerge I #91/144"
+  ]
+ },
+ "0x6da0cfcbe4f867eeaef429140fb9c99deeea0a36": {
+  "collection": "Final Forms",
+  "opensea_collection": "Final Forms by 8-Bit",
+  "slug": "final-forms-1",
+  "owner": "0xdc79dd9b2d2237aa43cc0cbaad51962e77380aba",
+  "owner_username": "0x8BitArt",
+  "artist_on_site": "8-Bit",
+  "works": 1,
+  "examples": [
+   "Final Forms #37"
+  ]
+ },
+ "0x8c62285c60b48a7c095b75104fbdc3354e3eedb1": {
+  "collection": "The LOUD ONES",
+  "opensea_collection": "The LOUD ONES",
+  "slug": "the-loud-ones-1",
+  "owner": "0x67ab583d8945d41c885452f6754579dc2392699c",
+  "owner_username": "",
+  "artist_on_site": "Greg Mike",
+  "works": 1,
+  "examples": [
+   "TLO #397"
+  ]
+ },
+ "0xbb869f884186c3cba0ffa89ab84980cb86f8744d": {
+  "collection": "Queens+KingsAvatars",
+  "opensea_collection": "Queens+Kings LAB by Hackatao",
+  "slug": "queenskingslab",
+  "owner": "0x139c8919ce2b7fb8a04f929d83b8c54c116c692b",
+  "owner_username": "HackataoQK",
+  "artist_on_site": "Hackatao",
+  "works": 1,
+  "examples": [
+   "Q+K #5307"
+  ]
+ },
+ "0x0e7f9cfd3a5fb84675f7647271e0d1f2b158d214": {
+  "collection": "\"Reflections of Her Essence\"",
+  "opensea_collection": "\"Reflections of Her Essence\"",
+  "slug": "reflections-of-her-essence-1",
+  "owner": "0x40bf616f49ea162742bd892d51c20a7e090deedd",
+  "owner_username": "pariiss07",
+  "artist_on_site": "\"Reflections of Her Essence\"",
+  "works": 1,
+  "examples": [
+   "\"Floral Goddess\""
+  ]
+ },
+ "0x20c9a5adf56f530ea60f2609851d8848886993a2": {
+  "collection": "The Future Is Now Open Edition by GREG MIKE",
+  "opensea_collection": "GREG MIKE",
+  "slug": "greg-mike",
+  "owner": "0x431bd1297a1c7664d599364a427a2d926a1f58ae",
+  "owner_username": "",
+  "artist_on_site": "Greg Mike",
+  "works": 1,
+  "examples": [
+   "Fading Forward #241/547"
+  ]
+ },
+ "0x486f86728ba157cbd21f71cee7ff895e2892f9d6": {
+  "collection": "InFlux",
+  "opensea_collection": "The Origins",
+  "slug": "the-origins-influx",
+  "owner": "0x1430997022e8ccf845af34596ef37f4754983f85",
+  "owner_username": "apoc_x",
+  "artist_on_site": "Apocalypse Art",
+  "works": 1,
+  "examples": [
+   "Springtime"
+  ]
+ },
+ "0x6cf0795eb77b15ba9e53443d51b2d7f8ce373f0f": {
+  "collection": "JoseiList",
+  "opensea_collection": "JoseiList",
+  "slug": "joseilist",
+  "owner": "0x61f98e7e7a6953d6a4c9841101097f76bb451031",
+  "owner_username": "0xJosei",
+  "artist_on_site": "JoseiList",
+  "works": 1,
+  "examples": [
+   "Hidden Gems"
+  ]
+ },
+ "0x6fe7f81ba4527b25ce7eaf28076e827ab6b7a147": {
+  "collection": "Pepe Mondrian",
+  "opensea_collection": "Pepe Mondrians",
+  "slug": "pepemondrians",
+  "owner": "0xe19f5f6f3019ca6cdcf56d439221ce05447016de",
+  "owner_username": "",
+  "artist_on_site": "Pepe Mondrian",
+  "works": 2,
+  "examples": [
+   "Pepe Mondrian #83",
+   "Pepe Mondrian #82"
+  ]
+ },
+ "0x8fa65650d53ee50a58bf2bc61410e9d3a95183db": {
+  "collection": "DORK 24",
+  "opensea_collection": "DORK 24",
+  "slug": "dork-24",
+  "owner": "0x565196152f8a4066a51b498a44a9981145d441ff",
+  "owner_username": "Dorkholm",
+  "artist_on_site": "Dorkholm",
+  "works": 2,
+  "examples": [
+   "Someone tell me, wtf is drank",
+   "Season 7, Episode 6"
+  ]
+ },
+ "0x93e606f7a7a888301dce65c31f5062d4bb52f6ec": {
+  "collection": "Inventory Numbers",
+  "opensea_collection": "Inventory Numbers",
+  "slug": "inventory-numbers",
+  "owner": "0x3e4ddbee19677891c922d803b4a360b477ad8324",
+  "owner_username": "andreasrau",
+  "artist_on_site": "Inventory Numbers",
+  "works": 1,
+  "examples": [
+   "#37"
+  ]
+ },
+ "0x9555f1cbece9e99400edde7ad4fd0dde4bf1f7fb": {
+  "collection": "Dreams Stealers",
+  "opensea_collection": "Dreams Stealers",
+  "slug": "dreams-stealers",
+  "owner": "",
+  "owner_username": "",
+  "artist_on_site": "Dreams Stealers",
+  "works": 1,
+  "examples": [
+   "Dreams Stealers #15"
+  ]
+ },
+ "0xba77a87fc759a497d3b78627c227df91a416a57c": {
+  "collection": "SOCIETY",
+  "opensea_collection": "SOCIETY",
+  "slug": "society-14",
+  "owner": "0x3957740d23a699e64676bcb7cea23ca585039553",
+  "owner_username": "Anthony_Lister",
+  "artist_on_site": "Anthony Lister",
+  "works": 3,
+  "examples": [
+   "SOCIETY",
+   "SOCIETY",
+   "SOCIETY"
+  ]
+ },
+ "0xc1538071f6973316e23c7cc6d15c1f8f13bc82fd": {
+  "collection": "D0nUts iN pRogrEsS",
+  "opensea_collection": "D0nUts iN pRogrEsS",
+  "slug": "d0nuts-in-progress",
+  "owner": "0x491888d80ef743e814bf70e37bd919874f2671c0",
+  "owner_username": "jokiargu",
+  "artist_on_site": "D0nUts iN pRogrEsS",
+  "works": 1,
+  "examples": [
+   "cherry on top"
+  ]
+ },
+ "0xd1dcd1662b00456a5c343dffd735eae6eb11d41e": {
+  "collection": "THE FUTURE IS NOW 2 by Greg Mike",
+  "opensea_collection": "GREG MIKE",
+  "slug": "greg-mike",
+  "owner": "0x431bd1297a1c7664d599364a427a2d926a1f58ae",
+  "owner_username": "",
+  "artist_on_site": "Greg Mike",
+  "works": 1,
+  "examples": [
+   "Mad Cans (5 Cans Set) - Volume 20 #6/30"
+  ]
+ }
+}
