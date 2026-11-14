@@ -364,15 +364,17 @@ function setImg(img, item, opts){
 }
 
 /* ---------- Data ---------- */
-let ITEMS = [], ARTISTS = [], FEATURED = [], NFT_META = {};
+let ITEMS = [], ARTISTS = [], FEATURED = [], NFT_META = {}, ARCHIVE = { items: {} };
 function normalise(physical, nfts, artists, exclude){
   const lc = s => String(s || '').toLowerCase();
   const byContract = {}; Object.entries((artists && artists.contracts) || {}).forEach(([k,v]) => byContract[lc(k)] = v);
+  const byToken = {}; Object.entries((artists && artists.tokens) || {}).forEach(([k,v]) => byToken[lc(k)] = v);
   const exC = new Set(((exclude && exclude.contracts) || []).map(lc)), exN = new Set(((exclude && exclude.collections) || []).map(lc));
+  const keep = new Set(((exclude && exclude.keep) || []).map(lc));
   const phys = (physical.items || []).map(p => Object.assign({}, p, { category: CATS[p.category] ? p.category : 'paintings' }));
-  const nft = (nfts.items || []).filter(n => !exC.has(lc(n.contract)) && !exN.has(lc(n.collection))).map(n => Object.assign({}, n, {
+  const nft = (nfts.items || []).filter(n => keep.has(lc(n.key)) || (!exC.has(lc(n.contract)) && !exN.has(lc(n.collection)))).map(n => Object.assign({}, n, {
     category: 'nft',
-    artist: byContract[lc(n.contract)] || n.artist || n.collection || 'Unattributed',
+    artist: byToken[lc(n.key)] || byContract[lc(n.contract)] || n.artist || n.collection || 'Unattributed',
     medium: [n.standard || 'NFT', 'Ethereum'].join(' · '),
     edition: n.copies ? n.copies + ' editions' : ''
   }));
@@ -574,6 +576,9 @@ function openModal(it){
   $('mFacts').innerHTML = factsHTML(it);
   $('mNote').textContent = it.note || '';
   const links = [`<a class="btn" href="${artistHref(it)}">More by ${esc(it.artist)}</a>`];
+  const saved = it.key && ARCHIVE.items && ARCHIVE.items[it.key];
+  if (saved && saved.image) links.push(`<a class="btn" href="${esc(ARCHIVE.base + saved.image)}" target="_blank" rel="noopener">Original file</a>`);
+  if (saved && saved.animation) links.push(`<a class="btn" href="${esc(ARCHIVE.base + saved.animation)}" target="_blank" rel="noopener">Original video</a>`);
   if (it.contract && it.tokenId){
     links.push(`<a class="btn" href="https://opensea.io/item/ethereum/${esc(it.contract)}/${esc(it.tokenId)}" target="_blank" rel="noopener">OpenSea</a>`);
     links.push(`<a class="btn" href="https://etherscan.io/nft/${esc(it.contract)}/${esc(it.tokenId)}" target="_blank" rel="noopener">Etherscan</a>`);
@@ -624,9 +629,10 @@ $('walletLink').href = 'https://etherscan.io/address/' + WALLET;
 window.addEventListener('hashchange', route);
 
 const optional = p => loadJSON(p).catch(() => ({}));
-Promise.all([optional('data/physical.json'), loadJSON('data/nfts.json'), optional('data/featured.json'), optional('data/artists.json'), optional('data/exclude.json')])
-  .then(([physical, nfts, featured, artists, exclude]) => {
+Promise.all([optional('data/physical.json'), loadJSON('data/nfts.json'), optional('data/featured.json'), optional('data/artists.json'), optional('data/exclude.json'), optional('data/archive.json')])
+  .then(([physical, nfts, featured, artists, exclude, archive]) => {
     NFT_META = nfts;
+    if (archive && archive.items) ARCHIVE = archive;
     ITEMS = normalise(physical, nfts, artists, exclude);
     buildArtists();
     FEATURED = pickFeatured(featured.items);

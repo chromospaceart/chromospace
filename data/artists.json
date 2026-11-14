@@ -1,5 +1,8 @@
 {
-  "_readme": "Who made what. 'contracts' wins over everything: contract address (lowercase) -> artist. 'collections' is used when the NFT's own metadata names no artist. Works by the same artist are grouped together on the site.",
+  "_readme": "Who made what. 'tokens' (contract:tokenId) wins over 'contracts' (contract address, lowercase), which wins over the NFT's own metadata. 'collections' is used when the metadata names no artist. Works by the same artist are grouped together on the site.",
+  "tokens": {
+    "0x3b3ee1931dc30c1957379fac9aba94d1c48a5405:2368": "TimCet"
+  },
   "contracts": {
     "0xa9248a0935eb476cfe2f286df813a48d06ffd2e2": "Vhils",
     "0x3077674dd77c532b2e2d9945808c900940de50ae": "Vhils",
@@ -28,7 +31,11 @@
     "0xb66c43eb647c31758678dd858bbce82b071c1eb9": "1dontknows",
     "0xc969f024e39d31b50ad4aa246af9f65e5d6fb1d1": "1dontknows",
     "0x8bde0185c7585805f79b2980aec375686a1d0b09": "Gavin Meeler",
-    "0x17cb4b5c8a9afe4e33e03712596c4bc941b673ca": "Gavin Meeler"
+    "0x17cb4b5c8a9afe4e33e03712596c4bc941b673ca": "Gavin Meeler",
+    "0x29c3d29acf9b3030061bfc56f6383a20c6442b5b": "0009",
+    "0x52caee4275765dde6f47f874e7cf8181f5b5e5da": "Capi",
+    "0x0eb85297bd712647622839cb93e075458aaa72e5": "Capi",
+    "0xa6f576daa218222d829f109aa655c55e9c1fc3e0": "Capi"
   },
   "collections": {
     "Layers by Vhils": "Vhils",
