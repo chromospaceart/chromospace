@@ -489,6 +489,36 @@
       "image": "photos/CS-0030.jpg",
       "thumb": "photos/thumbs/CS-0030.webp",
       "series": "Édouard de Beaumont (Selection)"
+    },
+    {
+      "id": "CS-0031",
+      "category": "calendars",
+      "artist": "",
+      "series": "Calendars (Selection)",
+      "title": "Almanach 1869 (Oriental street scene)",
+      "year": 1869,
+      "medium": "Chromolithograph on card, gilded frame",
+      "note": "Wall calendar for 1869 around a street scene with a camel and figures in front of a striped gateway. Numbered 8071.",
+      "size": "",
+      "acquired": null,
+      "provenance": "",
+      "image": "photos/CS-0031.jpg",
+      "thumb": "photos/thumbs/CS-0031.webp"
+    },
+    {
+      "id": "CS-0032",
+      "category": "calendars",
+      "artist": "",
+      "series": "Calendars (Selection)",
+      "title": "Almanach 1846 (Masked ball)",
+      "year": 1846,
+      "medium": "Lithograph printed in colours",
+      "note": "Wall calendar for 1846 set in a theatre during a masked ball, with musicians above and the months on hanging banners. Paris, chez Tremblay, rue Michel-le-Comte 27; printed in colours by Lemercier, Paris. Marked No. 5.",
+      "size": "",
+      "acquired": null,
+      "provenance": "",
+      "image": "photos/CS-0032.jpg",
+      "thumb": "photos/thumbs/CS-0032.webp"
     }
   ]
 }
