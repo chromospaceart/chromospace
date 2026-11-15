@@ -376,7 +376,7 @@ function setImg(img, item, opts){
 }
 
 /* ---------- Data ---------- */
-let ITEMS = [], ARTISTS = [], FEATURED = [], NFT_META = {}, ARCHIVE = { items: {} };
+let ITEMS = [], ARTISTS = [], FEATURED = [], NFT_META = {}, ARCHIVE = { items: {} }, DAY_PICKS = {};
 function normalise(physical, nfts, artists, exclude){
   const lc = s => String(s || '').toLowerCase();
   const byContract = {}; Object.entries((artists && artists.contracts) || {}).forEach(([k,v]) => byContract[lc(k)] = v);
@@ -486,6 +486,9 @@ function bindArtistLink(a, it){ a.href = artistHref(it); a.onclick = it.isSeries
 /* ---------- Home ---------- */
 let dayOffset = 0, heroItem = null;
 function pickForDay(key){
+  const forced = DAY_PICKS[key] && String(DAY_PICKS[key]).toLowerCase();
+  const chosen = forced && ITEMS.find(i => i.id.toLowerCase() === forced || i.title.toLowerCase() === forced);
+  if (chosen) return { item: chosen, isNew: chosen.acquired === key };
   const fresh = ITEMS.filter(i => i.acquired === key);
   if (fresh.length) return { item: fresh[fresh.length-1], isNew: true };
   const withImg = ITEMS.filter(i => i.thumb || (i.image && i.category !== 'nft'));
@@ -693,6 +696,7 @@ Promise.all([optional('data/physical.json'), loadJSON('data/nfts.json'), optiona
     ITEMS = normalise(physical, nfts, artists, exclude);
     buildArtists();
     FEATURED = pickFeatured(featured.items);
+    DAY_PICKS = featured.pieceOfTheDay || {};
     const live = nfts.source && !/snapshot/i.test(nfts.source);
     const nftTotal = ITEMS.filter(i => i.category === 'nft').length;
     if (live){

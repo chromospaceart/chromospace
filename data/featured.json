@@ -1,5 +1,5 @@
 {
-  "_readme": "NFTs shown on the home page, in this order (max 12). Write the title exactly as on the site, or contract:tokenId. Works whose image is still missing are shown last. If fewer than 8 are found, the site adds the newest work of other artists.",
+  "_readme": "NFTs shown on the home page, in this order (max 12). Write the title exactly as on the site, or contract:tokenId. Works whose image is still missing are shown last. If fewer than 8 are found, the site adds the newest work of other artists. 'pieceOfTheDay' sets the piece of the day by hand for a date (YYYY-MM-DD → inventory number or exact title); other days are picked automatically.",
   "items": [
     "LAYERS #747",
     "Eye Opening #69/186",
@@ -13,5 +13,8 @@
     "Cities #330",
     "GLiF #177",
     "cow #55"
-  ]
+  ],
+  "pieceOfTheDay": {
+    "2026-11-15": "CS-0002"
+  }
 }
