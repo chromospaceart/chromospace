@@ -599,6 +599,36 @@
       "image": "photos/CS-0037.jpg",
       "thumb": "photos/thumbs/CS-0037.webp",
       "rarity": "Legendary"
+    },
+    {
+      "id": "CS-0038",
+      "category": "street",
+      "title": "Stay Melty (ice cream with flag)",
+      "artist": "Buff Monster",
+      "series": "Stay Melty",
+      "year": 2022,
+      "medium": "Painted wooden die-cut",
+      "size": "",
+      "acquired": null,
+      "provenance": "",
+      "note": "A one-eyed ice cream character in a waffle cone, holding a white flag.",
+      "image": "photos/CS-0038.jpg",
+      "thumb": "photos/thumbs/CS-0038.webp"
+    },
+    {
+      "id": "CS-0039",
+      "category": "street",
+      "title": "Stay Melty (green melty)",
+      "artist": "Buff Monster",
+      "series": "Stay Melty",
+      "year": 2022,
+      "medium": "Painted wooden die-cut",
+      "size": "",
+      "acquired": null,
+      "provenance": "",
+      "note": "A green one-eyed melting character topped with a pink scoop.",
+      "image": "photos/CS-0039.jpg",
+      "thumb": "photos/thumbs/CS-0039.webp"
     }
   ]
 }
