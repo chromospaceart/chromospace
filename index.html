@@ -179,6 +179,9 @@ footer{border-top:1px solid var(--line);margin-top:40px;padding:28px 0 48px;disp
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
+<!-- Visitor statistics: GoatCounter (no cookies). Views are counted per section, see trackView(). -->
+<script data-goatcounter="https://chromospace.goatcounter.com/count" data-goatcounter-settings='{"no_onload": true}'
+        async src="//gc.zgo.at/count.js" onload="window.__pendingView && window.goatcounter.count({path: window.__pendingView})"></script>
 </head>
 <body>
 <div class="spectrum-rule"></div>
@@ -639,6 +642,11 @@ function openModal(it){
 function closeModal(){ $('modal').classList.remove('open'); if (lastFocus && document.body.contains(lastFocus)) lastFocus.focus(); }
 
 /* ---------- Router (#home, #artists, #artist-name, #collection) ---------- */
+function trackView(){
+  const path = '/' + (decodeURIComponent(location.hash.slice(1)) || 'home');
+  if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path });
+  else window.__pendingView = path;
+}
 function route(){
   const h = decodeURIComponent(location.hash.slice(1));
   let view = 'home';
@@ -649,6 +657,7 @@ function route(){
   document.querySelectorAll('nav.main a').forEach(a => a.toggleAttribute('aria-current', a.dataset.view === view || (view === 'artist' && a.dataset.view === 'artists')));
   document.querySelectorAll('nav.main a[aria-current]').forEach(a => a.setAttribute('aria-current', 'page'));
   document.title = 'Chromospace';
+  trackView();
   if (!ITEMS.length) return;
   if (view === 'home') renderHome();
   if (view === 'artists') renderArtists();
