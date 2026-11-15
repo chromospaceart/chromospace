@@ -1,5 +1,5 @@
 {
-  "_readme": "Physical works (street art, prints, paintings, trading cards). One entry per work. Fields: id (CS-0001…), category (street | prints | paintings | cards), title, artist, year, medium, size, edition, acquired (YYYY-MM-DD), provenance, note, image (photo in photos/), thumb (small copy in photos/thumbs/).",
+  "_readme": "Physical works (street art, prints, paintings, trading cards). One entry per work. Fields: id (CS-0001…), category (street | prints | paintings | cards), title, artist, year, medium, size, edition, acquired (YYYY-MM-DD), provenance, note, image (photo in photos/), thumb (small copy in photos/thumbs/), exhibitions, gallery (list of {src, thumb, caption} for extra photos).",
   "items": [
     {
       "id": "CS-0001",
@@ -14,6 +14,48 @@
       "note": "",
       "image": "photos/CS-0001.jpg",
       "thumb": "photos/thumbs/CS-0001.webp"
+    },
+    {
+      "id": "CS-0002",
+      "category": "street",
+      "title": "Layer #636",
+      "artist": "Vhils",
+      "year": 2025,
+      "medium": "Hand-carved and laser-cut advertising posters",
+      "size": "180 × 119 cm",
+      "acquired": null,
+      "provenance": "",
+      "exhibitions": "Threshold, Eterno Gallery, Lisbon (summer–autumn 2025)",
+      "note": "A billboard carved by Vhils from LAYERS #636, the NFT chosen to become a physical work.",
+      "image": "photos/CS-0002.jpg",
+      "thumb": "photos/thumbs/CS-0002.webp",
+      "gallery": [
+        {
+          "src": "photos/CS-0002.jpg",
+          "thumb": "photos/thumbs/CS-0002.webp",
+          "caption": "The billboard"
+        },
+        {
+          "src": "photos/CS-0002-nft.jpg",
+          "thumb": "photos/thumbs/CS-0002-nft.webp",
+          "caption": "LAYERS #636, the NFT it was made from"
+        },
+        {
+          "src": "photos/CS-0002-expo-1.jpg",
+          "thumb": "photos/thumbs/CS-0002-expo-1.webp",
+          "caption": "At Threshold, Eterno Gallery, Lisbon, 2025"
+        },
+        {
+          "src": "photos/CS-0002-expo-2.jpg",
+          "thumb": "photos/thumbs/CS-0002-expo-2.webp",
+          "caption": "At Threshold, Eterno Gallery, Lisbon, 2025"
+        },
+        {
+          "src": "photos/CS-0002-expo-3.jpg",
+          "thumb": "photos/thumbs/CS-0002-expo-3.webp",
+          "caption": "At Threshold, Eterno Gallery, Lisbon, 2025"
+        }
+      ]
     }
   ]
 }

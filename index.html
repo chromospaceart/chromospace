@@ -153,6 +153,11 @@ h2{font-family:var(--f-display);font-weight:600;font-size:clamp(26px,3.2vw,40px)
 .sheet .art img{width:100%;aspect-ratio:4/5;object-fit:contain}
 .sheet .info{padding:28px 28px 32px}
 .sheet h3{font-family:var(--f-display);font-size:34px;letter-spacing:-.03em;line-height:1.05;margin:10px 0 8px;font-weight:650;text-wrap:balance;overflow-wrap:anywhere}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:8px;margin-top:14px}
+.gallery button{all:unset;cursor:pointer;border-radius:3px;overflow:hidden;outline:1px solid transparent;outline-offset:2px}
+.gallery button[aria-current="true"]{outline-color:var(--text)}
+.gallery img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+.caption{font-size:13px;margin:10px 0 0}
 .close{position:absolute;top:12px;right:12px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--ink);cursor:pointer;font-size:20px;line-height:1;z-index:1}
 
 footer{border-top:1px solid var(--line);margin-top:40px;padding:28px 0 48px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:14px}
@@ -300,7 +305,7 @@ footer{border-top:1px solid var(--line);margin-top:40px;padding:28px 0 48px;disp
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
   <div class="sheet">
     <button class="close" id="mClose" type="button" aria-label="Close">×</button>
-    <div class="art"><img id="mImg" alt=""></div>
+    <div class="art"><img id="mImg" alt=""><p class="caption muted" id="mCaption" hidden></p><div class="gallery" id="mGallery" hidden></div></div>
     <div class="info">
       <span class="chip" id="mCat"></span>
       <h3 id="mTitle"></h3>
@@ -419,6 +424,7 @@ function factsHTML(it){
     it.edition ? ['Edition', `<span class="mono">${esc(it.edition)}</span>`] : null,
     ['Acquired', it.acquired ? esc(fmtDay(it.acquired, {day:'numeric',month:'long',year:'numeric'})) : 'Date not recorded'],
     it.provenance ? ['Provenance', esc(it.provenance)] : null,
+    it.exhibitions ? ['Exhibited', esc(it.exhibitions)] : null,
     it.contract ? ['Token', `<span class="mono">${esc(shortAddr(it.contract))} · #${esc(String(it.tokenId).slice(0,14))}</span>`] : null
   ].filter(Boolean);
   return rows.map(([k,v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('');
@@ -580,6 +586,20 @@ function openModal(it){
   $('mYear').textContent = it.year || '';
   $('mFacts').innerHTML = factsHTML(it);
   $('mNote').textContent = it.note || '';
+  const gal = Array.isArray(it.gallery) ? it.gallery : [];
+  $('mGallery').hidden = gal.length < 2; $('mCaption').hidden = !gal.length;
+  $('mGallery').innerHTML = '';
+  const show = (g, btn) => {
+    $('mImg').src = g.src; $('mImg').alt = g.caption || it.title; $('mCaption').textContent = g.caption || '';
+    $('mGallery').querySelectorAll('button').forEach(b => b.setAttribute('aria-current', String(b === btn)));
+  };
+  gal.forEach((g, i) => {
+    const btn = document.createElement('button'); btn.type = 'button'; btn.setAttribute('aria-label', g.caption || ('Photo ' + (i + 1)));
+    btn.innerHTML = `<img alt="" loading="lazy" src="${esc(g.thumb || g.src)}">`;
+    btn.onclick = () => show(g, btn);
+    $('mGallery').appendChild(btn);
+  });
+  if (gal.length) show(gal[0], $('mGallery').querySelector('button'));
   const links = [`<a class="btn" href="${artistHref(it)}">More by ${esc(it.artist)}</a>`];
   const saved = it.key && ARCHIVE.items && ARCHIVE.items[it.key];
   if (saved && saved.image) links.push(`<a class="btn" href="${esc(ARCHIVE.base + saved.image)}" target="_blank" rel="noopener">Original file</a>`);
