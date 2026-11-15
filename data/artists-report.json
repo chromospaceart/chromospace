@@ -5,7 +5,7 @@
   "slug": "meat-me-art",
   "owner": "0xb737890f2b5dca4ea3f0194264179c0d814353e3",
   "owner_username": "lineofakc",
-  "artist_on_site": "Meat? Me Art",
+  "artist_on_site": "akc",
   "works": 4,
   "examples": [
    "56",
@@ -33,7 +33,7 @@
   "slug": "rare-critical-memes",
   "owner": "0xb737890f2b5dca4ea3f0194264179c0d814353e3",
   "owner_username": "lineofakc",
-  "artist_on_site": "rare critical memes",
+  "artist_on_site": "akc",
   "works": 2,
   "examples": [
    "rare critical memes 001",
@@ -46,7 +46,7 @@
   "slug": "portraitsbycem",
   "owner": "0xe2edcbda3612edaba41341d037d334c7445a58f6",
   "owner_username": "cemSR",
-  "artist_on_site": "P⊙RTR∆ITS",
+  "artist_on_site": "cemSR",
   "works": 1,
   "examples": [
    "388ecstatic42k202040"
@@ -58,7 +58,7 @@
   "slug": "left-behind1",
   "owner": "0xe19f5f6f3019ca6cdcf56d439221ce05447016de",
   "owner_username": "",
-  "artist_on_site": "Left Behind",
+  "artist_on_site": "Capi",
   "works": 2,
   "examples": [
    "Left Behind #273",
@@ -177,7 +177,7 @@
   "slug": "pephistory-of-art-vol-ii-from-ukiyo-e-to-manga-a-pepe-monogatari",
   "owner": "0xa90d7b4b51aaac2f2a92cb70966ddb7c03fc1fac",
   "owner_username": "Carlothecurator",
-  "artist_on_site": "Pephistory of Art Vol. II - From Ukiyo-e to Manga: A Pepe Monogatari",
+  "artist_on_site": "Carlothecurator",
   "works": 1,
   "examples": [
    "Pepen Shiro"
@@ -241,7 +241,7 @@
   "slug": "pephistory-of-art-editions",
   "owner": "0xa90d7b4b51aaac2f2a92cb70966ddb7c03fc1fac",
   "owner_username": "Carlothecurator",
-  "artist_on_site": "Pephistory of Art Editions",
+  "artist_on_site": "Carlothecurator",
   "works": 1,
   "examples": [
    "Pephistory of Art Volume I"
@@ -253,7 +253,7 @@
   "slug": "pephistory-of-art",
   "owner": "0xa90d7b4b51aaac2f2a92cb70966ddb7c03fc1fac",
   "owner_username": "Carlothecurator",
-  "artist_on_site": "Pephistory of Art",
+  "artist_on_site": "Carlothecurator",
   "works": 1,
   "examples": [
    "Pepimboldo"
@@ -326,7 +326,7 @@
   "slug": "",
   "owner": "",
   "owner_username": "",
-  "artist_on_site": "pixeljunkie",
+  "artist_on_site": "pixel_junkie",
   "works": 1,
   "examples": [
    "The Ringmaster"
@@ -388,7 +388,7 @@
   "slug": "haus-of-clowns",
   "owner": "0x5e0c9043942734f432de41fae563b9691bfccb40",
   "owner_username": "pixel_junkie",
-  "artist_on_site": "pixeljunkie",
+  "artist_on_site": "pixel_junkie",
   "works": 1,
   "examples": [
    "CLOWN XXVII"
@@ -426,7 +426,7 @@
   "slug": "known-origin",
   "owner": "0x3f8c962eb167ad2f80c72b5f933511ccdf0719d4",
   "owner_username": "KnownOrigin",
-  "artist_on_site": "KnownOriginDigitalAsset",
+  "artist_on_site": "Gavin Meeler",
   "works": 1,
   "examples": [
    "Lunatics In My Head"
@@ -441,7 +441,7 @@
   "slug": "tormius-bidders-editions",
   "owner": "0xff559fc20d9b6d78e6e570d234b69c18142bb65e",
   "owner_username": "tormius",
-  "artist_on_site": "tormius",
+  "artist_on_site": "Tormius",
   "works": 1,
   "examples": [
    "Olympics at NINFA"
@@ -453,7 +453,7 @@
   "slug": "dxl-editions",
   "owner": "0x43022fb8cd87f7fe5b9cf7d646a5680afdd108bb",
   "owner_username": "TDxl",
-  "artist_on_site": "Dxl",
+  "artist_on_site": "TDxl",
   "works": 1,
   "examples": [
    "MENTAL, LONELY, DXL"
@@ -504,7 +504,7 @@
   "slug": "entropy-logs-editions",
   "owner": "0x4c5287834576f7f1f3732fc2dddef2d2db3fea53",
   "owner_username": "rustnfteth",
-  "artist_on_site": "ENTROPY LOGS",
+  "artist_on_site": "rustnft",
   "works": 1,
   "examples": [
    "Validation Loop"
@@ -516,7 +516,7 @@
   "slug": "samanta-bidders-editions",
   "owner": "0x425867138da6b6b1c6437acb8c3dfcddb3b175e3",
   "owner_username": "Samantablue",
-  "artist_on_site": "Samanta",
+  "artist_on_site": "Samanta Blue",
   "works": 1,
   "examples": [
    "Lake Manasarovar "
@@ -564,7 +564,7 @@
   "slug": "batman-vs-vanity",
   "owner": "0x3957740d23a699e64676bcb7cea23ca585039553",
   "owner_username": "Anthony_Lister",
-  "artist_on_site": "BATMAN vs. VANITY",
+  "artist_on_site": "Anthony Lister",
   "works": 1,
   "examples": [
    "BATMAN vs. VANITY"
@@ -576,7 +576,7 @@
   "slug": "noise-6",
   "owner": "0x91cc7e95ce55a28cfc6d5c0bf93e637ea714f85a",
   "owner_username": "busraecem_eth",
-  "artist_on_site": "NOISE",
+  "artist_on_site": "busraecem",
   "works": 1,
   "examples": [
    "𝐢 𝐡𝐚𝐯𝐞 𝐦𝐨𝐫𝐞 𝐬𝐜*𝐫𝐬"
@@ -588,7 +588,7 @@
   "slug": "frenzied-anomaly",
   "owner": "0x97119dc1f2586e7c1637e5ffabf6458c94da7d93",
   "owner_username": "ARIANR_",
-  "artist_on_site": "Frenzied-Anomaly",
+  "artist_on_site": "ARIANR",
   "works": 1,
   "examples": [
    "Omenkiller"
@@ -650,7 +650,7 @@
   "slug": "legends-of-ethera",
   "owner": "0x6bb32af5c18d4505c29bb390828c072b7cf47f10",
   "owner_username": "FareehArts",
-  "artist_on_site": "Legends of Ethera",
+  "artist_on_site": "Fareeh Arts",
   "works": 1,
   "examples": [
    "Zeera, the Tamer of Lions"
@@ -662,26 +662,11 @@
   "slug": "interpretation-8",
   "owner": "0xdf8882068e1ab4d2a752e3708b1fa094e110e566",
   "owner_username": "SWRKS",
-  "artist_on_site": "INTERPRETATION",
+  "artist_on_site": "SWRKS",
   "works": 1,
   "examples": [
    "𝗙𝗟𝗬 & 𝗦𝗧𝗔𝗡𝗗"
   ]
- },
- "0x495f947276749ce646f68ac8c248420045cb7b5e": {
-  "collection": "OpenSea Shared Storefront",
-  "opensea_collection": "Offer or Die",
-  "slug": "ood",
-  "owner": "",
-  "owner_username": "",
-  "artist_on_site": "OpenSea Shared Storefront",
-  "works": 1,
-  "examples": [
-   "Destroy "
-  ],
-  "creators": {
-   "Destroy ": ""
-  }
  },
  "0xe5e484f50b10faf07286de5457ea791eaf383ca6": {
   "collection": "",
@@ -728,7 +713,7 @@
   "slug": "rococo-s-memes",
   "owner": "0xab0f23bdb8007fd9407cddfdc199de97cda34745",
   "owner_username": "",
-  "artist_on_site": "Rococo's Memes",
+  "artist_on_site": "Sahar Rococo",
   "works": 1,
   "examples": [
    "Madam Pepe"
@@ -1008,7 +993,7 @@
   "slug": "reflections-of-her-essence-1",
   "owner": "0x40bf616f49ea162742bd892d51c20a7e090deedd",
   "owner_username": "pariiss07",
-  "artist_on_site": "\"Reflections of Her Essence\"",
+  "artist_on_site": "pariiss07",
   "works": 1,
   "examples": [
    "\"Floral Goddess\""
@@ -1044,7 +1029,7 @@
   "slug": "joseilist",
   "owner": "0x61f98e7e7a6953d6a4c9841101097f76bb451031",
   "owner_username": "0xJosei",
-  "artist_on_site": "JoseiList",
+  "artist_on_site": "Josei",
   "works": 1,
   "examples": [
    "Hidden Gems"
@@ -1056,7 +1041,7 @@
   "slug": "pepemondrians",
   "owner": "0xe19f5f6f3019ca6cdcf56d439221ce05447016de",
   "owner_username": "",
-  "artist_on_site": "Pepe Mondrian",
+  "artist_on_site": "Capi",
   "works": 2,
   "examples": [
    "Pepe Mondrian #83",
@@ -1082,7 +1067,7 @@
   "slug": "inventory-numbers",
   "owner": "0x3e4ddbee19677891c922d803b4a360b477ad8324",
   "owner_username": "andreasrau",
-  "artist_on_site": "Inventory Numbers",
+  "artist_on_site": "Andreas Rau",
   "works": 1,
   "examples": [
    "#37"
@@ -1094,7 +1079,7 @@
   "slug": "dreams-stealers",
   "owner": "",
   "owner_username": "",
-  "artist_on_site": "Dreams Stealers",
+  "artist_on_site": "Elmira Moohel",
   "works": 1,
   "examples": [
    "Dreams Stealers #15"
@@ -1120,7 +1105,7 @@
   "slug": "d0nuts-in-progress",
   "owner": "0x491888d80ef743e814bf70e37bd919874f2671c0",
   "owner_username": "jokiargu",
-  "artist_on_site": "D0nUts iN pRogrEsS",
+  "artist_on_site": "jokiargu",
   "works": 1,
   "examples": [
    "cherry on top"

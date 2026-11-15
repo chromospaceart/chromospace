@@ -658,7 +658,8 @@
    "title": "Destroy ",
    "image": "495f9472-3983486325054505851637466682649935147609-image.jpg",
    "imageBytes": 1140930,
-   "imageSource": "https://raw2.seadn.io/ethereum/0x495f947276749ce646f68ac8c248420045cb7b5e/17080ac1a67847a43bd43814ecf564/6617080ac1a67847a43bd43814ecf564.jpeg"
+   "imageSource": "https://raw2.seadn.io/ethereum/0x495f947276749ce646f68ac8c248420045cb7b5e/17080ac1a67847a43bd43814ecf564/6617080ac1a67847a43bd43814ecf564.jpeg",
+   "left_wallet": true
   },
   "0xe5e484f50b10faf07286de5457ea791eaf383ca6:4": {
    "title": "S",
@@ -1645,5 +1646,5 @@
  "release": "archive",
  "base": "https://github.com/chromospaceart/chromospace/releases/download/archive/",
  "_readme": "Full-resolution originals, kept as assets of the GitHub release \"archive\". Download link = base + file name. Written automatically.",
- "updated": "2026-11-14T13:21:23.103Z"
+ "updated": "2026-11-15T04:15:06.364Z"
 }
