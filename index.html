@@ -128,7 +128,7 @@ h2{font-family:var(--f-display);font-weight:600;font-size:clamp(26px,3.2vw,40px)
 .strip .t{font-weight:600;font-size:14px;line-height:1.3;overflow-wrap:anywhere}
 
 /* Stats + toolbar */
-.stats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:20px 0 28px}
+.stats{display:grid;grid-template-columns:repeat(var(--stat-cols,6),minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:20px 0 28px}
 .stat{all:unset;cursor:pointer;background:var(--ink);padding:18px 18px 16px;display:grid;gap:4px;position:relative}
 .stat:hover{background:var(--panel)}
 .stat::after{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--cat,var(--spectrum))}
@@ -551,7 +551,7 @@ function counts(){ const c = { all: ITEMS.length }; Object.keys(CATS).forEach(k 
 function renderStats(){
   const c = counts();
   const tiles = [['all','Works in total','var(--spectrum)'], ...Object.keys(CATS).filter(k => c[k]).map(k => [k, CATS[k].label, CATS[k].color])];
-  $('stats').style.gridTemplateColumns = `repeat(${Math.min(tiles.length, 7)}, minmax(0,1fr))`;
+  $('stats').style.setProperty('--stat-cols', Math.min(tiles.length, 7));
   $('stats').innerHTML = tiles.map(([k,l,col]) => `<button class="stat" type="button" data-k="${k}" style="--cat:${col}"><span class="n">${c[k]}</span><span class="l">${l}</span></button>`).join('');
   $('stats').querySelectorAll('.stat').forEach(b => b.onclick = () => { setFilter(b.dataset.k); });
   $('countLine').textContent = `${plural(ITEMS.length, 'work')} · ${plural(ARTISTS.length, 'artist')}`;
