@@ -1,5 +1,5 @@
 {
-  "_readme": "Physical works (street art, prints, paintings, trading cards). One entry per work. Fields: id (CS-0001…), category (street | prints | paintings | cards), title, artist, year, medium, size, edition, acquired (YYYY-MM-DD, or just YYYY), provenance, note, image (photo in photos/), thumb (small copy in photos/thumbs/), exhibitions, gallery (list of {src, thumb, caption} for extra photos).",
+  "_readme": "Physical works (street art, prints, paintings, trading cards). One entry per work. Fields: id (CS-0001…), category (street | prints | paintings | cards | calendars), title, artist, year, medium, size, edition, acquired (YYYY-MM-DD, or just YYYY), provenance, note, image (photo in photos/), thumb (small copy in photos/thumbs/), exhibitions, gallery (list of {src, thumb, caption} for extra photos).",
   "items": [
     {
       "id": "CS-0001",
@@ -187,8 +187,8 @@
     {
       "id": "CS-0012",
       "category": "cards",
-      "artist": "Tickets de chaises",
-      "year": "Late 19th century",
+      "artist": "Tickets de chaises (Selection)",
+      "year": "1872–1875",
       "medium": "Chromolithograph on card",
       "size": "",
       "acquired": null,
@@ -202,8 +202,8 @@
     {
       "id": "CS-0013",
       "category": "cards",
-      "artist": "Tickets de chaises",
-      "year": "Late 19th century",
+      "artist": "Tickets de chaises (Selection)",
+      "year": "1872–1875",
       "medium": "Chromolithograph on card",
       "size": "",
       "acquired": null,
@@ -217,8 +217,8 @@
     {
       "id": "CS-0014",
       "category": "cards",
-      "artist": "Tickets de chaises",
-      "year": "Late 19th century",
+      "artist": "Tickets de chaises (Selection)",
+      "year": "1872–1875",
       "medium": "Chromolithograph on card",
       "size": "",
       "acquired": null,
@@ -232,8 +232,8 @@
     {
       "id": "CS-0015",
       "category": "cards",
-      "artist": "Tickets de chaises",
-      "year": "Late 19th century",
+      "artist": "Tickets de chaises (Selection)",
+      "year": "1872–1875",
       "medium": "Chromolithograph on card",
       "size": "",
       "acquired": null,
@@ -243,6 +243,83 @@
       "ref": "TM3-29_6_ea",
       "image": "photos/CS-0015.jpg",
       "thumb": "photos/thumbs/CS-0015.webp"
+    },
+    {
+      "id": "CS-0016",
+      "category": "calendars",
+      "title": "Almanach 1869",
+      "artist": "Au Bon Marché",
+      "year": 1869,
+      "medium": "Chromolithograph on card",
+      "size": "",
+      "ref": "ABM_Almanach_TM_1869",
+      "note": "Wall calendar of the Maison du Bon Marché, Aristide Boucicaut, 135–137 rue du Bac and 20–24 rue de Sèvres, Paris. Printed by Testu & Massin, Paris.",
+      "image": "photos/CS-0016.jpg",
+      "thumb": "photos/thumbs/CS-0016.webp"
+    },
+    {
+      "id": "CS-0017",
+      "category": "calendars",
+      "title": "Almanach 1880",
+      "artist": "Au Bon Marché",
+      "year": 1880,
+      "medium": "Chromolithograph",
+      "size": "c. 21 × 29.5 cm",
+      "ref": "ABM_Almanach_1880",
+      "note": "Au Bon Marché, Aristide Boucicaut. Sheet with blank calendar panels and colour bars along the bottom edge. Lith. F. Appel, Paris.",
+      "image": "photos/CS-0017.jpg",
+      "thumb": "photos/thumbs/CS-0017.webp"
+    },
+    {
+      "id": "CS-0018",
+      "category": "cards",
+      "title": "The departure (calendar card 1867)",
+      "artist": "Au Bon Marché",
+      "year": 1867,
+      "medium": "Chromolithograph on card",
+      "size": "c. 9.4 × 6.5 cm",
+      "ref": "ABM_AP_1_a_bis",
+      "note": "On the back, a calendar for January–June 1867: Au Bon Marché, A. Boucicaut, rue du Bac 135 & 137, rue de Sèvres 22 & 24. Printed by F. Appel, Paris.",
+      "image": "photos/CS-0018.jpg",
+      "thumb": "photos/thumbs/CS-0018.webp",
+      "gallery": [
+        {
+          "src": "photos/CS-0018.jpg",
+          "thumb": "photos/thumbs/CS-0018.webp",
+          "caption": "Front"
+        },
+        {
+          "src": "photos/CS-0018-back.jpg",
+          "thumb": "photos/thumbs/CS-0018-back.webp",
+          "caption": "Back: calendar for January–June 1867"
+        }
+      ]
+    },
+    {
+      "id": "CS-0019",
+      "category": "cards",
+      "title": "The basket",
+      "artist": "Au Bon Marché",
+      "year": null,
+      "medium": "Chromolithograph on card",
+      "size": "c. 10.4 × 7.3 cm",
+      "ref": "ABM_AP_8_c_varr",
+      "note": "Two children carrying a basket with a cake. Monogrammed lower right.",
+      "image": "photos/CS-0019.jpg",
+      "thumb": "photos/thumbs/CS-0019.webp"
+    },
+    {
+      "id": "CS-0020",
+      "category": "cards",
+      "title": "Pierrots and the nutcracker",
+      "artist": "Au Bon Marché",
+      "year": null,
+      "medium": "Chromolithograph on card",
+      "size": "c. 10.8 × 7 cm",
+      "ref": "ABM_AP_2_f_var",
+      "note": "Three Pierrots climbing a giant nutcracker. Printed by F. Appel, Paris.",
+      "image": "photos/CS-0020.jpg",
+      "thumb": "photos/thumbs/CS-0020.webp"
     }
   ]
 }

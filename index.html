@@ -22,7 +22,8 @@
   --c-prints:#2ec4f1;
   --c-paintings:#ffb020;
   --c-cards:#3ddc97;
-  --spectrum:linear-gradient(90deg,var(--c-street),var(--c-paintings),var(--c-cards),var(--c-prints),var(--c-nft));
+  --c-calendars:#e3b98a;
+  --spectrum:linear-gradient(90deg,var(--c-street),var(--c-paintings),var(--c-calendars),var(--c-cards),var(--c-prints),var(--c-nft));
   --f-display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
   --f-body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
@@ -328,7 +329,8 @@ const CATS = {
   street:    { label: 'Street art',    color: 'var(--c-street)' },
   prints:    { label: 'Prints',        color: 'var(--c-prints)' },
   paintings: { label: 'Paintings & drawings', color: 'var(--c-paintings)' },
-  cards:     { label: 'Trading cards', color: 'var(--c-cards)' }
+  cards:     { label: 'Trading cards', color: 'var(--c-cards)' },
+  calendars: { label: 'Calendars',     color: 'var(--c-calendars)' }
 };
 
 /* ---------- Helpers ---------- */
@@ -353,7 +355,7 @@ function placeholderTile(item){
   const k = item.category + '|' + (item.collection || item.artist);
   if (tileCache.has(k)) return tileCache.get(k);
   const label = String(item.collection || item.artist || '').slice(0, 34).replace(/[&<>]/g, '');
-  const color = { nft:'#8b6cff', street:'#ff4d6d', prints:'#2ec4f1', paintings:'#ffb020', cards:'#3ddc97' }[item.category] || '#8f94a6';
+  const color = { nft:'#8b6cff', street:'#ff4d6d', prints:'#2ec4f1', paintings:'#ffb020', cards:'#3ddc97', calendars:'#e3b98a' }[item.category] || '#8f94a6';
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"><rect width="400" height="500" fill="#151821"/><rect x="0" y="494" width="400" height="6" fill="${color}" opacity=".5"/><text x="200" y="240" fill="#8f94a6" font-family="Helvetica,Arial,sans-serif" font-size="18" text-anchor="middle">${label}</text><text x="200" y="272" fill="#5c6172" font-family="Helvetica,Arial,sans-serif" font-size="14" text-anchor="middle">image coming soon</text></svg>`;
   const url = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
   tileCache.set(k, url); return url;
@@ -537,7 +539,7 @@ function counts(){ const c = { all: ITEMS.length }; Object.keys(CATS).forEach(k 
 function renderStats(){
   const c = counts();
   const tiles = [['all','Works in total','var(--spectrum)'], ...Object.keys(CATS).filter(k => c[k]).map(k => [k, CATS[k].label, CATS[k].color])];
-  $('stats').style.gridTemplateColumns = `repeat(${Math.min(tiles.length, 6)}, minmax(0,1fr))`;
+  $('stats').style.gridTemplateColumns = `repeat(${Math.min(tiles.length, 7)}, minmax(0,1fr))`;
   $('stats').innerHTML = tiles.map(([k,l,col]) => `<button class="stat" type="button" data-k="${k}" style="--cat:${col}"><span class="n">${c[k]}</span><span class="l">${l}</span></button>`).join('');
   $('stats').querySelectorAll('.stat').forEach(b => b.onclick = () => { setFilter(b.dataset.k); });
   $('countLine').textContent = `${plural(ITEMS.length, 'work')} · ${plural(ARTISTS.length, 'artist')}`;
