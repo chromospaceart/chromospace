@@ -529,12 +529,12 @@
       "year": 2020,
       "medium": "Holographic trading card",
       "size": "c. 6.4 × 8.9 cm",
-      "edition": "Triple Boner",
       "acquired": null,
       "provenance": "",
       "note": "Beeple: Everydays, day #4872 (01.09.2020). Rarity: Triple Boner. Dystopian score 75; NSFW: All good! (0); theme: Deconstruction. Beeple / Infinite Loop, Node.",
       "image": "photos/CS-0033.jpg",
-      "thumb": "photos/thumbs/CS-0033.webp"
+      "thumb": "photos/thumbs/CS-0033.webp",
+      "rarity": "Triple Boner"
     },
     {
       "id": "CS-0034",
@@ -545,12 +545,12 @@
       "year": 2019,
       "medium": "Holographic trading card",
       "size": "c. 6.4 × 8.9 cm",
-      "edition": "Triple Boner",
       "acquired": null,
       "provenance": "",
       "note": "Beeple: Everydays, day #4469 (26.07.2019). Rarity: Triple Boner. Dystopian score 75; NSFW: Prolly fine (3); theme: Surreal. Beeple / Infinite Loop, Node.",
       "image": "photos/CS-0034.jpg",
-      "thumb": "photos/thumbs/CS-0034.webp"
+      "thumb": "photos/thumbs/CS-0034.webp",
+      "rarity": "Triple Boner"
     },
     {
       "id": "CS-0035",
@@ -561,12 +561,12 @@
       "year": 2019,
       "medium": "Holographic trading card",
       "size": "c. 6.4 × 8.9 cm",
-      "edition": "Triple Boner",
       "acquired": null,
       "provenance": "",
       "note": "Beeple: Everydays, day #4376 (24.04.2019). Rarity: Triple Boner. Dystopian score 85; NSFW: Oof. (6); theme: Cybernetics. Beeple / Infinite Loop, Node.",
       "image": "photos/CS-0035.jpg",
-      "thumb": "photos/thumbs/CS-0035.webp"
+      "thumb": "photos/thumbs/CS-0035.webp",
+      "rarity": "Triple Boner"
     },
     {
       "id": "CS-0036",
@@ -577,12 +577,12 @@
       "year": 2021,
       "medium": "Holographic trading card",
       "size": "c. 6.4 × 8.9 cm",
-      "edition": "Legendary",
       "acquired": null,
       "provenance": "",
       "note": "Beeple: Everydays, day #5017 (24.01.2021). Rarity: Legendary. Dystopian score 85; NSFW: All good! (0); theme: Retrofuture. Beeple / Infinite Loop, Node.",
       "image": "photos/CS-0036.jpg",
-      "thumb": "photos/thumbs/CS-0036.webp"
+      "thumb": "photos/thumbs/CS-0036.webp",
+      "rarity": "Legendary"
     },
     {
       "id": "CS-0037",
@@ -593,12 +593,12 @@
       "year": 2021,
       "medium": "Holographic trading card",
       "size": "c. 6.4 × 8.9 cm",
-      "edition": "Legendary",
       "acquired": null,
       "provenance": "",
       "note": "Beeple: Everydays, day #5114 (01.05.2021). Rarity: Legendary. Dystopian score 90; NSFW: Lil' Dicey (4); theme: Desolation. Beeple / Infinite Loop, Node.",
       "image": "photos/CS-0037.jpg",
-      "thumb": "photos/thumbs/CS-0037.webp"
+      "thumb": "photos/thumbs/CS-0037.webp",
+      "rarity": "Legendary"
     }
   ]
 }

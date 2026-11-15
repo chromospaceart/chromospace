@@ -433,6 +433,7 @@ function factsHTML(it){
     it.medium ? ['Medium', esc(it.medium)] : null,
     it.size ? ['Size', esc(it.size)] : null,
     it.edition ? ['Edition', `<span class="mono">${esc(it.edition)}</span>`] : null,
+    it.rarity ? ['Rarity', esc(it.rarity)] : null,
     ['Acquired', it.acquired ? esc(fmtAcq(it.acquired, {day:'numeric',month:'long',year:'numeric'})) : 'Date not recorded'],
     it.provenance ? ['Provenance', esc(it.provenance)] : null,
     it.exhibitions ? ['Exhibited', esc(it.exhibitions)] : null,
