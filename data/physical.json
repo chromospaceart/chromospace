@@ -618,7 +618,8 @@
       "provenance": "",
       "note": "A one-eyed ice cream character in a waffle cone, holding a white flag.",
       "image": "photos/CS-0038.jpg",
-      "thumb": "photos/thumbs/CS-0038.webp"
+      "thumb": "photos/thumbs/CS-0038.webp",
+      "v": 2
     },
     {
       "id": "CS-0039",
@@ -633,7 +634,8 @@
       "provenance": "",
       "note": "A green one-eyed melting character topped with a pink scoop.",
       "image": "photos/CS-0039.jpg",
-      "thumb": "photos/thumbs/CS-0039.webp"
+      "thumb": "photos/thumbs/CS-0039.webp",
+      "v": 2
     }
   ]
 }
