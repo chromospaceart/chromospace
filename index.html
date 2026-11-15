@@ -381,18 +381,23 @@ function normalise(physical, nfts, artists, exclude){
   const exC = new Set(((exclude && exclude.contracts) || []).map(lc)), exN = new Set(((exclude && exclude.collections) || []).map(lc));
   const keep = new Set(((exclude && exclude.keep) || []).map(lc));
   const exT = new Set(((exclude && exclude.tokens) || []).map(lc));
-  const phys = (physical.items || []).map(p => Object.assign({}, p, { category: CATS[p.category] ? p.category : 'paintings' }));
+  const phys = (physical.items || []).map(p => Object.assign({}, p, {
+    category: CATS[p.category] ? p.category : 'paintings',
+    isSeries: !p.artist && !!p.series,
+    artist: p.artist || p.series || 'Unattributed'
+  }));
   const nft = (nfts.items || []).filter(n => !exT.has(lc(n.key))).filter(n => keep.has(lc(n.key)) || (!exC.has(lc(n.contract)) && !exN.has(lc(n.collection)))).map(n => Object.assign({}, n, {
     category: 'nft',
     artist: byToken[lc(n.key)] || byContract[lc(n.contract)] || n.artist || n.collection || 'Unattributed',
     medium: [n.standard || 'NFT', 'Ethereum'].join(' · '),
     edition: n.copies ? n.copies + ' editions' : ''
   }));
-  return phys.concat(nft).map(it => Object.assign(it, { artistSlug: slug(it.artist) }));
+  return phys.concat(nft).map(it => Object.assign(it, { artistSlug: (it.isSeries ? 'series-' : '') + slug(it.artist) }));
 }
 function buildArtists(){
   const map = new Map();
   ITEMS.forEach(it => {
+    if (it.isSeries) return; // anonymous series are not artists
     if (!map.has(it.artistSlug)) map.set(it.artistSlug, { slug: it.artistSlug, name: it.artist, works: [] });
     map.get(it.artistSlug).works.push(it);
   });
@@ -424,6 +429,7 @@ function factsHTML(it){
     ['Inventory', `<span class="mono">${esc(it.id)}</span>`],
     it.ref ? ['Collector ref.', `<span class="mono">${esc(it.ref)}</span>`] : null,
     it.collection && it.collection !== it.artist ? ['Collection', esc(it.collection)] : null,
+    it.series && !it.isSeries ? ['Series', esc(it.series)] : null,
     it.medium ? ['Medium', esc(it.medium)] : null,
     it.size ? ['Size', esc(it.size)] : null,
     it.edition ? ['Edition', `<span class="mono">${esc(it.edition)}</span>`] : null,
@@ -461,7 +467,13 @@ function artistCard(a){
   el.querySelectorAll('img').forEach((img, i) => { setImg(img, pics[i]); img.alt = ''; });
   return el;
 }
-const artistHref = it => '#artist-' + it.artistSlug;
+const artistHref = it => it.isSeries ? '#collection' : '#artist-' + it.artistSlug;
+// Series (anonymous ephemera) have no artist page: their link opens the collection filtered to the series.
+function showSeries(it){
+  query = it.series; $('q').value = it.series; filter = 'all'; shown = PAGE_SIZE;
+  if (location.hash === '#collection'){ renderFilters(); renderGrid(); }
+}
+function bindArtistLink(a, it){ a.href = artistHref(it); a.onclick = it.isSeries ? () => showSeries(it) : null; }
 
 /* ---------- Home ---------- */
 let dayOffset = 0, heroItem = null;
@@ -484,7 +496,7 @@ function renderHero(){
   $('heroNew').hidden = !isNew;
   $('heroDate').textContent = (dayOffset === 0 ? 'today, ' : '') + fmtDay(key);
   $('heroTitle').textContent = item.title;
-  $('heroArtist').textContent = item.artist; $('heroArtist').href = artistHref(item);
+  $('heroArtist').textContent = item.artist; bindArtistLink($('heroArtist'), item);
   $('heroYear').textContent = item.year || '';
   $('heroCat').textContent = cat.label; $('heroCat').style.setProperty('--cat', cat.color);
   $('heroFacts').innerHTML = factsHTML(item);
@@ -518,7 +530,7 @@ function renderArtists(){
   let list = ARTISTS.filter(a => !q || a.name.toLowerCase().includes(q));
   list.sort($('artistSort').value === 'name' ? (a,b) => a.name.localeCompare(b.name, 'en') : (a,b) => b.works.length - a.works.length || a.name.localeCompare(b.name, 'en'));
   list.sort((a,b) => (a.slug === 'unattributed') - (b.slug === 'unattributed'));
-  $('artistsLine').textContent = `${plural(ARTISTS.length, 'artist')} · ${plural(ITEMS.length, 'work')}`;
+  $('artistsLine').textContent = `${plural(ARTISTS.length, 'artist')} · ${plural(ITEMS.filter(i => !i.isSeries).length, 'work')}`;
   const g = $('artistGrid'); g.innerHTML = '';
   if (!list.length){ g.innerHTML = '<p class="empty">No artist matches your search.</p>'; return; }
   list.forEach(a => g.appendChild(artistCard(a)));
@@ -554,7 +566,7 @@ function renderFilters(){
 function setFilter(k){ filter = k; shown = PAGE_SIZE; renderFilters(); renderGrid(); }
 function renderGrid(){
   let list = ITEMS.filter(i => filter === 'all' || i.category === filter);
-  if (query){ const q = query.toLowerCase(); list = list.filter(i => (i.title + ' ' + i.artist + ' ' + (i.collection || '')).toLowerCase().includes(q)); }
+  if (query){ const q = query.toLowerCase(); list = list.filter(i => (i.title + ' ' + i.artist + ' ' + (i.collection || '') + ' ' + (i.series || '')).toLowerCase().includes(q)); }
   const cmp = {
     artist: (a,b) => ((a.artistSlug === 'unattributed') - (b.artistSlug === 'unattributed')) || a.artist.localeCompare(b.artist, 'en') || a.title.localeCompare(b.title, 'en', { numeric: true }),
     recent: (a,b) => (b.acquired || '').localeCompare(a.acquired || ''),
@@ -570,6 +582,7 @@ function renderGrid(){
       const n = list.filter(x => x.artistSlug === it.artistSlug).length;
       const h = document.createElement('div'); h.className = 'group-head';
       h.innerHTML = `<a href="${artistHref(it)}">${esc(it.artist)}</a><span class="muted mono">${n}</span>`;
+      bindArtistLink(h.querySelector('a'), it);
       g.appendChild(h);
     }
     g.appendChild(workCard(it));
@@ -587,7 +600,7 @@ function openModal(it){
   setImg($('mImg'), it, { eager: true, large: true });
   $('mCat').textContent = cat.label; $('mCat').style.setProperty('--cat', cat.color);
   $('mTitle').textContent = it.title;
-  $('mArtist').textContent = it.artist; $('mArtist').href = artistHref(it);
+  $('mArtist').textContent = it.artist; bindArtistLink($('mArtist'), it);
   $('mYear').textContent = it.year || '';
   $('mFacts').innerHTML = factsHTML(it);
   $('mNote').textContent = it.note || '';
@@ -614,7 +627,7 @@ function openModal(it){
     links.push(`<a class="btn" href="https://etherscan.io/nft/${esc(it.contract)}/${esc(it.tokenId)}" target="_blank" rel="noopener">Etherscan</a>`);
   }
   $('mLinks').innerHTML = links.join('');
-  $('mLinks').querySelector('a').onclick = closeModal;
+  $('mLinks').querySelector('a').onclick = () => { if (it.isSeries) showSeries(it); closeModal(); };
   $('modal').classList.add('open');
   $('mClose').focus();
 }

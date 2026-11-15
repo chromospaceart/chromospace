@@ -1,5 +1,5 @@
 {
-  "_readme": "Physical works (street art, prints, paintings, trading cards). One entry per work. Fields: id (CS-0001…), category (street | prints | paintings | cards | calendars), title, artist, year, medium, size, edition, acquired (YYYY-MM-DD, or just YYYY), provenance, note, image (photo in photos/), thumb (small copy in photos/thumbs/), exhibitions, gallery (list of {src, thumb, caption} for extra photos).",
+  "_readme": "Physical works (street art, prints, paintings, trading cards). One entry per work. Fields: id (CS-0001…), category (street | prints | paintings | cards | calendars), title, artist, year, medium, size, edition, acquired (YYYY-MM-DD, or just YYYY), provenance, note, image (photo in photos/), thumb (small copy in photos/thumbs/), exhibitions, gallery (list of {src, thumb, caption} for extra photos). Items without an artist (anonymous ephemera) use 'series' instead and do not appear among the artists.",
   "items": [
     {
       "id": "CS-0001",
@@ -187,7 +187,7 @@
     {
       "id": "CS-0012",
       "category": "cards",
-      "artist": "Tickets de chaises (Selection)",
+      "artist": "",
       "year": "1872–1875",
       "medium": "Chromolithograph on card",
       "size": "",
@@ -197,12 +197,13 @@
       "note": "Chair ticket from the Jardin des Tuileries, Paris: Jardin 10c, Cercle de la Musique 15c. M. Chabaud, concessionnaire.",
       "ref": "TM2-2_1-NC",
       "image": "photos/CS-0012.jpg",
-      "thumb": "photos/thumbs/CS-0012.webp"
+      "thumb": "photos/thumbs/CS-0012.webp",
+      "series": "Tickets de chaises (Selection)"
     },
     {
       "id": "CS-0013",
       "category": "cards",
-      "artist": "Tickets de chaises (Selection)",
+      "artist": "",
       "year": "1872–1875",
       "medium": "Chromolithograph on card",
       "size": "",
@@ -212,12 +213,13 @@
       "note": "Chair ticket with an advertisement for the Grands Magasins du Printemps. Chaises des Promenades 10c, Adm. 20 rue du Cloître-Saint-Merry.",
       "ref": "TM3-23_4_a",
       "image": "photos/CS-0013.jpg",
-      "thumb": "photos/thumbs/CS-0013.webp"
+      "thumb": "photos/thumbs/CS-0013.webp",
+      "series": "Tickets de chaises (Selection)"
     },
     {
       "id": "CS-0014",
       "category": "cards",
-      "artist": "Tickets de chaises (Selection)",
+      "artist": "",
       "year": "1872–1875",
       "medium": "Chromolithograph on card",
       "size": "",
@@ -227,12 +229,13 @@
       "note": "Chair ticket: “Actuellement Grande Mise en Vente des Soldes d'Été”. Chaises des Promenades 10c, Adm. 20 rue du Cloître-Saint-Merry.",
       "ref": "TM3-29_5_e",
       "image": "photos/CS-0014.jpg",
-      "thumb": "photos/thumbs/CS-0014.webp"
+      "thumb": "photos/thumbs/CS-0014.webp",
+      "series": "Tickets de chaises (Selection)"
     },
     {
       "id": "CS-0015",
       "category": "cards",
-      "artist": "Tickets de chaises (Selection)",
+      "artist": "",
       "year": "1872–1875",
       "medium": "Chromolithograph on card",
       "size": "",
@@ -242,39 +245,42 @@
       "note": "Chair ticket: “Actuellement Grande Mise en Vente des Soldes d'Été”. Fauteuils des Promenades 20c, Adm. 20 rue du Cloître-Saint-Merry.",
       "ref": "TM3-29_6_ea",
       "image": "photos/CS-0015.jpg",
-      "thumb": "photos/thumbs/CS-0015.webp"
+      "thumb": "photos/thumbs/CS-0015.webp",
+      "series": "Tickets de chaises (Selection)"
     },
     {
       "id": "CS-0016",
       "category": "calendars",
       "title": "Almanach 1869",
-      "artist": "Au Bon Marché (Selection)",
+      "artist": "",
       "year": 1869,
       "medium": "Chromolithograph on card",
       "size": "",
       "ref": "ABM_Almanach_TM_1869",
       "note": "Wall calendar of the Maison du Bon Marché, Aristide Boucicaut, 135–137 rue du Bac and 20–24 rue de Sèvres, Paris. Printed by Testu & Massin, Paris.",
       "image": "photos/CS-0016.jpg",
-      "thumb": "photos/thumbs/CS-0016.webp"
+      "thumb": "photos/thumbs/CS-0016.webp",
+      "series": "Au Bon Marché (Selection)"
     },
     {
       "id": "CS-0017",
       "category": "calendars",
       "title": "Almanach 1880",
-      "artist": "Au Bon Marché (Selection)",
+      "artist": "",
       "year": 1880,
       "medium": "Chromolithograph",
       "size": "c. 21 × 29.5 cm",
       "ref": "ABM_Almanach_1880",
       "note": "Au Bon Marché, Aristide Boucicaut. Sheet with blank calendar panels and colour bars along the bottom edge. Lith. F. Appel, Paris.",
       "image": "photos/CS-0017.jpg",
-      "thumb": "photos/thumbs/CS-0017.webp"
+      "thumb": "photos/thumbs/CS-0017.webp",
+      "series": "Au Bon Marché (Selection)"
     },
     {
       "id": "CS-0018",
       "category": "cards",
       "title": "The departure (calendar card 1867)",
-      "artist": "Au Bon Marché (Selection)",
+      "artist": "",
       "year": 1867,
       "medium": "Chromolithograph on card",
       "size": "c. 9.4 × 6.5 cm",
@@ -293,39 +299,42 @@
           "thumb": "photos/thumbs/CS-0018-back.webp",
           "caption": "Back: calendar for January–June 1867"
         }
-      ]
+      ],
+      "series": "Au Bon Marché (Selection)"
     },
     {
       "id": "CS-0019",
       "category": "cards",
       "title": "The basket",
-      "artist": "Au Bon Marché (Selection)",
+      "artist": "",
       "year": null,
       "medium": "Chromolithograph on card",
       "size": "c. 10.4 × 7.3 cm",
       "ref": "ABM_AP_8_c_varr",
       "note": "Two children carrying a basket with a cake. Monogrammed lower right.",
       "image": "photos/CS-0019.jpg",
-      "thumb": "photos/thumbs/CS-0019.webp"
+      "thumb": "photos/thumbs/CS-0019.webp",
+      "series": "Au Bon Marché (Selection)"
     },
     {
       "id": "CS-0020",
       "category": "cards",
       "title": "Pierrots and the nutcracker",
-      "artist": "Au Bon Marché (Selection)",
+      "artist": "",
       "year": null,
       "medium": "Chromolithograph on card",
       "size": "c. 10.8 × 7 cm",
       "ref": "ABM_AP_2_f_var",
       "note": "Three Pierrots climbing a giant nutcracker. Printed by F. Appel, Paris.",
       "image": "photos/CS-0020.jpg",
-      "thumb": "photos/thumbs/CS-0020.webp"
+      "thumb": "photos/thumbs/CS-0020.webp",
+      "series": "Au Bon Marché (Selection)"
     },
     {
       "id": "CS-0021",
       "category": "cards",
       "title": "Garden with flowers and a lamb",
-      "artist": "Early generic cards (Selection)",
+      "artist": "",
       "year": "1860–1870",
       "size": "c. 10 × 6.8 cm",
       "ref": "BD_DC_1",
@@ -334,13 +343,14 @@
       "acquired": null,
       "provenance": "",
       "image": "photos/CS-0021.jpg",
-      "thumb": "photos/thumbs/CS-0021.webp"
+      "thumb": "photos/thumbs/CS-0021.webp",
+      "series": "Early generic cards (Selection)"
     },
     {
       "id": "CS-0022",
       "category": "cards",
       "title": "Boating party",
-      "artist": "Early generic cards (Selection)",
+      "artist": "",
       "year": "1860–1870",
       "size": "c. 10 × 6.8 cm",
       "ref": "BD_DC",
@@ -349,13 +359,14 @@
       "acquired": null,
       "provenance": "",
       "image": "photos/CS-0022.jpg",
-      "thumb": "photos/thumbs/CS-0022.webp"
+      "thumb": "photos/thumbs/CS-0022.webp",
+      "series": "Early generic cards (Selection)"
     },
     {
       "id": "CS-0023",
       "category": "cards",
       "title": "El Columpio",
-      "artist": "Cuban cigar labels (Selection)",
+      "artist": "",
       "year": "",
       "size": "c. 14.3 × 10.5 cm",
       "ref": "JG_1",
@@ -364,13 +375,14 @@
       "acquired": null,
       "provenance": "",
       "image": "photos/CS-0023.jpg",
-      "thumb": "photos/thumbs/CS-0023.webp"
+      "thumb": "photos/thumbs/CS-0023.webp",
+      "series": "Cuban cigar labels (Selection)"
     },
     {
       "id": "CS-0024",
       "category": "cards",
       "title": "El Salto de Carnero",
-      "artist": "Cuban cigar labels (Selection)",
+      "artist": "",
       "year": "",
       "size": "c. 14.3 × 10.6 cm",
       "ref": "JG_2",
@@ -379,7 +391,8 @@
       "acquired": null,
       "provenance": "",
       "image": "photos/CS-0024.jpg",
-      "thumb": "photos/thumbs/CS-0024.webp"
+      "thumb": "photos/thumbs/CS-0024.webp",
+      "series": "Cuban cigar labels (Selection)"
     },
     {
       "id": "CS-0025",
@@ -394,7 +407,8 @@
       "acquired": null,
       "provenance": "",
       "image": "photos/CS-0025.jpg",
-      "thumb": "photos/thumbs/CS-0025.webp"
+      "thumb": "photos/thumbs/CS-0025.webp",
+      "series": "Édouard de Beaumont (Selection)"
     },
     {
       "id": "CS-0026",
@@ -409,7 +423,8 @@
       "acquired": null,
       "provenance": "",
       "image": "photos/CS-0026.jpg",
-      "thumb": "photos/thumbs/CS-0026.webp"
+      "thumb": "photos/thumbs/CS-0026.webp",
+      "series": "Édouard de Beaumont (Selection)"
     },
     {
       "id": "CS-0027",
@@ -424,7 +439,8 @@
       "acquired": null,
       "provenance": "",
       "image": "photos/CS-0027.jpg",
-      "thumb": "photos/thumbs/CS-0027.webp"
+      "thumb": "photos/thumbs/CS-0027.webp",
+      "series": "Édouard de Beaumont (Selection)"
     },
     {
       "id": "CS-0028",
@@ -439,7 +455,8 @@
       "acquired": null,
       "provenance": "",
       "image": "photos/CS-0028.jpg",
-      "thumb": "photos/thumbs/CS-0028.webp"
+      "thumb": "photos/thumbs/CS-0028.webp",
+      "series": "Édouard de Beaumont (Selection)"
     },
     {
       "id": "CS-0029",
@@ -454,7 +471,8 @@
       "acquired": null,
       "provenance": "",
       "image": "photos/CS-0029.jpg",
-      "thumb": "photos/thumbs/CS-0029.webp"
+      "thumb": "photos/thumbs/CS-0029.webp",
+      "series": "Édouard de Beaumont (Selection)"
     },
     {
       "id": "CS-0030",
@@ -469,7 +487,8 @@
       "acquired": null,
       "provenance": "",
       "image": "photos/CS-0030.jpg",
-      "thumb": "photos/thumbs/CS-0030.webp"
+      "thumb": "photos/thumbs/CS-0030.webp",
+      "series": "Édouard de Beaumont (Selection)"
     }
   ]
 }
