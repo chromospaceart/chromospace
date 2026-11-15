@@ -1,5 +1,5 @@
 {
-  "_readme": "Physical works (street art, prints, paintings, trading cards). One entry per work. Fields: id (CS-0001…), category (street | prints | paintings | cards), title, artist, year, medium, size, edition, acquired (YYYY-MM-DD), provenance, note, image (photo in photos/), thumb (small copy in photos/thumbs/), exhibitions, gallery (list of {src, thumb, caption} for extra photos).",
+  "_readme": "Physical works (street art, prints, paintings, trading cards). One entry per work. Fields: id (CS-0001…), category (street | prints | paintings | cards), title, artist, year, medium, size, edition, acquired (YYYY-MM-DD, or just YYYY), provenance, note, image (photo in photos/), thumb (small copy in photos/thumbs/), exhibitions, gallery (list of {src, thumb, caption} for extra photos).",
   "items": [
     {
       "id": "CS-0001",
@@ -56,6 +56,20 @@
           "caption": "At Threshold, Eterno Gallery, Lisbon, 2025"
         }
       ]
+    },
+    {
+      "id": "CS-0003",
+      "category": "paintings",
+      "title": "Wild Roses",
+      "artist": "Dolce Paganne",
+      "year": null,
+      "medium": "Hand-coloured drawing",
+      "size": "",
+      "acquired": "2021",
+      "provenance": "Haven Gallery",
+      "note": "",
+      "image": "photos/CS-0003.jpg",
+      "thumb": "photos/thumbs/CS-0003.webp"
     }
   ]
 }
