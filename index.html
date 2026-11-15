@@ -381,7 +381,11 @@ function normalise(physical, nfts, artists, exclude){
   const exC = new Set(((exclude && exclude.contracts) || []).map(lc)), exN = new Set(((exclude && exclude.collections) || []).map(lc));
   const keep = new Set(((exclude && exclude.keep) || []).map(lc));
   const exT = new Set(((exclude && exclude.tokens) || []).map(lc));
+  // 'v' busts browser caches when a photo file is replaced under the same name.
+  const ver = (u, v) => u && v ? u + (u.includes('?') ? '&' : '?') + 'v=' + v : u;
   const phys = (physical.items || []).map(p => Object.assign({}, p, {
+    image: ver(p.image, p.v), thumb: ver(p.thumb, p.v),
+    gallery: Array.isArray(p.gallery) ? p.gallery.map(g => Object.assign({}, g, { src: ver(g.src, p.v), thumb: ver(g.thumb, p.v) })) : p.gallery,
     category: CATS[p.category] ? p.category : 'paintings',
     isSeries: !p.artist && !!p.series,
     artist: p.artist || p.series || 'Unattributed'
