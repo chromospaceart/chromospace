@@ -420,6 +420,7 @@ function pickFeatured(list){
 function factsHTML(it){
   const rows = [
     ['Inventory', `<span class="mono">${esc(it.id)}</span>`],
+    it.ref ? ['Collector ref.', `<span class="mono">${esc(it.ref)}</span>`] : null,
     it.collection && it.collection !== it.artist ? ['Collection', esc(it.collection)] : null,
     it.medium ? ['Medium', esc(it.medium)] : null,
     it.size ? ['Size', esc(it.size)] : null,
@@ -602,7 +603,7 @@ function openModal(it){
     $('mGallery').appendChild(btn);
   });
   if (gal.length) show(gal[0], $('mGallery').querySelector('button'));
-  const links = [`<a class="btn" href="${artistHref(it)}">More by ${esc(it.artist)}</a>`];
+  const links = [`<a class="btn" href="${artistHref(it)}">More from ${esc(it.artist)}</a>`];
   const saved = it.key && ARCHIVE.items && ARCHIVE.items[it.key];
   if (saved && saved.image) links.push(`<a class="btn" href="${esc(ARCHIVE.base + saved.image)}" target="_blank" rel="noopener">Original file</a>`);
   if (saved && saved.animation) links.push(`<a class="btn" href="${esc(ARCHIVE.base + saved.animation)}" target="_blank" rel="noopener">Original video</a>`);

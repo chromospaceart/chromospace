@@ -183,6 +183,66 @@
       "provenance": "",
       "image": "photos/CS-0011.jpg",
       "thumb": "photos/thumbs/CS-0011.webp"
+    },
+    {
+      "id": "CS-0012",
+      "category": "cards",
+      "artist": "Tickets de chaises",
+      "year": "Late 19th century",
+      "medium": "Chromolithograph on card",
+      "size": "",
+      "acquired": null,
+      "provenance": "",
+      "title": "Jardin des Tuileries no. 5",
+      "note": "Chair ticket from the Jardin des Tuileries, Paris: Jardin 10c, Cercle de la Musique 15c. M. Chabaud, concessionnaire.",
+      "ref": "TM2-2_1-NC",
+      "image": "photos/CS-0012.jpg",
+      "thumb": "photos/thumbs/CS-0012.webp"
+    },
+    {
+      "id": "CS-0013",
+      "category": "cards",
+      "artist": "Tickets de chaises",
+      "year": "Late 19th century",
+      "medium": "Chromolithograph on card",
+      "size": "",
+      "acquired": null,
+      "provenance": "",
+      "title": "Grands Magasins du Printemps, Exposition de Mai",
+      "note": "Chair ticket with an advertisement for the Grands Magasins du Printemps. Chaises des Promenades 10c, Adm. 20 rue du Cloître-Saint-Merry.",
+      "ref": "TM3-23_4_a",
+      "image": "photos/CS-0013.jpg",
+      "thumb": "photos/thumbs/CS-0013.webp"
+    },
+    {
+      "id": "CS-0014",
+      "category": "cards",
+      "artist": "Tickets de chaises",
+      "year": "Late 19th century",
+      "medium": "Chromolithograph on card",
+      "size": "",
+      "acquired": null,
+      "provenance": "",
+      "title": "Soldes d'Été: E Probitate Decus (chairs, 10c)",
+      "note": "Chair ticket: “Actuellement Grande Mise en Vente des Soldes d'Été”. Chaises des Promenades 10c, Adm. 20 rue du Cloître-Saint-Merry.",
+      "ref": "TM3-29_5_e",
+      "image": "photos/CS-0014.jpg",
+      "thumb": "photos/thumbs/CS-0014.webp"
+    },
+    {
+      "id": "CS-0015",
+      "category": "cards",
+      "artist": "Tickets de chaises",
+      "year": "Late 19th century",
+      "medium": "Chromolithograph on card",
+      "size": "",
+      "acquired": null,
+      "provenance": "",
+      "title": "Soldes d'Été: E Probitate Decus (armchairs, 20c)",
+      "note": "Chair ticket: “Actuellement Grande Mise en Vente des Soldes d'Été”. Fauteuils des Promenades 20c, Adm. 20 rue du Cloître-Saint-Merry.",
+      "ref": "TM3-29_6_ea",
+      "image": "photos/CS-0015.jpg",
+      "thumb": "photos/thumbs/CS-0015.webp"
     }
   ]
 }
