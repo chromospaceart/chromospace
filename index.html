@@ -453,7 +453,7 @@ function workCard(it){
   const b = document.createElement('button'); b.type = 'button'; b.className = 'card';
   b.style.setProperty('--cat', CATS[it.category].color);
   b.innerHTML = `<div class="img"><img alt="">${tagFor(it)}</div>
-    <div><div class="t">${esc(it.title)}</div><div class="a">${esc(it.artist)}${it.year ? ' · ' + it.year : ''}</div></div>
+    <div><div class="t">${esc(it.title)}</div><div class="a">${esc(it.artist)}${it.year ? ' · ' + it.year : ''}</div>${it.series && !it.isSeries ? `<div class="a">${esc(it.series)}</div>` : ''}</div>
     <div class="meta mono"><span>${esc(it.id)}</span><span>${CATS[it.category].label}</span></div>`;
   setImg(b.querySelector('img'), it);
   b.onclick = () => openModal(it);
