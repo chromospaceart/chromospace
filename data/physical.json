@@ -70,6 +70,20 @@
       "note": "",
       "image": "photos/CS-0003.jpg",
       "thumb": "photos/thumbs/CS-0003.webp"
+    },
+    {
+      "id": "CS-0004",
+      "category": "street",
+      "title": "Whole Series #02",
+      "artist": "Vhils",
+      "year": 2022,
+      "medium": "Hand-carved advertising posters",
+      "size": "100 × 70 cm",
+      "acquired": null,
+      "provenance": "",
+      "note": "",
+      "image": "photos/CS-0004.jpg",
+      "thumb": "photos/thumbs/CS-0004.webp"
     }
   ]
 }
