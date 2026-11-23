@@ -1,7 +1,7 @@
 {
  "_readme": "Generated every day by scripts/update-nfts.mjs. Do not edit by hand: change data/artists.json or data/exclude.json instead.",
  "source": "Blockscout (eth.blockscout.com) + OpenSea",
- "updated": "2026-11-22T04:18:45.592Z",
+ "updated": "2026-11-23T04:40:02.870Z",
  "wallet": "0xb884ad7ab6af74693fec7f364eb8bfb31fc7ecea",
  "items": [
   {
