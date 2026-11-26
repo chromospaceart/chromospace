@@ -1646,5 +1646,5 @@
  "release": "archive",
  "base": "https://github.com/chromospaceart/chromospace/releases/download/archive/",
  "_readme": "Full-resolution originals, kept as assets of the GitHub release \"archive\". Download link = base + file name. Written automatically.",
- "updated": "2026-11-25T04:32:22.222Z"
+ "updated": "2026-11-26T04:27:55.309Z"
 }
